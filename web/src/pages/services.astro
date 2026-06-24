@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const fibre = [
+  { code: 'FTTO', name: 'Fiber to the Office', desc: "Connectivité haut débit dédiée aux entreprises : de l'étude de faisabilité à la mise en service, déploiement et raccordement des infrastructures." },
+  { code: 'FTTX', name: 'Fiber To The X (dont FTTH)', desc: "Déploiement complet : étude, pose, soudure, mesure et vérification des câbles. Des solutions sur mesure pour chaque projet de connectivité." },
+  { code: 'FTTA', name: 'Fiber to the Antenna', desc: "Alimentation des antennes mobiles en fibre : pose, raccordement et maintenance pour une couverture réseau stable et performante." },
+  { code: 'VDR', name: 'Vie Du Réseau', desc: "Maintenance préventive et corrective : diagnostic et réparation rapides pour garantir la continuité et la fiabilité de vos réseaux." },
+  { code: 'GD', name: 'Grands déploiements', desc: "Projets d'envergure en volume comme en complexité : gestion complète, de l'étude au raccordement, dans le respect des délais et des normes." },
+];
+
+const subnav = [
+  { href: '#genie-civil', label: 'Génie civil', icon: 'hard-hat' },
+  { href: '#fibre', label: 'Fibre optique', icon: 'cable' },
+  { href: '#gsm', label: 'Site GSM', icon: 'radio-tower' },
+  { href: '#irve-cta', label: 'IRVE', icon: 'zap' },
+];
+---
+<Base title="Services : Génie civil, fibre optique, GSM & IRVE | EFFO-TP" description="Découvrez les services EFFO-TP : génie civil traditionnel et spécifique, déploiement et maintenance de la fibre optique (FTTO/FTTX/FTTA/VDR), sites GSM et bornes de recharge IRVE.">
+  <PageHeader
+    eyebrow="Nos services"
+    title="Une expertise complète, du terrassement à la fibre"
+    subtitle="Quatre pôles métier complémentaires pour concevoir, déployer et entretenir vos infrastructures télécom, de l'étude de faisabilité à la maintenance."
+    image="/assets/img/genie-civil.jpg"
+  />
+
+  <!-- Mini-nav d'ancrage sticky -->
+  <nav data-subnav class="sticky top-[72px] z-30 bg-white/90 backdrop-blur border-b border-slate-200" aria-label="Nos services">
+    <div class="mx-auto max-w-7xl px-6 flex gap-2 overflow-x-auto py-3 text-sm font-medium [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {subnav.map((s) => (
+        <a href={s.href} class="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-paper text-ink hover:bg-brand-blue hover:text-white transition">
+          <i data-lucide={s.icon} class="w-4 h-4"></i> {s.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <!-- Génie civil -->
+  <section id="genie-civil" class="scroll-mt-[140px] py-20 md:py-24">
+    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="anim anim-up order-2 lg:order-1">
+        <span class="inline-flex items-center gap-3">
+          <span class="w-11 h-11 rounded-xl bg-brand-blue/10 flex items-center justify-center"><i data-lucide="hard-hat" class="w-5 h-5 text-brand-blue"></i></span>
+          <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">01 · Génie civil</span>
+        </span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mt-4">Génie civil traditionnel &amp; spécifique</h2>
+        <p class="mt-5 text-slate2 text-lg leading-relaxed">Fort de son expertise en génie civil, EFFO-TP réalise des tâches aussi variées que techniques, essentielles à l'implantation des infrastructures télécom.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-1"></i><span>Étude de faisabilité sur le terrain</span></li>
+          <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-1"></i><span>Ouverture de tranchées et pose de fourreaux</span></li>
+          <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-1"></i><span>Installation d'armoires, shelters et chambres de tirage</span></li>
+          <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-1"></i><span>Fonçage de route par <strong>forage dirigé</strong> (méthode spécifique)</span></li>
+        </ul>
+      </div>
+      <div class="anim anim-up order-1 lg:order-2" data-delay="120">
+        <img src="/assets/img/genie-civil.jpg" alt="Pelle hydraulique sur chantier de génie civil" width="1400" height="879" loading="lazy" decoding="async" class="rounded-2xl shadow-card w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Fibre -->
+  <section id="fibre" class="scroll-mt-[140px] py-20 md:py-24 bg-paper">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="anim anim-up">
+          <img src="/assets/img/fibre.jpg" alt="Déploiement de fibre optique" width="1400" height="2096" loading="lazy" decoding="async" class="rounded-2xl shadow-card w-full object-cover" />
+        </div>
+        <div class="anim anim-up" data-delay="120">
+          <span class="inline-flex items-center gap-3">
+            <span class="w-11 h-11 rounded-xl bg-brand-blue/10 flex items-center justify-center"><i data-lucide="cable" class="w-5 h-5 text-brand-blue"></i></span>
+            <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">02 · Fibre optique</span>
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl mt-4">Déploiement &amp; maintenance des réseaux fibre</h2>
+          <p class="mt-5 text-slate2 text-lg leading-relaxed">EFFO-TP prend en charge l'ensemble des opérations liées au déploiement de la fibre : étude de faisabilité, pose, soudure et mesure des câbles optiques, puis maintenance préventive et corrective pour une qualité de service optimale.</p>
+        </div>
+      </div>
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {fibre.map((f, i) => (
+          <article class="scard anim anim-up bg-white rounded-2xl p-6 shadow-soft border border-slate-100" data-delay={i * 80}>
+            <div class="inline-flex items-center justify-center px-3 py-1 rounded-md bg-gradient-to-r from-brand-blue to-brand-green text-white font-display font-bold text-sm">{f.code}</div>
+            <h3 class="font-display font-bold text-lg mt-4">{f.name}</h3>
+            <p class="mt-2 text-slate2 leading-relaxed text-[15px]">{f.desc}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GSM -->
+  <section id="gsm" class="scroll-mt-[140px] py-20 md:py-24">
+    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="anim anim-up order-2 lg:order-1">
+        <span class="inline-flex items-center gap-3">
+          <span class="w-11 h-11 rounded-xl bg-brand-blue/10 flex items-center justify-center"><i data-lucide="radio-tower" class="w-5 h-5 text-brand-blue"></i></span>
+          <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">03 · Site GSM</span>
+        </span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mt-4">Sites GSM &amp; réseaux mobiles</h2>
+        <p class="mt-5 text-slate2 text-lg leading-relaxed">EFFO-TP est spécialisée dans les travaux de génie civil dédiés aux infrastructures GSM. Nous prenons en charge l'ensemble des aspects techniques, de l'étude préalable à la mise en œuvre.</p>
+        <ul class="mt-6 space-y-3">
+          <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-1"></i><span>Préparation des sites pour l'installation des antennes</span></li>
+          <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-1"></i><span>Pose des câbles et équipements nécessaires</span></li>
+          <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-1"></i><span>Terrassement et génie civil pour supports et shelters</span></li>
+          <li class="flex gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-1"></i><span>Installation &amp; maintenance des réseaux mobiles</span></li>
+        </ul>
+      </div>
+      <div class="anim anim-up order-1 lg:order-2" data-delay="120">
+        <img src="/assets/img/gsm.jpg" alt="Pylône GSM" width="1400" height="1827" loading="lazy" decoding="async" class="rounded-2xl shadow-card w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- IRVE band -->
+  <section id="irve-cta" class="scroll-mt-[140px] py-16 bg-ink text-white">
+    <div class="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="inline-flex items-center gap-1.5 bg-brand-green text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Nouveauté</span>
+        <h2 class="font-display font-bold text-2xl md:text-3xl mt-4">04 · Bornes de recharge IRVE</h2>
+        <p class="mt-2 text-white/70 max-w-xl">Installation de bornes de recharge pour véhicules électriques, pour les particuliers comme pour les professionnels.</p>
+      </div>
+      <a href="/irve" class="inline-flex items-center gap-2 bg-brand-green text-ink font-semibold px-7 py-3.5 rounded-full hover:bg-brand-green700 transition shrink-0">Découvrir l'offre IRVE <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+    </div>
+  </section>
+
+  <CtaBand title={`Un besoin précis ? <span class="fibre-text">Parlons-en.</span>`} subtitle="Décrivez-nous votre projet, nous vous répondons rapidement avec une solution adaptée." eyebrow="Contact" />
+</Base>

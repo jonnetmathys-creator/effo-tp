@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CtaBand from '../components/CtaBand.astro';
+import TeamCard from '../components/TeamCard.astro';
+
+const team = [
+  { name: 'Quentin Bernard', role: 'Gérant · Directeur déploiement fibre' },
+  { name: 'Anthony Bernard', role: 'Directeur Génie civil' },
+  { name: 'Nicolas Bernard', role: 'Référent équipe lourde Génie civil' },
+  { name: 'Pierre Morel', role: 'Référent déploiement fibre' },
+  { name: 'Hermann P.', role: 'Conducteur poids lourd' },
+  { name: 'Maxime L.', role: 'Chef de chantier Génie civil' },
+  { name: 'Fabien L.', role: "Responsable d'équipe Génie civil" },
+  { name: 'Jérôme M.', role: 'Ouvrier qualifié Génie civil' },
+  { name: 'Thibault B.', role: 'Chef de chantier' },
+  { name: 'Léo B.', role: 'Responsable équipe' },
+  { name: 'Louison J.', role: 'Technicien fibre optique' },
+  { name: 'Pierre J.', role: 'Technicien fibre optique' },
+];
+const groupA = team.slice(0, 6);
+const groupB = team.slice(6);
+---
+<Base title="Notre histoire & nos valeurs | EFFO-TP" description="EFFO-TP, entreprise familiale créée en 2021, née de 30 ans d'expériences partagées. Découvrez notre histoire, nos valeurs et notre équipe.">
+  <PageHeader
+    eyebrow="Notre histoire"
+    title="Grandir ensemble, remettre l'humain au cœur"
+    subtitle="EFFO-TP est avant tout une entreprise et une histoire familiale, née de 30 ans d'expériences partagées."
+    image="/assets/img/chargeuse.jpg"
+  />
+
+  <!-- Histoire + équipe (texte sticky à droite, cards qui montent à gauche) -->
+  <section class="py-20 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+
+      <!-- Bloc 1 : Qui sommes-nous ? -->
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14">
+        <!-- Cards (gauche) -->
+        <div class="order-2 lg:order-1 grid grid-cols-2 gap-4 sm:gap-5">
+          <div class="space-y-4 sm:space-y-5">
+            {groupA.filter((_, i) => i % 2 === 0).map((m, i) => <TeamCard name={m.name} role={m.role} delay={i * 80} />)}
+          </div>
+          <div class="space-y-4 sm:space-y-5 mt-8 sm:mt-14">
+            {groupA.filter((_, i) => i % 2 === 1).map((m, i) => <TeamCard name={m.name} role={m.role} delay={i * 80 + 40} />)}
+          </div>
+        </div>
+        <!-- Texte sticky (droite) -->
+        <div class="order-1 lg:order-2">
+          <div class="lg:sticky lg:top-28">
+            <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Qui sommes-nous ?</span>
+            <h2 class="font-display font-bold text-3xl md:text-4xl mt-3 leading-tight">Une histoire <span class="fibre-text">familiale</span>, depuis mars 2021</h2>
+            <div class="mt-6 space-y-4 text-slate2 text-lg leading-relaxed">
+              <p>EFFO-TP est avant tout une entreprise et une histoire familiale, créée en mars 2021. Elle résulte de 30 ans d'expériences partagées avec nos salariés et anciens collègues, à travers différentes entreprises qui ont forgé nos liens, ainsi que nos valeurs de respect et de confiance.</p>
+              <p>C'est la culture de « grandir ensemble » et du partenariat gagnant-gagnant, en restant à l'écoute des attentes internes et externes, et en remettant l'humain et ses valeurs au cœur de l'entreprise.</p>
+              <p>Notre histoire, c'est aussi l'envie de remettre la qualité de travail et la relation humaine au premier plan, face à la compétitivité des marchés sur lesquels nous intervenons.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc 2 : Pourquoi nous choisir ? -->
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 mt-12 lg:mt-20">
+        <!-- Cards (gauche) -->
+        <div class="order-2 lg:order-1 grid grid-cols-2 gap-4 sm:gap-5">
+          <div class="space-y-4 sm:space-y-5">
+            {groupB.filter((_, i) => i % 2 === 0).map((m, i) => <TeamCard name={m.name} role={m.role} delay={i * 80} />)}
+          </div>
+          <div class="space-y-4 sm:space-y-5 mt-8 sm:mt-14">
+            {groupB.filter((_, i) => i % 2 === 1).map((m, i) => <TeamCard name={m.name} role={m.role} delay={i * 80 + 40} />)}
+          </div>
+        </div>
+        <!-- Texte sticky (droite) -->
+        <div class="order-1 lg:order-2">
+          <div class="lg:sticky lg:top-28">
+            <span class="text-brand-green font-semibold uppercase tracking-wide text-sm">Pourquoi nous choisir ?</span>
+            <h2 class="font-display font-bold text-3xl md:text-4xl mt-3 leading-tight">L'expertise d'une équipe à <span class="fibre-text">taille humaine</span></h2>
+            <div class="mt-6 space-y-4 text-slate2 text-lg leading-relaxed">
+              <p>EFFO-TP s'appuie sur l'expertise de ses collaborateurs, forte de 30 années d'expérience cumulée.</p>
+              <p>Nous proposons des solutions adaptées, clés en main, avec un accompagnement professionnel à chaque étape de votre projet. Nos valeurs humaines, héritées de notre histoire familiale, se traduisent par une culture de confiance, d'écoute et de transparence.</p>
+              <p>En tant que structure à taille humaine, nous privilégions la proximité et la réactivité : un suivi personnalisé et une relation durable. Notre engagement envers la qualité et la fiabilité, soutenu par le professionnalisme de nos équipes et des partenariats solides, assure la réussite de vos projets.</p>
+            </div>
+            <div class="mt-7 flex flex-wrap gap-4">
+              <a href="/contact" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition">Nous contacter <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            </div>
+            <p class="mt-6 text-slate2 text-sm flex items-center gap-2"><i data-lucide="camera" class="w-4 h-4"></i> Les photos de l'équipe seront intégrées prochainement.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <CtaBand title={`Envie de <span class="fibre-text">travailler</span> avec nous ?`} subtitle="Parlons de votre projet ou de votre besoin en recrutement." primaryLabel="Nous contacter" />
+</Base>

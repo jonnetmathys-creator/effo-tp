@@ -1,0 +1,70 @@
+---
+// Carte interactive Leaflet : départements d'intervention EFFO-TP colorés
+---
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<div id="zone-map" class="relative isolate w-full h-[320px] sm:h-[480px] rounded-3xl overflow-hidden shadow-card border border-slate-100" style="z-index:0;background:#eaeef3;"></div>
+
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script is:inline>
+  // Capture immédiate de Leaflet : d'autres libs (lucide) écrasent le global window.L
+  var EFFO_LEAFLET = window.L;
+  (function () {
+    function init() {
+      var L = EFFO_LEAFLET || window.L;
+      if (!L || !L.map) return setTimeout(init, 120);
+      var el = document.getElementById('zone-map');
+      if (!el || el._init) return;
+      el._init = true;
+
+      var map = L.map(el, { scrollWheelZoom: false, attributionControl: true, zoomControl: true });
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+      }).addTo(map);
+      map.setView([47.4, -1.6], 7);
+
+      var baseStyle = { color: '#1C89F2', weight: 2, fillColor: '#1C89F2', fillOpacity: 0.22 };
+      var hoverStyle = { color: '#1FA87B', weight: 3, fillColor: '#30C293', fillOpacity: 0.45 };
+
+      fetch('/data/zones.geojson')
+        .then(function (r) { return r.json(); })
+        .then(function (gj) {
+          var byName = {};
+          function norm(s) { return (s || '').toString().normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim(); }
+          var layer = L.geoJSON(gj, {
+            style: function () { return baseStyle; },
+            onEachFeature: function (feature, lyr) {
+              var name = feature.properties && feature.properties.name;
+              byName[norm(name)] = lyr;
+              lyr.bindTooltip(name, { sticky: true, direction: 'top', className: 'effo-tip' });
+              lyr.on('mouseover', function () { lyr.setStyle(hoverStyle); lyr.bringToFront(); });
+              lyr.on('mouseout', function () { lyr.setStyle(baseStyle); });
+            },
+          }).addTo(map);
+          try { map.fitBounds(layer.getBounds(), { padding: [24, 24] }); } catch (e) {}
+
+          var hq = L.circleMarker([47.27, -1.3], { radius: 8, color: '#0B0F14', weight: 2, fillColor: '#30C293', fillOpacity: 1 }).addTo(map);
+          hq.bindPopup('<b>EFFO-TP</b><br>39 Rte du Champ Blond,<br>44450 Divatte-sur-Loire').openPopup();
+
+          // Survol de la liste à gauche → allume le département sur la carte
+          document.querySelectorAll('[data-dep]').forEach(function (el) {
+            var lyr = byName[norm(el.getAttribute('data-dep'))];
+            if (!lyr) return;
+            el.addEventListener('mouseenter', function () { lyr.setStyle(hoverStyle); lyr.bringToFront(); });
+            el.addEventListener('mouseleave', function () { lyr.setStyle(baseStyle); });
+          });
+        })
+        .catch(function () {});
+
+      setTimeout(function () { map.invalidateSize(); }, 300);
+      window.addEventListener('resize', function () { map.invalidateSize(); });
+    }
+    if (document.readyState === 'complete') init();
+    else window.addEventListener('load', init);
+  })();
+</script>
+<style is:global>
+  .effo-tip { background: #0B0F14; color: #fff; border: none; font-weight: 600; padding: 4px 10px; border-radius: 8px; }
+  .effo-tip::before { border-top-color: #0B0F14; }
+  .leaflet-container { font-family: 'Source Sans 3', sans-serif; }
+</style>

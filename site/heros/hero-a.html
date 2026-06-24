@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EFFO-TP — Hero A (Immersif)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{blue:'#1C89F2',blue700:'#0E6FD6',green:'#30C293'},ink:{DEFAULT:'#0B0F14',800:'#141A21'},slate2:'#5B6573',paper:'#F6F8FB'},fontFamily:{display:['Lexend','sans-serif'],sans:['"Source Sans 3"','sans-serif']}}}}</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>body{font-family:'Source Sans 3',sans-serif}h1,h2,h3,.fd{font-family:'Lexend',sans-serif}.hero-overlay{background:linear-gradient(180deg,rgba(11,15,20,.72)0%,rgba(11,15,20,.5)45%,rgba(11,15,20,.85)100%)}</style>
+</head><body class="bg-white">
+<!-- variant label -->
+<div class="bg-brand-blue text-white text-center text-sm font-semibold py-1.5">VARIANTE A — Immersif plein écran (photo de marque)</div>
+<header class="absolute top-8 left-0 right-0 z-40">
+  <div class="mx-auto max-w-7xl px-6 h-[64px] flex items-center justify-between">
+    <div class="flex items-center gap-1"><span class="fd font-extrabold text-2xl text-white">EFFO</span><span class="fd font-bold text-sm bg-white text-ink px-1.5 py-0.5 rounded">TP</span></div>
+    <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-white/90"><a href="#">Services</a><a href="#">Réalisations</a><a href="#">Notre histoire</a><a href="#">IRVE</a></nav>
+    <a href="#" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-5 py-2.5 rounded-full transition">Demander un devis <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+  </div>
+</header>
+<section class="relative min-h-[88vh] flex items-center">
+  <img src="../assets/img/batiment-effo.jpg" alt="" class="absolute inset-0 w-full h-full object-cover"/>
+  <div class="absolute inset-0 hero-overlay"></div>
+  <div class="relative mx-auto max-w-7xl px-6 w-full">
+    <div class="max-w-3xl">
+      <span class="inline-flex items-center gap-2 text-white/90 text-sm font-semibold tracking-wide uppercase mb-5"><span class="w-8 h-[3px] bg-brand-green"></span> Génie civil &amp; réseaux télécom</span>
+      <h1 class="fd font-extrabold text-white text-[clamp(2.4rem,6vw,4.6rem)] leading-[1.04]">Déployons &amp; construisons ensemble vos <span class="text-brand-blue">réseaux</span> <span class="text-brand-green">télécom</span></h1>
+      <p class="mt-6 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">Située près de Nantes, EFFO-TP conçoit, déploie et entretient vos infrastructures télécom. Une expertise solide, une équipe qualifiée, des solutions clés en main.</p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition">Nous solliciter <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+        <a href="#" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full backdrop-blur transition">Notre histoire &amp; nos valeurs</a>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 bg-ink/80 backdrop-blur border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-6 text-white">
+      <div><div class="fd font-extrabold text-3xl text-brand-blue">30 ans</div><div class="text-white/60 text-sm">d'expérience cumulée</div></div>
+      <div><div class="fd font-extrabold text-3xl text-brand-green">2021</div><div class="text-white/60 text-sm">entreprise familiale</div></div>
+      <div><div class="fd font-extrabold text-3xl text-brand-blue">5</div><div class="text-white/60 text-sm">départements</div></div>
+      <div><div class="fd font-extrabold text-3xl text-brand-green">4</div><div class="text-white/60 text-sm">pôles métier</div></div>
+    </div>
+  </div>
+</section>
+<script>lucide.createIcons()</script>
+</body></html>

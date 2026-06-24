@@ -1,0 +1,30 @@
+---
+const { eyebrow, title, subtitle, image = '/assets/img/genie-civil.jpg' } = Astro.props;
+---
+<section class="relative overflow-hidden hero-dark text-white">
+  <img src={image} alt="" fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-20" />
+  <div class="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/75 to-ink"></div>
+  <!-- ambient blobs (cohérence avec le hero d'accueil) -->
+  <div class="blob absolute -top-20 right-10 w-[360px] h-[360px] rounded-full bg-brand-blue/20 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="blob absolute -bottom-24 right-1/4 w-[320px] h-[320px] rounded-full bg-brand-green/15 blur-3xl pointer-events-none" style="animation-delay:-6s" aria-hidden="true"></div>
+  <!-- lignes fibre raffinées -->
+  <svg class="absolute inset-0 w-full h-full opacity-60 pointer-events-none" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="phFibre" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#39C7FD"/><stop offset=".5" stop-color="#1C89F2"/><stop offset="1" stop-color="#30C293"/>
+      </linearGradient>
+    </defs>
+    <path class="flow" d="M-50,300 C300,300 350,120 720,120 C1090,120 1150,260 1500,260" stroke="url(#phFibre)" stroke-width="1.5"/>
+    <path class="flow" d="M-50,340 C320,340 420,90 760,90 C1120,90 1200,210 1500,210" stroke="url(#phFibre)" stroke-width="1.5" style="animation-duration:20s"/>
+    <path class="flow" d="M-50,260 C280,260 380,160 740,150 C1100,140 1180,300 1500,300" stroke="url(#phFibre)" stroke-width="1" style="animation-duration:24s;opacity:.6"/>
+    <circle class="node" cx="720" cy="120" r="3.5" fill="#39C7FD"/>
+    <circle class="node" cx="760" cy="90" r="3" fill="#30C293" style="animation-delay:1.2s"/>
+  </svg>
+  <div class="relative mx-auto max-w-7xl px-6 py-20 md:py-28">
+    <span class="anim anim-up inline-flex items-center gap-2 text-white/90 text-sm font-semibold tracking-wide uppercase mb-4">
+      <span class="w-8 h-[3px] bg-brand-green"></span> {eyebrow}
+    </span>
+    <h1 class="anim anim-up font-display font-extrabold text-white text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.06] max-w-3xl" data-delay="80" set:html={title}></h1>
+    {subtitle && <p class="anim anim-up mt-5 text-lg text-white/75 max-w-2xl leading-relaxed" data-delay="160">{subtitle}</p>}
+  </div>
+</section>

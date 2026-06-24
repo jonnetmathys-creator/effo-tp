@@ -1,0 +1,241 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const filters = [
+  { key: 'all', label: 'Tous' },
+  { key: 'genie-civil', label: 'Génie civil' },
+  { key: 'fibre', label: 'Fibre optique' },
+  { key: 'gsm', label: 'Site GSM' },
+  { key: 'irve', label: 'IRVE' },
+];
+
+const projects = [
+  { category: 'genie-civil', categoryLabel: 'Génie civil', icon: 'shovel', title: 'Ouverture de tranchées & pose de fourreaux', location: 'Loire-Atlantique', desc: "Terrassement, pose de fourreaux et remblaiement pour le passage des réseaux télécom.", details: "Réalisation de tranchées sur plusieurs centaines de mètres pour le passage de réseaux télécom : terrassement, pose des fourreaux et grillage avertisseur, remblaiement et réfection de surface. Chantier mené dans le respect des règles de sécurité et de la voirie.", tags: ['Terrassement', 'Fourreaux', 'Remblaiement', 'Réfection'] },
+  { category: 'genie-civil', categoryLabel: 'Génie civil', icon: 'drill', title: 'Forage dirigé sous chaussée', location: 'Vendée', desc: "Fonçage par forage dirigé pour traverser une voirie sans l'ouvrir.", details: "Traversée de chaussée par forage dirigé (méthode spécifique) afin de faire passer les réseaux sans ouvrir la route : zéro impact sur la circulation et sur les infrastructures existantes. Solution idéale en milieu contraint.", tags: ['Forage dirigé', 'Sans tranchée', 'Voirie'] },
+  { category: 'genie-civil', categoryLabel: 'Génie civil', icon: 'box', title: 'Chambres de tirage & armoires techniques', location: 'Maine-et-Loire', desc: "Implantation de chambres de tirage et d'armoires de rue conformes aux normes.", details: "Pose et raccordement de chambres de tirage et d'armoires techniques de rue, points clés de l'architecture des réseaux. Implantation, génie civil et finitions conformes aux exigences des opérateurs.", tags: ['Chambres', 'Armoires', 'Génie civil'] },
+  { category: 'fibre', categoryLabel: 'Fibre optique', icon: 'cable', title: 'Déploiement fibre FTTH', location: 'Morbihan', desc: "Tirage, soudure et mesure de la fibre jusqu'à l'abonné, avec contrôle qualité.", details: "Déploiement de la fibre jusqu'à l'abonné (FTTH) : tirage des câbles, soudure, mesures par réflectométrie et contrôle qualité complet. Une connectivité fiable et performante, livrée dans les délais.", tags: ['FTTH', 'Soudure', 'Mesure', 'Raccordement'] },
+  { category: 'fibre', categoryLabel: 'Fibre optique', icon: 'building-2', title: 'Raccordement FTTO entreprise', location: 'Nantes', desc: "Liaison fibre dédiée pour un site professionnel, de l'étude au raccordement.", details: "Mise en place d'une liaison fibre dédiée (FTTO) pour un site professionnel : étude de faisabilité, génie civil si nécessaire, pose et raccordement. Une connexion haut débit dédiée et sécurisée pour l'entreprise.", tags: ['FTTO', 'Entreprise', 'Haut débit'] },
+  { category: 'fibre', categoryLabel: 'Fibre optique', icon: 'wrench', title: 'Maintenance réseau (VDR)', location: 'Ille-et-Vilaine', desc: "Diagnostic et réparation rapides pour garantir la continuité du réseau.", details: "Interventions de maintenance préventive et corrective (Vie Du Réseau) : diagnostic, localisation de panne et réparation rapide. Objectif : garantir la continuité et la fiabilité du service.", tags: ['Maintenance', 'Diagnostic', 'Réparation'] },
+  { category: 'gsm', categoryLabel: 'Site GSM', icon: 'radio-tower', title: "Génie civil site GSM & pose d'antennes", location: 'Vendée', desc: "Préparation du site, supports, câblage et installation des équipements mobiles.", details: "Travaux de génie civil dédiés à un site GSM : préparation du terrain, massifs et supports, câblage, puis installation des antennes et équipements radio. Une infrastructure mobile fiable et conforme.", tags: ['GSM', 'Antennes', 'Supports', 'Câblage'] },
+  { category: 'gsm', categoryLabel: 'Site GSM', icon: 'layers', title: 'Terrassement & shelter télécom', location: 'Loire-Atlantique', desc: "Terrassement et mise en place du shelter technique d'un site mobile.", details: "Terrassement et mise en place d'un shelter technique abritant les équipements d'un site mobile : plateforme, raccordements et sécurisation. Un ouvrage durable au service de la couverture réseau.", tags: ['Terrassement', 'Shelter', 'Mobile'] },
+  { category: 'irve', categoryLabel: 'IRVE', icon: 'zap', title: 'Installation de bornes de recharge', location: 'Loire-Atlantique', desc: "Étude, génie civil et mise en service de bornes IRVE pour un parking pro.", details: "Installation de bornes de recharge pour véhicules électriques sur un parking professionnel : étude de l'installation électrique, génie civil, pose et mise en service. Une solution clé en main, évolutive et dimensionnée.", tags: ['IRVE', 'Recharge', 'Clé en main'] },
+];
+
+const garanties = [
+  { icon: 'shield-check', label: 'Conforme aux normes', desc: "Travaux réalisés dans le respect des normes télécom et des règles de voirie." },
+  { icon: 'calendar-check', label: 'Délais respectés', desc: "Un planning clair, communiqué dès le devis et tenu jusqu'à la livraison." },
+  { icon: 'hard-hat', label: 'Sécurité chantier', desc: "Procédures et équipements adaptés pour des interventions sûres." },
+  { icon: 'search-check', label: 'Contrôle qualité', desc: "Vérifications et mesures à chaque étape, jusqu'à la réception du chantier." },
+];
+---
+<Base title="Réalisations : Chantiers de génie civil, fibre & GSM | EFFO-TP" description="Découvrez des exemples de chantiers réalisés par EFFO-TP : génie civil, déploiement fibre optique, sites GSM et bornes IRVE dans tout le Grand Ouest.">
+  <PageHeader
+    eyebrow="Réalisations"
+    title={'Nos <span class="fibre-text">réalisations</span>'}
+    subtitle="Des exemples concrets de travaux menés dans le Grand Ouest, du génie civil au raccordement final."
+    image="/assets/img/chargeuse.jpg"
+  />
+
+  <!-- Galerie de réalisations -->
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="anim anim-up max-w-2xl">
+        <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Galerie</span>
+        <h2 class="font-display font-bold text-[clamp(1.9rem,4vw,2.8rem)] mt-3 leading-tight">Une sélection de nos <span class="fibre-text">chantiers</span></h2>
+        <p class="mt-4 text-slate2 text-lg">Filtrez par métier, puis cliquez sur un chantier pour en voir le détail.</p>
+      </div>
+
+      <!-- Filtres -->
+      <div class="anim anim-up mt-8 flex flex-wrap gap-2" role="group" aria-label="Filtrer les réalisations" data-delay="60">
+        {filters.map((f, i) => (
+          <button type="button" data-filter={f.key} aria-pressed={i === 0 ? 'true' : 'false'} class="filter-pill shrink-0 px-4 py-2 rounded-full text-sm font-semibold">{f.label}</button>
+        ))}
+      </div>
+
+      <!-- Grille -->
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((p, i) => (
+          <ProjectCard
+            category={p.category}
+            categoryLabel={p.categoryLabel}
+            icon={p.icon}
+            title={p.title}
+            location={p.location}
+            desc={p.desc}
+            details={p.details}
+            tags={p.tags}
+            delay={(i % 3) * 80}
+          />
+        ))}
+      </div>
+
+      <p class="mt-8 text-slate2 text-sm flex items-center gap-2"><i data-lucide="camera" class="w-4 h-4"></i> Galerie en cours d'enrichissement : les photos de chantiers seront ajoutées prochainement.</p>
+    </div>
+  </section>
+
+  <!-- Engagements / preuves -->
+  <section class="py-20 md:py-24 bg-paper">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="anim anim-up max-w-2xl">
+        <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Nos engagements</span>
+        <h2 class="font-display font-bold text-[clamp(1.9rem,4vw,2.8rem)] mt-3 leading-tight">Des chantiers menés avec <span class="fibre-text">rigueur</span></h2>
+        <p class="mt-4 text-slate2 text-lg">Au-delà du résultat visible, une exigence sur la méthode, la sécurité et la qualité, à chaque étape.</p>
+      </div>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {garanties.map((g, i) => (
+          <div class="scard anim anim-up rounded-2xl border border-slate-100 bg-white shadow-soft p-6" data-delay={i * 80}>
+            <span class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-blue/15 to-brand-green/15 flex items-center justify-center"><i data-lucide={g.icon} class="w-6 h-6 text-brand-blue"></i></span>
+            <h3 class="font-display font-bold text-lg mt-4 leading-snug">{g.label}</h3>
+            <p class="mt-2 text-slate2 text-[15px] leading-relaxed">{g.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={`Un <span class="fibre-text">chantier similaire</span> en vue ?`} subtitle="Parlons de votre projet : nous vous proposons une solution adaptée, de l'étude à la livraison." />
+
+  <!-- Modale détail chantier -->
+  <div id="projModal" class="fixed inset-0 z-[80] hidden" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+    <div class="absolute inset-0 bg-ink/70 backdrop-blur-sm" data-close></div>
+    <div class="relative z-10 min-h-full flex items-center justify-center p-4">
+      <div id="pmPanel" data-lenis-prevent class="w-full max-w-3xl max-h-[90vh] overflow-y-auto overscroll-contain bg-white rounded-2xl shadow-2xl">
+        <!-- Galerie -->
+        <div class="relative">
+          <div id="pmMain" class="relative aspect-[16/9] bg-gradient-to-br from-paper to-slate-200/70 flex items-center justify-center overflow-hidden"></div>
+          <span id="pmCat" class="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full shadow-soft"></span>
+          <span id="pmCounter" class="absolute bottom-3 right-3 inline-flex items-center gap-1 text-[11px] font-semibold text-white bg-ink/70 px-2.5 py-1 rounded-full"></span>
+          <button type="button" id="pmPrev" aria-label="Image précédente" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 text-ink flex items-center justify-center hover:bg-white shadow-soft"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+          <button type="button" id="pmNext" aria-label="Image suivante" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 text-ink flex items-center justify-center hover:bg-white shadow-soft"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+          <button type="button" data-close aria-label="Fermer" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/95 text-ink flex items-center justify-center hover:bg-white shadow-soft"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+        <div id="pmThumbs" class="flex gap-2 p-3 overflow-x-auto border-b border-slate-100 bg-paper/50 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"></div>
+        <div class="p-6 md:p-8 pb-5">
+          <div id="pmLoc" class="flex items-center gap-1.5 text-slate2 text-sm"></div>
+          <h3 id="pmTitle" class="font-display font-bold text-2xl md:text-3xl mt-1.5 leading-tight"></h3>
+          <p id="pmDesc" class="mt-4 text-slate2 leading-relaxed"></p>
+          <div id="pmTags" class="mt-5 flex flex-wrap gap-2"></div>
+        </div>
+        <!-- Footer collant : CTA toujours visible -->
+        <div class="sticky bottom-0 bg-white/95 backdrop-blur border-t border-slate-100 px-6 py-4 flex flex-col-reverse sm:flex-row sm:justify-end items-stretch sm:items-center gap-3">
+          <button type="button" data-close class="inline-flex items-center justify-center gap-2 border border-slate-200 text-ink font-semibold px-6 py-3 rounded-full hover:bg-paper transition">Fermer</button>
+          <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-6 py-3 rounded-full transition shadow-[0_8px_24px_-10px_rgba(28,137,242,.7)]">Discuter d'un projet similaire <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      // --- Filtres (état piloté par aria-pressed) ---
+      var btns = Array.prototype.slice.call(document.querySelectorAll('[data-filter]'));
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.proj-card'));
+      function applyFilter(f) {
+        cards.forEach(function (c) {
+          var show = f === 'all' || c.getAttribute('data-cat') === f;
+          c.classList.toggle('hidden', !show);
+        });
+        btns.forEach(function (b) {
+          b.setAttribute('aria-pressed', b.getAttribute('data-filter') === f ? 'true' : 'false');
+        });
+      }
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () { applyFilter(b.getAttribute('data-filter')); });
+      });
+
+      // --- Modale détail + galerie ---
+      var modal = document.getElementById('projModal');
+      var panel = document.getElementById('pmPanel');
+      if (!modal) return;
+      var mainEl = document.getElementById('pmMain');
+      var thumbsEl = document.getElementById('pmThumbs');
+      var counterEl = document.getElementById('pmCounter');
+      var prevBtn = document.getElementById('pmPrev');
+      var nextBtn = document.getElementById('pmNext');
+      var lastFocus = null, slides = [], gi = 0, curIcon = 'hard-hat';
+
+      function renderMain() {
+        var s = slides[gi];
+        if (s.photo) {
+          mainEl.innerHTML = '<img src="' + s.photo + '" alt="' + (s.alt || '') + '" class="absolute inset-0 w-full h-full object-cover">';
+        } else {
+          mainEl.innerHTML =
+            '<i data-lucide="' + curIcon + '" class="w-20 h-20 text-brand-blue/15"></i>' +
+            '<span class="absolute bottom-3 left-3 inline-flex items-center gap-1 text-[11px] font-medium text-slate2 bg-white/85 px-2 py-1 rounded-full"><i data-lucide="image" class="w-3 h-3"></i> Photo ' + (gi + 1) + ' à venir</span>';
+        }
+        counterEl.textContent = (gi + 1) + ' / ' + slides.length;
+        Array.prototype.forEach.call(thumbsEl.children, function (t, i) {
+          t.setAttribute('aria-current', i === gi ? 'true' : 'false');
+          t.classList.toggle('ring-2', i === gi);
+          t.classList.toggle('ring-brand-blue', i === gi);
+          t.classList.toggle('opacity-100', i === gi);
+          t.classList.toggle('opacity-60', i !== gi);
+        });
+        var multi = slides.length > 1;
+        prevBtn.classList.toggle('hidden', !multi);
+        nextBtn.classList.toggle('hidden', !multi);
+        if (window.lucide) window.lucide.createIcons();
+      }
+      function buildThumbs() {
+        thumbsEl.innerHTML = slides.map(function (s, i) {
+          var inner = s.photo
+            ? '<img src="' + s.photo + '" alt="" class="w-full h-full object-cover">'
+            : '<i data-lucide="' + curIcon + '" class="w-5 h-5 text-brand-blue/30"></i>';
+          return '<button type="button" data-thumb="' + i + '" class="relative shrink-0 w-20 h-14 rounded-lg overflow-hidden bg-gradient-to-br from-paper to-slate-200/70 flex items-center justify-center transition" aria-current="false">' + inner + '</button>';
+        }).join('');
+        Array.prototype.forEach.call(thumbsEl.querySelectorAll('[data-thumb]'), function (b) {
+          b.addEventListener('click', function () { gi = parseInt(b.getAttribute('data-thumb'), 10) || 0; renderMain(); });
+        });
+        thumbsEl.classList.toggle('hidden', slides.length <= 1);
+      }
+      function go(d) { gi = (gi + d + slides.length) % slides.length; renderMain(); }
+
+      function fill(card) {
+        curIcon = card.getAttribute('data-icon') || 'hard-hat';
+        document.getElementById('pmTitle').textContent = card.getAttribute('data-title') || '';
+        document.getElementById('pmDesc').textContent = card.getAttribute('data-desc') || '';
+        document.getElementById('pmCat').innerHTML = '<i data-lucide="' + curIcon + '" class="w-3.5 h-3.5 text-brand-blue"></i> ' + (card.getAttribute('data-catlabel') || '');
+        document.getElementById('pmLoc').innerHTML = '<i data-lucide="map-pin" class="w-4 h-4 text-brand-green shrink-0"></i> ' + (card.getAttribute('data-location') || '');
+        var tags = (card.getAttribute('data-tags') || '').split('|').filter(Boolean);
+        document.getElementById('pmTags').innerHTML = tags.map(function (t) {
+          return '<span class="inline-flex items-center gap-1.5 bg-paper text-ink text-sm font-medium px-3 py-1.5 rounded-full border border-slate-100">' + t + '</span>';
+        }).join('');
+        // Galerie : vraies photos via data-photos="url1|url2", sinon 3 placeholders
+        var photos = (card.getAttribute('data-photos') || '').split('|').filter(Boolean);
+        slides = photos.length ? photos.map(function (p) { return { photo: p, alt: card.getAttribute('data-title') }; }) : [{}, {}, {}];
+        gi = 0;
+        buildThumbs();
+        renderMain();
+      }
+      function open(card) {
+        lastFocus = document.activeElement;
+        fill(card);
+        modal.classList.remove('hidden');
+        panel.classList.remove('pm-open'); void panel.offsetWidth; panel.classList.add('pm-open');
+        document.body.style.overflow = 'hidden';
+        if (window.__lenis) window.__lenis.stop();
+        var closeBtn = modal.querySelector('[data-close]');
+        if (closeBtn) closeBtn.focus();
+      }
+      function close() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        if (window.__lenis) window.__lenis.start();
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+      cards.forEach(function (c) { c.addEventListener('click', function () { open(c); }); });
+      modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', close); });
+      prevBtn.addEventListener('click', function () { go(-1); });
+      nextBtn.addEventListener('click', function () { go(1); });
+      document.addEventListener('keydown', function (e) {
+        if (modal.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft' && slides.length > 1) go(-1);
+        else if (e.key === 'ArrowRight' && slides.length > 1) go(1);
+      });
+    })();
+  </script>
+</Base>

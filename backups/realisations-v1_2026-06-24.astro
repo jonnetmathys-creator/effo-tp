@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const materiel = [
+  { name: 'Pelle hydraulique', icon: 'construction' },
+  { name: 'Tractopelle', icon: 'truck' },
+  { name: 'Niveleuse', icon: 'ruler' },
+  { name: 'Décapeuse', icon: 'layers' },
+  { name: 'Manitou', icon: 'forklift' },
+];
+const prestations = [
+  { title: 'Génie civil traditionnel', img: '/assets/img/genie-civil.jpg', desc: "Ouverture de tranchées, pose de fourreaux, installation de chambres de tirage et d'armoires techniques. Des réalisations solides et conformes aux exigences du secteur, alliant précision et efficacité." },
+  { title: 'Génie civil spécifique', img: '/assets/img/chargeuse.jpg', desc: "Méthodes innovantes : forage dirigé, fonçage et pose d'infrastructures en milieux contraints. Des solutions qui limitent l'impact sur l'environnement et les infrastructures existantes." },
+  { title: 'Sites GSM', img: '/assets/img/gsm.jpg', desc: "Travaux dédiés aux infrastructures GSM : préparation des sites, pose des antennes et des équipements, terrassement pour supports et shelters. Des installations fiables et performantes." },
+  { title: 'Réseaux fibre (FTTO/FTTX/FTTA)', img: '/assets/img/fibre.jpg', desc: "Déploiement et raccordement de la fibre en environnement professionnel et mobile, dans le respect des normes, avec un suivi rigoureux et des interventions rapides." },
+];
+---
+<Base title="Réalisations & matériel | EFFO-TP" description="Découvrez les réalisations EFFO-TP en génie civil, fibre optique et GSM, ainsi que notre parc de matériel : pelle hydraulique, tractopelle, niveleuse, décapeuse, Manitou.">
+  <PageHeader
+    eyebrow="Réalisations & matériel"
+    title="Un savoir-faire éprouvé, des infrastructures pérennes"
+    subtitle="EFFO-TP met son expertise au service de vos projets de génie civil, essentiels au développement des infrastructures télécom."
+    image="/assets/img/chargeuse.jpg"
+  />
+
+  <!-- Prestations -->
+  <section class="py-20 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="max-w-2xl">
+        <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Nos prestations</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mt-3">Ce que nous réalisons</h2>
+        <p class="mt-4 text-slate2 text-lg">Grâce à notre maîtrise des méthodes traditionnelles et à notre approche rigoureuse, nous assurons des infrastructures optimisées pour les réseaux de demain.</p>
+      </div>
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        {prestations.map((p) => (
+          <article class="scard anim anim-up group rounded-2xl overflow-hidden shadow-card border border-slate-100">
+            <div class="relative h-60 overflow-hidden">
+              <img src={p.img} alt={p.title} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
+              <h3 class="absolute bottom-4 left-5 right-5 font-display font-bold text-xl text-white">{p.title}</h3>
+            </div>
+            <div class="p-7 bg-white"><p class="text-slate2 leading-relaxed">{p.desc}</p></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Matériel -->
+  <section class="py-20 md:py-24 bg-ink text-white">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="max-w-2xl">
+        <span class="text-brand-green font-semibold uppercase tracking-wide text-sm">Notre matériel</span>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mt-3">Un <span class="fibre-text">parc adapté</span> à chaque chantier</h2>
+        <p class="mt-4 text-white/70 text-lg">Des engins entretenus et performants pour intervenir efficacement, quelle que soit la complexité du terrain.</p>
+      </div>
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {materiel.map((m) => (
+          <div class="scard scard-dark anim anim-up bg-ink-800 rounded-xl p-6 border border-white/5 text-center">
+            <i data-lucide={m.icon} class="w-9 h-9 mx-auto text-brand-blue"></i>
+            <div class="mt-3 font-semibold">{m.name}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Un projet à nous confier ?" subtitle="Parlons de votre chantier et de la meilleure manière de le réaliser." />
+</Base>

@@ -1,0 +1,46 @@
+---
+import Logo from './Logo.astro';
+---
+<footer class="bg-black text-white/70">
+  <div class="mx-auto max-w-7xl px-6 py-16 grid md:grid-cols-4 gap-10">
+    <div>
+      <div class="mb-4">
+        <Logo class="h-8 text-white" />
+      </div>
+      <p class="text-sm">Génie civil &amp; réseaux télécom. Déployons &amp; construisons ensemble vos réseaux.</p>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-4">Navigation</div>
+      <ul class="space-y-2 text-sm">
+        <li><a href="/" class="hover:text-white">Accueil</a></li>
+        <li><a href="/services" class="hover:text-white">Services</a></li>
+        <li><a href="/realisations" class="hover:text-white">Réalisations</a></li>
+        <li><a href="/notre-histoire" class="hover:text-white">Notre histoire</a></li>
+        <li><a href="/irve" class="hover:text-white">IRVE</a></li>
+        <li><a href="/contact" class="hover:text-white">Demande de devis</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-4">Réseaux</div>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2 text-white/40"><i data-lucide="facebook" class="w-4 h-4"></i> Facebook <span class="text-xs">(bientôt)</span></li>
+        <li class="flex items-center gap-2 text-white/40"><i data-lucide="instagram" class="w-4 h-4"></i> Instagram <span class="text-xs">(bientôt)</span></li>
+        <li class="flex items-center gap-2 text-white/40"><i data-lucide="youtube" class="w-4 h-4"></i> YouTube <span class="text-xs">(bientôt)</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-white font-semibold mb-4">Contact</div>
+      <ul class="space-y-2 text-sm">
+        <li><a href="tel:0651397482" class="hover:text-white">06 51 39 74 82</a></li>
+        <li><a href="mailto:quentin.bernard@effo-tp.com" class="hover:text-white">quentin.bernard@effo-tp.com</a></li>
+        <li>39 Rte du Champ Blond,<br>44450 Divatte-sur-Loire</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+      <span>© 2026 EFFO-TP. Tous droits réservés.</span>
+      <a href="/mentions-legales" class="hover:text-white">Mentions légales</a>
+    </div>
+  </div>
+</footer>

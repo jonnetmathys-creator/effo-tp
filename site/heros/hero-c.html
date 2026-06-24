@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EFFO-TP — Hero C (Dark Tech / Réseau)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{blue:'#1C89F2',blue700:'#0E6FD6',green:'#30C293'},ink:{DEFAULT:'#0B0F14',800:'#141A21',900:'#070A0E'},slate2:'#5B6573'},fontFamily:{display:['Lexend','sans-serif'],sans:['"Source Sans 3"','sans-serif']}}}}</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+body{font-family:'Source Sans 3',sans-serif}h1,h2,h3,.fd{font-family:'Lexend',sans-serif}
+.grid-bg{background-image:linear-gradient(rgba(255,255,255,.04)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04)1px,transparent 1px);background-size:48px 48px}
+.glow-blue{filter:drop-shadow(0 0 6px rgba(28,137,242,.8))}
+.glow-green{filter:drop-shadow(0 0 6px rgba(48,194,147,.8))}
+@keyframes dash{to{stroke-dashoffset:-1000}}
+.flow{stroke-dasharray:6 10;animation:dash 14s linear infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.node{animation:pulse 3s ease-in-out infinite}
+</style>
+</head><body class="bg-ink-900 text-white">
+<div class="bg-ink text-brand-green text-center text-sm font-bold py-1.5 border-b border-white/10">VARIANTE C — Dark Tech / Réseau (esprit télécom, lignes fibre animées)</div>
+<header class="relative z-40">
+  <div class="mx-auto max-w-7xl px-6 h-[72px] flex items-center justify-between">
+    <div class="flex items-center gap-1"><span class="fd font-extrabold text-2xl text-white">EFFO</span><span class="fd font-bold text-sm bg-white text-ink px-1.5 py-0.5 rounded">TP</span></div>
+    <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-white/80"><a href="#">Services</a><a href="#">Réalisations</a><a href="#">Notre histoire</a><a href="#">IRVE</a></nav>
+    <a href="#" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-5 py-2.5 rounded-full transition">Demander un devis <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+  </div>
+</header>
+<section class="relative overflow-hidden grid-bg">
+  <!-- animated network -->
+  <svg class="absolute inset-0 w-full h-full opacity-70" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" fill="none">
+    <path class="flow" d="M-50,650 C300,650 350,300 720,300 C1090,300 1150,520 1500,520" stroke="#1C89F2" stroke-width="2"/>
+    <path class="flow" d="M-50,720 C350,720 450,180 760,180 C1120,180 1200,420 1500,420" stroke="#30C293" stroke-width="2" style="animation-duration:18s"/>
+    <path class="flow" d="M-50,560 C250,560 400,440 700,440 C1050,440 1200,640 1500,640" stroke="#1C89F2" stroke-width="1.5" style="animation-duration:22s;opacity:.5"/>
+    <circle class="node glow-blue" cx="720" cy="300" r="5" fill="#1C89F2"/>
+    <circle class="node glow-green" cx="760" cy="180" r="5" fill="#30C293" style="animation-delay:1s"/>
+    <circle class="node glow-blue" cx="700" cy="440" r="4" fill="#1C89F2" style="animation-delay:2s"/>
+    <circle class="node glow-green" cx="1090" cy="300" r="4" fill="#30C293" style="animation-delay:.5s"/>
+    <circle class="node glow-blue" cx="300" cy="650" r="4" fill="#1C89F2" style="animation-delay:1.5s"/>
+  </svg>
+  <div class="absolute inset-0 bg-gradient-to-r from-ink-900 via-ink-900/85 to-transparent"></div>
+  <div class="relative mx-auto max-w-7xl px-6 py-24 lg:py-32">
+    <div class="max-w-3xl">
+      <span class="inline-flex items-center gap-2 text-sm font-semibold tracking-wide uppercase mb-5 text-brand-green"><span class="w-2 h-2 rounded-full bg-brand-green node"></span> Génie civil &amp; réseaux télécom · près de Nantes</span>
+      <h1 class="fd font-extrabold text-[clamp(2.4rem,6vw,4.6rem)] leading-[1.04]">Déployons &amp; construisons ensemble vos <span class="text-brand-blue">réseaux</span> <span class="text-brand-green">télécom</span></h1>
+      <p class="mt-6 text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">Fibre optique, sites GSM, génie civil et bornes IRVE. De l'étude de faisabilité à la maintenance, nous construisons des infrastructures pérennes et performantes.</p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition">Nous solliciter <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+        <a href="#" class="inline-flex items-center gap-2 border border-white/25 hover:bg-white/10 text-white font-semibold px-7 py-3.5 rounded-full transition">Nos services</a>
+      </div>
+      <div class="mt-12 flex flex-wrap items-center gap-x-10 gap-y-4">
+        <div class="flex items-center gap-3"><i data-lucide="cable" class="w-6 h-6 text-brand-blue"></i><span class="text-white/80 font-medium">Fibre FTTO/FTTX/FTTA</span></div>
+        <div class="flex items-center gap-3"><i data-lucide="radio-tower" class="w-6 h-6 text-brand-green"></i><span class="text-white/80 font-medium">Sites GSM</span></div>
+        <div class="flex items-center gap-3"><i data-lucide="hard-hat" class="w-6 h-6 text-brand-blue"></i><span class="text-white/80 font-medium">Génie civil</span></div>
+        <div class="flex items-center gap-3"><i data-lucide="zap" class="w-6 h-6 text-brand-green"></i><span class="text-white/80 font-medium">Bornes IRVE</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="relative border-t border-white/10 bg-ink/60 backdrop-blur">
+    <div class="mx-auto max-w-7xl px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div><div class="fd font-extrabold text-3xl text-brand-blue">30 ans</div><div class="text-white/50 text-sm">d'expérience cumulée</div></div>
+      <div><div class="fd font-extrabold text-3xl text-brand-green">2021</div><div class="text-white/50 text-sm">entreprise familiale</div></div>
+      <div><div class="fd font-extrabold text-3xl text-brand-blue">5</div><div class="text-white/50 text-sm">départements</div></div>
+      <div><div class="fd font-extrabold text-3xl text-brand-green">4</div><div class="text-white/50 text-sm">pôles métier</div></div>
+    </div>
+  </div>
+</section>
+<script>lucide.createIcons()</script>
+</body></html>

@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Lenis smooth scroll (CSS officielle requise) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Source Sans 3', system-ui, sans-serif; color: #0B0F14; }
+  h1, h2, h3, h4 { font-family: 'Lexend', sans-serif; }
+}
+
+@layer components {
+  .font-display { font-family: 'Lexend', sans-serif; }
+  .hero-overlay { background: linear-gradient(180deg, rgba(11,15,20,.72) 0%, rgba(11,15,20,.55) 45%, rgba(11,15,20,.82) 100%); }
+  .fibre-text { background: linear-gradient(100deg, #39C7FD 0%, #1C89F2 30%, #30C293 70%, #39C7FD 100%); background-size: 220% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: fibreText 7s linear infinite; }
+  @keyframes fibreText { to { background-position: 220% center; } }
+  .link-underline { background-image: linear-gradient(#1C89F2,#1C89F2); background-size: 0% 2px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .25s; }
+  .link-underline:hover { background-size: 100% 2px; }
+  .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+  .card-hover:hover { transform: translateY(-4px); }
+  .glow-blue { filter: drop-shadow(0 0 6px rgba(28,137,242,.9)); }
+  .glow-green { filter: drop-shadow(0 0 6px rgba(48,194,147,.9)); }
+}
+
+@layer utilities {
+  /* Visible by default (no-JS / crawlers); only hidden+animated when JS is active */
+  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @keyframes dash { to { stroke-dashoffset: -1000; } }
+  .flow { stroke-dasharray: 6 10; animation: dash 16s linear infinite; }
+  @keyframes nodepulse { 0%,100%{opacity:.45} 50%{opacity:1} }
+  .node { animation: nodepulse 3s ease-in-out infinite; }
+}
+
+/* ============ PREMIUM MOTION SYSTEM ============ */
+@layer utilities {
+  :root { --ease-premium: cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* Scroll-reveal variants (visible by default, animated only when .js) */
+  .anim { opacity: 1; }
+  .js .anim { opacity: 0; will-change: opacity, transform; transition: opacity .7s var(--ease-premium), transform .7s var(--ease-premium); }
+  .js .anim-up { transform: translateY(28px); }
+  .js .anim-rise { transform: translateY(46px) scale(.96); transition-duration: .85s; }
+  .js .anim-left { transform: translateX(-32px); }
+  .js .anim-right { transform: translateX(32px); }
+  .js .anim-scale { transform: scale(.94); }
+  .js .anim.in { opacity: 1; transform: none; }
+
+  /* Glassmorphism surface for dark sections */
+  .glass { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(12px); }
+
+  /* Premium spotlight card: cursor glow + gradient ring on hover + lift */
+  .scard { position: relative; isolation: isolate; transition: transform .35s var(--ease-premium), box-shadow .35s var(--ease-premium); }
+  .scard:hover { transform: translateY(-6px); }
+  .scard::before { /* gradient border */
+    content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px;
+    background: linear-gradient(130deg, #1C89F2, #30C293 55%, #39C7FD);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0; transition: opacity .35s var(--ease-premium); z-index: 5; pointer-events: none;
+  }
+  .scard:hover::before { opacity: 1; }
+  .scard::after { /* cursor spotlight, au-dessus du contenu/photo */
+    content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 4; pointer-events: none;
+    background: radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(28,137,242,.14), transparent 62%);
+    opacity: 0; transition: opacity .35s ease;
+  }
+  .scard:hover::after { opacity: 1; }
+  .scard.scard-dark::after { background: radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(48,194,147,.18), transparent 62%); }
+  .scard > * { position: relative; z-index: 3; }
+
+  /* Hero dark gradient + glows */
+  .hero-dark { background:
+      radial-gradient(120% 90% at 80% 18%, rgba(28,137,242,.18) 0%, transparent 55%),
+      radial-gradient(90% 80% at 95% 60%, rgba(48,194,147,.16) 0%, transparent 55%),
+      linear-gradient(180deg, #0a0d12 0%, #070a0e 100%); }
+
+  /* Logos clients/partenaires recolorés en dégradé de marque (masque SVG) */
+  .logo-mono {
+    display: inline-block;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center; mask-position: center;
+    -webkit-mask-size: contain; mask-size: contain;
+    background: linear-gradient(100deg, #39C7FD 0%, #1C89F2 45%, #30C293 100%);
+    transition: filter .45s var(--ease-premium), opacity .35s ease, transform .35s var(--ease-premium);
+  }
+
+  /* Marquee (logos défilants) : ralentit au survol au lieu de s'arrêter net */
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { display: flex; width: max-content; animation: marquee var(--marquee-dur, 48s) linear infinite; }
+  /* Quand le défilement est piloté en JS, on coupe l'animation CSS */
+  .marquee-track[data-marquee] { animation: none; will-change: transform; }
+  .marquee .logo-mono:hover { filter: none; opacity: 1; transform: scale(1.08); }
+  .marquee-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+
+  /* Ambient floating blobs */
+  @keyframes blobFloat { 0%,100%{ transform: translate(0,0) scale(1) } 50%{ transform: translate(24px,-20px) scale(1.08) } }
+  .blob { animation: blobFloat 14s ease-in-out infinite; }
+
+  /* Fibre graphic: draw-in on load, flowing light pulses, twinkling nodes */
+  @keyframes fibreDraw { from { clip-path: inset(0 100% 0 0); opacity: 0; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+  .fibre-wrap .fibre-svg { animation: fibreDraw 1.9s var(--ease-premium) both; }
+  .fibre-svg .flow-line { stroke-dasharray: 26 540; animation: fibreFlow 4.6s linear infinite; }
+  @keyframes fibreFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 566; } }
+  .fibre-svg .fnode,
+  .fibre-svg [fill="#30c192"] { transform-box: fill-box; transform-origin: center; animation: nodeTwinkle 3.8s ease-in-out infinite; }
+  .fibre-svg [fill="#30c192"]:nth-of-type(3n) { animation-delay: .8s; animation-duration: 4.6s; }
+  .fibre-svg [fill="#30c192"]:nth-of-type(3n+1) { animation-delay: 1.6s; animation-duration: 5.2s; }
+  @keyframes nodeTwinkle { 0%,100%{ opacity:.4; transform: scale(.8); } 50%{ opacity:1; transform: scale(1.12); } }
+
+  /* FAQ accordéon natif <details> */
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::marker { content: ""; }
+  .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+  .faq-item[open] { border-color: rgba(28,137,242,.35); }
+  .faq-item > div { animation: faqReveal .35s var(--ease-premium) both; }
+  @keyframes faqReveal { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+  /* Filtres réalisations (état piloté par aria-pressed) */
+  .filter-pill { background: #F6F8FB; color: #0B0F14; transition: background-color .2s ease, color .2s ease, box-shadow .2s ease; }
+  .filter-pill:hover { background: rgba(203,213,225,.55); }
+  .filter-pill[aria-pressed="true"] { background: #1C89F2; color: #fff; box-shadow: 0 6px 20px -10px rgba(28,137,242,.7); }
+  .filter-pill[aria-pressed="true"]:hover { background: #0E6FD6; }
+
+  /* Modale chantier */
+  .pm-open { animation: pmIn .3s var(--ease-premium) both; }
+  @keyframes pmIn { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .anim { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .flow, .node, .blob, .fibre-wrap .fibre-svg, .fibre-svg .flow-line, .fibre-svg .fnode, .marquee-track { animation: none !important; clip-path: none !important; opacity: 1 !important; }
+}

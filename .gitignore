@@ -1,0 +1,21 @@
+# Dépendances
+node_modules/
+web/node_modules/
+
+# Build / cache
+dist/
+web/dist/
+.astro/
+web/.astro/
+
+# Environnement / secrets
+.env
+.env.*
+
+# OS / éditeur
+.DS_Store
+Thumbs.db
+*.log
+
+# Déploiement
+.vercel/

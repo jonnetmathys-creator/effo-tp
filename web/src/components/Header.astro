@@ -1,0 +1,79 @@
+---
+import Logo from './Logo.astro';
+
+const services = [
+  { href: '/services#genie-civil', label: 'Génie civil', icon: 'hard-hat' },
+  { href: '/services#fibre', label: 'Fibre optique', icon: 'cable' },
+  { href: '/services#gsm', label: 'Site GSM', icon: 'radio-tower' },
+  { href: '/irve', label: 'IRVE : Bornes de recharge', icon: 'zap' },
+];
+const nav = [
+  { href: '/', label: 'Accueil' },
+  { href: '/services', label: 'Services', children: services },
+  { href: '/realisations', label: 'Réalisations' },
+  { href: '/notre-histoire', label: 'Notre histoire' },
+  { href: '/#zone', label: "Zone d'intervention" },
+];
+const { transparent = false } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href) => {
+  const base = href.split('#')[0].replace(/\/$/, '') || '/';
+  if (base === '/') return path === '/';
+  return path.startsWith(base);
+};
+---
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+  <div class="mx-auto max-w-7xl px-6 h-[72px] flex items-center justify-between">
+    <a href="/" class="flex items-center" aria-label="EFFO-TP accueil">
+      <Logo class="h-8 text-ink" />
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-ink">
+      {nav.map((n) => (
+        n.children ? (
+          <div class="relative group">
+            <a href={n.href} aria-haspopup="true" aria-current={isActive(n.href) ? 'page' : undefined} class:list={['link-underline inline-flex items-center gap-1', isActive(n.href) && 'text-brand-blue font-semibold']}>
+              {n.label} <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"></i>
+            </a>
+            <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 invisible opacity-0 translate-y-1 transition duration-200 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0">
+              <div class="w-72 bg-white rounded-2xl shadow-card border border-slate-100 p-2">
+                {n.children.map((c) => (
+                  <a href={c.href} class="group/item flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-paper transition">
+                    <span class="w-9 h-9 rounded-lg bg-brand-blue/10 flex items-center justify-center shrink-0"><i data-lucide={c.icon} class="w-4 h-4 text-brand-blue"></i></span>
+                    <span class="font-medium text-[15px]">{c.label}</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-auto text-slate2 opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition"></i>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a href={n.href} aria-current={isActive(n.href) ? 'page' : undefined} class:list={['link-underline', isActive(n.href) && 'text-brand-blue font-semibold']}>{n.label}</a>
+        )
+      ))}
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="tel:0651397482" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-paper text-brand-blue" aria-label="Appeler"><i data-lucide="phone" class="w-5 h-5"></i></a>
+      <a href="/contact" class="hidden sm:inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold text-[15px] px-5 py-2.5 rounded-full transition shadow-soft">
+        Demander un devis <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <button id="burger" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-white" aria-label="Menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white">
+    <nav class="px-6 py-4 flex flex-col gap-1 text-ink font-medium">
+      {nav.map((n) => (
+        <Fragment>
+          <a href={n.href} aria-current={isActive(n.href) ? 'page' : undefined} class:list={['py-2.5 border-b border-slate-100', isActive(n.href) && 'text-brand-blue font-semibold']}>{n.label}</a>
+          {n.children && (
+            <div class="pl-3 pb-2 flex flex-col border-b border-slate-100">
+              {n.children.map((c) => (
+                <a href={c.href} class="py-2 text-slate2 text-[15px] flex items-center gap-2.5"><i data-lucide={c.icon} class="w-4 h-4 text-brand-blue"></i>{c.label}</a>
+              ))}
+            </div>
+          )}
+        </Fragment>
+      ))}
+      <a href="/contact" class="mt-1 py-2.5 text-brand-blue font-semibold">Demander un devis</a>
+    </nav>
+  </div>
+</header>

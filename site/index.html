@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EFFO-TP — Génie civil & réseaux télécom près de Nantes</title>
+  <meta name="description" content="EFFO-TP, expert en génie civil et réseaux télécom près de Nantes : fibre optique (FTTO/FTTX/FTTA), sites GSM et bornes de recharge IRVE. Solutions clés en main, fiabilité et proximité." />
+  <meta property="og:title" content="EFFO-TP — Génie civil & réseaux télécom" />
+  <meta property="og:description" content="Déployons & construisons ensemble vos réseaux télécom. Génie civil, fibre optique, GSM et IRVE en Loire-Atlantique et Grand Ouest." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/batiment-effo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { blue: '#1C89F2', blue700: '#0E6FD6', green: '#30C293', green700: '#1FA87B' },
+            ink: { DEFAULT: '#0B0F14', 800: '#141A21', 700: '#1C242E' },
+            slate2: '#5B6573',
+            paper: '#F6F8FB',
+          },
+          fontFamily: {
+            display: ['Lexend', 'system-ui', 'sans-serif'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '0 10px 30px -12px rgba(11,15,20,0.18)',
+            soft: '0 6px 20px -10px rgba(11,15,20,0.25)',
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', system-ui, sans-serif; color: #0B0F14; }
+    h1,h2,h3,h4,.font-display { font-family: 'Lexend', sans-serif; }
+    .hero-overlay { background: linear-gradient(180deg, rgba(11,15,20,.72) 0%, rgba(11,15,20,.55) 45%, rgba(11,15,20,.82) 100%); }
+    .accent-bar { background: linear-gradient(90deg,#1C89F2 0%,#1C89F2 50%,#30C293 50%,#30C293 100%); }
+    .link-underline { background-image: linear-gradient(#1C89F2,#1C89F2); background-size: 0% 2px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .25s; }
+    .link-underline:hover { background-size: 100% 2px; }
+    .card-hover { transition: transform .2s ease, box-shadow .2s ease; }
+    .card-hover:hover { transform: translateY(-4px); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .glow-blue { filter: drop-shadow(0 0 6px rgba(28,137,242,.9)); }
+    .glow-green { filter: drop-shadow(0 0 6px rgba(48,194,147,.9)); }
+    @keyframes dash { to { stroke-dashoffset: -1000; } }
+    .flow { stroke-dasharray: 6 10; animation: dash 16s linear infinite; }
+    @keyframes nodepulse { 0%,100%{opacity:.45} 50%{opacity:1} }
+    .node { animation: nodepulse 3s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto} .reveal{opacity:1;transform:none;transition:none} .flow,.node{animation:none} }
+  </style>
+</head>
+<body class="bg-white antialiased">
+
+  <!-- ============ TOP BAR ============ -->
+  <div class="hidden md:block bg-ink text-white/80 text-sm">
+    <div class="mx-auto max-w-7xl px-6 h-10 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <span class="inline-flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-brand-green"></i> Divatte-sur-Loire (44) · Grand Ouest</span>
+        <span class="inline-flex items-center gap-2"><i data-lucide="badge-check" class="w-4 h-4 text-brand-green"></i> 30 ans d'expérience cumulée</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="tel:0651397482" class="inline-flex items-center gap-2 hover:text-white transition"><i data-lucide="phone" class="w-4 h-4 text-brand-blue"></i> 06 51 39 74 82</a>
+        <a href="mailto:quentin.bernard@effo-tp.com" class="inline-flex items-center gap-2 hover:text-white transition"><i data-lucide="mail" class="w-4 h-4 text-brand-blue"></i> quentin.bernard@effo-tp.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header id="top" class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="mx-auto max-w-7xl px-6 h-[72px] flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-1" aria-label="EFFO-TP accueil">
+        <span class="font-display font-extrabold text-2xl tracking-tight text-ink">EFFO</span>
+        <span class="font-display font-bold text-sm bg-ink text-white px-1.5 py-0.5 rounded">TP</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-ink">
+        <a href="#services" class="link-underline">Services</a>
+        <a href="#realisations" class="link-underline">Réalisations</a>
+        <a href="#histoire" class="link-underline">Notre histoire</a>
+        <a href="#irve" class="link-underline">IRVE</a>
+        <a href="#zone" class="link-underline">Zone d'intervention</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="tel:0651397482" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-paper text-brand-blue" aria-label="Appeler"><i data-lucide="phone" class="w-5 h-5"></i></a>
+        <a href="#contact" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold text-[15px] px-5 py-2.5 rounded-full transition shadow-soft">
+          Demander un devis <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <button id="burger" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-white" aria-label="Menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
+      </div>
+    </div>
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white">
+      <nav class="px-6 py-4 flex flex-col gap-1 text-ink font-medium">
+        <a href="#services" class="py-2.5 border-b border-slate-100">Services</a>
+        <a href="#realisations" class="py-2.5 border-b border-slate-100">Réalisations</a>
+        <a href="#histoire" class="py-2.5 border-b border-slate-100">Notre histoire</a>
+        <a href="#irve" class="py-2.5 border-b border-slate-100">IRVE</a>
+        <a href="#zone" class="py-2.5 border-b border-slate-100">Zone d'intervention</a>
+        <a href="#contact" class="py-2.5 text-brand-blue font-semibold">Demander un devis</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="relative overflow-hidden">
+    <img src="assets/img/batiment-effo.jpg" alt="Bâtiment EFFO-TP — Réseaux & Télécom" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 hero-overlay"></div>
+    <!-- Lignes fibre animées (accent télécom) -->
+    <svg class="absolute inset-0 w-full h-full opacity-60 pointer-events-none" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+      <path class="flow" d="M-50,650 C300,650 350,300 720,300 C1090,300 1150,520 1500,520" stroke="#1C89F2" stroke-width="2"/>
+      <path class="flow" d="M-50,720 C350,720 450,180 760,180 C1120,180 1200,420 1500,420" stroke="#30C293" stroke-width="2" style="animation-duration:20s"/>
+      <path class="flow" d="M-50,560 C250,560 400,440 700,440 C1050,440 1200,640 1500,640" stroke="#1C89F2" stroke-width="1.5" style="animation-duration:24s;opacity:.5"/>
+      <circle class="node glow-blue" cx="720" cy="300" r="5" fill="#1C89F2"/>
+      <circle class="node glow-green" cx="760" cy="180" r="5" fill="#30C293" style="animation-delay:1s"/>
+      <circle class="node glow-blue" cx="700" cy="440" r="4" fill="#1C89F2" style="animation-delay:2s"/>
+      <circle class="node glow-green" cx="1090" cy="300" r="4" fill="#30C293" style="animation-delay:.5s"/>
+    </svg>
+    <div class="relative mx-auto max-w-7xl px-6 py-24 md:py-32 lg:py-40">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 text-white/90 text-sm font-semibold tracking-wide uppercase mb-5">
+          <span class="w-8 h-[3px] bg-brand-green"></span> Génie civil &amp; réseaux télécom
+        </span>
+        <h1 class="font-display font-extrabold text-white text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.05]">
+          Déployons &amp; construisons ensemble vos <span class="text-brand-blue">réseaux</span> <span class="text-brand-green">télécom</span>
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-white/85 max-w-2xl leading-relaxed">
+          Située près de Nantes, EFFO-TP est spécialisée dans le génie civil et dans l'installation, le déploiement et la maintenance des réseaux télécom. Une expertise solide, une équipe qualifiée, des solutions clés en main.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <a href="#contact" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition shadow-soft">
+            Nous solliciter <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+          <a href="#histoire" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full backdrop-blur transition">
+            Notre histoire &amp; nos valeurs
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS / TRUST ============ -->
+  <section class="bg-ink text-white">
+    <div class="mx-auto max-w-7xl px-6 py-10 grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="text-center lg:text-left">
+        <div class="font-display font-extrabold text-4xl text-brand-blue">30 ans</div>
+        <div class="text-white/70 mt-1">d'expérience cumulée</div>
+      </div>
+      <div class="text-center lg:text-left">
+        <div class="font-display font-extrabold text-4xl text-brand-green">2021</div>
+        <div class="text-white/70 mt-1">entreprise familiale</div>
+      </div>
+      <div class="text-center lg:text-left">
+        <div class="font-display font-extrabold text-4xl text-brand-blue">5</div>
+        <div class="text-white/70 mt-1">départements couverts</div>
+      </div>
+      <div class="text-center lg:text-left">
+        <div class="font-display font-extrabold text-4xl text-brand-green">4</div>
+        <div class="text-white/70 mt-1">pôles métier</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" class="py-24 bg-paper">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="max-w-2xl reveal">
+        <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Nos services</span>
+        <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Une expertise complète, du terrassement à la fibre</h2>
+        <p class="mt-4 text-slate2 text-lg">Quatre pôles métier complémentaires pour accompagner vos projets d'infrastructures télécom, de l'étude de faisabilité à la maintenance.</p>
+      </div>
+
+      <div class="mt-14 grid md:grid-cols-2 gap-6">
+        <!-- Génie civil -->
+        <article class="card-hover group bg-white rounded-2xl shadow-card overflow-hidden border border-slate-100 reveal">
+          <div class="relative h-56 overflow-hidden">
+            <img src="assets/img/genie-civil.jpg" alt="Génie civil — pelle hydraulique sur chantier" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <span class="absolute top-4 left-4 bg-ink/85 text-white text-xs font-semibold px-3 py-1.5 rounded-full">01 — Génie civil</span>
+          </div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-xl">Génie civil traditionnel &amp; spécifique</h3>
+            <p class="mt-3 text-slate2 leading-relaxed">Étude de faisabilité, ouverture de tranchées, pose de fourreaux, armoires, shelters et chambres de tirage. Moyens traditionnels mais aussi spécifiques : fonçage de route par forage dirigé.</p>
+            <a href="#contact" class="mt-5 inline-flex items-center gap-2 text-brand-blue font-semibold link-underline">En savoir plus <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+        </article>
+
+        <!-- Fibre -->
+        <article class="card-hover group bg-white rounded-2xl shadow-card overflow-hidden border border-slate-100 reveal">
+          <div class="relative h-56 overflow-hidden">
+            <img src="assets/img/fibre.jpg" alt="Déploiement fibre optique" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <span class="absolute top-4 left-4 bg-ink/85 text-white text-xs font-semibold px-3 py-1.5 rounded-full">02 — Fibre optique</span>
+          </div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-xl">Déploiement &amp; maintenance fibre optique</h3>
+            <p class="mt-3 text-slate2 leading-relaxed">Prise en charge complète du déploiement fibre (FTTO / FTTX / FTTA / VDR) : pose, soudure et mesure des câbles, puis maintenance préventive et corrective pour une qualité de service optimale.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="text-xs font-semibold bg-paper text-ink px-2.5 py-1 rounded-md border border-slate-200">FTTO</span>
+              <span class="text-xs font-semibold bg-paper text-ink px-2.5 py-1 rounded-md border border-slate-200">FTTX</span>
+              <span class="text-xs font-semibold bg-paper text-ink px-2.5 py-1 rounded-md border border-slate-200">FTTA</span>
+              <span class="text-xs font-semibold bg-paper text-ink px-2.5 py-1 rounded-md border border-slate-200">VDR</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- GSM -->
+        <article class="card-hover group bg-white rounded-2xl shadow-card overflow-hidden border border-slate-100 reveal">
+          <div class="relative h-56 overflow-hidden">
+            <img src="assets/img/gsm.jpg" alt="Pylône GSM au coucher du soleil" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <span class="absolute top-4 left-4 bg-ink/85 text-white text-xs font-semibold px-3 py-1.5 rounded-full">03 — Site GSM</span>
+          </div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-xl">Sites GSM &amp; réseaux mobiles</h3>
+            <p class="mt-3 text-slate2 leading-relaxed">Travaux de génie civil dédiés aux infrastructures GSM : préparation des sites, pose des antennes, câbles et équipements, terrassement pour supports et shelters. Installations fiables et performantes.</p>
+            <a href="#contact" class="mt-5 inline-flex items-center gap-2 text-brand-blue font-semibold link-underline">En savoir plus <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+        </article>
+
+        <!-- IRVE -->
+        <article id="irve" class="card-hover group bg-ink text-white rounded-2xl shadow-card overflow-hidden border border-ink reveal">
+          <div class="relative h-56 overflow-hidden">
+            <img src="assets/img/voiture-irve.jpg" alt="Borne de recharge IRVE — véhicule électrique EFFO" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <span class="absolute top-4 left-4 bg-brand-green text-ink text-xs font-bold px-3 py-1.5 rounded-full inline-flex items-center gap-1.5"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Nouveauté</span>
+          </div>
+          <div class="p-7">
+            <h3 class="font-display font-bold text-xl">IRVE — Bornes de recharge</h3>
+            <p class="mt-3 text-white/70 leading-relaxed">EFFO-TP lance son offre d'installation de bornes de recharge pour véhicules électriques (IRVE), pour les particuliers comme pour les professionnels.</p>
+            <a href="#contact" class="mt-5 inline-flex items-center gap-2 text-brand-green font-semibold">Découvrir l'offre IRVE <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POURQUOI NOUS CHOISIR ============ -->
+  <section id="histoire" class="py-24">
+    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="relative reveal">
+        <img src="assets/img/chargeuse.jpg" alt="Chargeuse EFFO-TP sur chantier" class="rounded-2xl shadow-card w-full object-cover" />
+        <div class="absolute -bottom-6 -right-2 lg:right-6 bg-white rounded-2xl shadow-card p-6 max-w-[230px] border border-slate-100">
+          <div class="font-display font-extrabold text-3xl text-ink">Depuis<br>mars 2021</div>
+          <div class="text-slate2 text-sm mt-2">Une entreprise &amp; une histoire familiale</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Notre histoire</span>
+        <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Grandir ensemble, remettre l'humain au cœur</h2>
+        <p class="mt-5 text-slate2 text-lg leading-relaxed">EFFO-TP est avant tout une entreprise et une histoire familiale, créée en mars 2021. Elle résulte de 30 ans d'expériences partagées avec nos salariés et anciens collègues, à travers différentes entreprises qui ont forgé nos liens et nos valeurs de respect et de confiance.</p>
+        <p class="mt-4 text-slate2 leading-relaxed">Notre histoire, c'est l'envie de remettre la qualité de travail et la relation humaine au premier plan, au sein d'une structure à taille humaine soucieuse du bien-être de chacun.</p>
+
+        <div class="mt-8 grid sm:grid-cols-2 gap-5">
+          <div class="flex gap-3"><i data-lucide="handshake" class="w-6 h-6 text-brand-blue shrink-0"></i><div><div class="font-semibold">Solutions clés en main</div><p class="text-slate2 text-sm mt-0.5">Accompagnement à chaque étape de votre projet.</p></div></div>
+          <div class="flex gap-3"><i data-lucide="users" class="w-6 h-6 text-brand-green shrink-0"></i><div><div class="font-semibold">Proximité &amp; réactivité</div><p class="text-slate2 text-sm mt-0.5">Un suivi personnalisé, une relation durable.</p></div></div>
+          <div class="flex gap-3"><i data-lucide="shield-check" class="w-6 h-6 text-brand-blue shrink-0"></i><div><div class="font-semibold">Qualité &amp; fiabilité</div><p class="text-slate2 text-sm mt-0.5">Le professionnalisme de nos équipes au service de vos réseaux.</p></div></div>
+          <div class="flex gap-3"><i data-lucide="heart-handshake" class="w-6 h-6 text-brand-green shrink-0"></i><div><div class="font-semibold">Confiance &amp; écoute</div><p class="text-slate2 text-sm mt-0.5">Des valeurs humaines héritées de notre histoire familiale.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REALISATIONS / MATERIEL ============ -->
+  <section id="realisations" class="py-24 bg-ink text-white">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid lg:grid-cols-2 gap-10 items-end">
+        <div class="reveal">
+          <span class="text-brand-green font-semibold uppercase tracking-wide text-sm">Réalisations &amp; matériel</span>
+          <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Un savoir-faire éprouvé, un parc adapté à chaque chantier</h2>
+        </div>
+        <p class="text-white/70 text-lg reveal">EFFO-TP met son expertise au service de vos projets de génie civil : ouverture de tranchées, pose de fourreaux, chambres de tirage et armoires techniques. Des réalisations solides et conformes aux exigences du secteur.</p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="bg-ink-800 rounded-xl p-6 border border-white/5 text-center card-hover"><i data-lucide="construction" class="w-8 h-8 mx-auto text-brand-blue"></i><div class="mt-3 font-semibold">Pelle hydraulique</div></div>
+        <div class="bg-ink-800 rounded-xl p-6 border border-white/5 text-center card-hover"><i data-lucide="truck" class="w-8 h-8 mx-auto text-brand-green"></i><div class="mt-3 font-semibold">Tractopelle</div></div>
+        <div class="bg-ink-800 rounded-xl p-6 border border-white/5 text-center card-hover"><i data-lucide="ruler" class="w-8 h-8 mx-auto text-brand-blue"></i><div class="mt-3 font-semibold">Niveleuse</div></div>
+        <div class="bg-ink-800 rounded-xl p-6 border border-white/5 text-center card-hover"><i data-lucide="layers" class="w-8 h-8 mx-auto text-brand-green"></i><div class="mt-3 font-semibold">Décapeuse</div></div>
+        <div class="bg-ink-800 rounded-xl p-6 border border-white/5 text-center card-hover"><i data-lucide="forklift" class="w-8 h-8 mx-auto text-brand-blue"></i><div class="mt-3 font-semibold">Manitou</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ZONE D'INTERVENTION ============ -->
+  <section id="zone" class="py-24 bg-paper">
+    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal">
+        <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Zone d'intervention</span>
+        <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Présents dans tout le Grand Ouest</h2>
+        <p class="mt-4 text-slate2 text-lg">Une équipe locale, réactive, au plus près de vos chantiers.</p>
+        <ul class="mt-8 grid sm:grid-cols-2 gap-3">
+          <li class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100"><i data-lucide="map-pin" class="w-5 h-5 text-brand-blue"></i> Loire-Atlantique</li>
+          <li class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100"><i data-lucide="map-pin" class="w-5 h-5 text-brand-green"></i> Vendée</li>
+          <li class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100"><i data-lucide="map-pin" class="w-5 h-5 text-brand-blue"></i> Morbihan</li>
+          <li class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100"><i data-lucide="map-pin" class="w-5 h-5 text-brand-green"></i> Maine-et-Loire</li>
+          <li class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100 sm:col-span-2"><i data-lucide="map-pin" class="w-5 h-5 text-brand-blue"></i> Ille-et-Vilaine</li>
+        </ul>
+        <a href="#contact" class="mt-8 inline-flex items-center gap-2 bg-ink hover:bg-ink-700 text-white font-semibold px-6 py-3 rounded-full transition">Pour toute autre demande, contactez-nous <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+      <div class="reveal flex justify-center">
+        <!-- Carte région stylisée -->
+        <div class="relative w-full max-w-md aspect-square rounded-3xl bg-white shadow-card border border-slate-100 flex items-center justify-center overflow-hidden">
+          <i data-lucide="map" class="w-40 h-40 text-slate-200"></i>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-slate2 text-sm absolute bottom-6">Carte interactive du Grand Ouest (à intégrer)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARTENAIRES ============ -->
+  <section class="py-20">
+    <div class="mx-auto max-w-7xl px-6 text-center">
+      <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Ils nous font confiance</span>
+      <h2 class="font-display font-bold text-2xl md:text-3xl mt-3">Partenaires &amp; références</h2>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 text-slate-400 font-display font-bold text-xl">
+        <span>Nantes Métropole</span><span>SPIE</span><span>EIFFAGE</span><span>AXIONE</span><span>AXIMUM</span><span>Be Green</span><span>ENSIO</span>
+      </div>
+      <p class="mt-8 text-slate2 text-sm">Partenaires : FC Nantes · LOSC · La Nuit de l'Erdre · CCFC</p>
+    </div>
+  </section>
+
+  <!-- ============ CTA + CONTACT ============ -->
+  <section id="contact" class="py-24 bg-ink text-white">
+    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14">
+      <div class="reveal">
+        <span class="text-brand-green font-semibold uppercase tracking-wide text-sm">Nous solliciter</span>
+        <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Parlons de votre projet</h2>
+        <p class="mt-4 text-white/70 text-lg">Un projet de génie civil, de déploiement fibre, de site GSM ou d'installation IRVE ? Décrivez-nous votre besoin, nous revenons vers vous rapidement.</p>
+        <div class="mt-10 space-y-5">
+          <a href="tel:0651397482" class="flex items-center gap-4 group"><span class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-blue transition"><i data-lucide="phone" class="w-5 h-5"></i></span><div><div class="text-white/50 text-sm">Téléphone</div><div class="font-semibold text-lg">06 51 39 74 82</div></div></a>
+          <a href="mailto:quentin.bernard@effo-tp.com" class="flex items-center gap-4 group"><span class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-green transition"><i data-lucide="mail" class="w-5 h-5"></i></span><div><div class="text-white/50 text-sm">Email</div><div class="font-semibold text-lg">quentin.bernard@effo-tp.com</div></div></a>
+          <div class="flex items-center gap-4"><span class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center"><i data-lucide="map-pin" class="w-5 h-5"></i></span><div><div class="text-white/50 text-sm">Adresse</div><div class="font-semibold text-lg">39 Rte du Champ Blond, 44450 Divatte-sur-Loire</div></div></div>
+        </div>
+      </div>
+
+      <form class="bg-ink-800 rounded-2xl p-7 border border-white/5 reveal" onsubmit="event.preventDefault(); alert('Formulaire de démonstration — à connecter à un service d\'envoi.');">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label class="text-sm text-white/70">Prénom *</label><input required type="text" class="mt-1.5 w-full bg-ink border border-white/10 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/40 outline-none" placeholder="Damien" /></div>
+          <div><label class="text-sm text-white/70">Nom *</label><input required type="text" class="mt-1.5 w-full bg-ink border border-white/10 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/40 outline-none" placeholder="Dubois" /></div>
+        </div>
+        <div class="mt-4"><label class="text-sm text-white/70">Email *</label><input required type="email" class="mt-1.5 w-full bg-ink border border-white/10 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/40 outline-none" placeholder="damien.dubois@entreprise.fr" /></div>
+        <div class="mt-4"><label class="text-sm text-white/70">Entreprise</label><input type="text" class="mt-1.5 w-full bg-ink border border-white/10 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/40 outline-none" placeholder="Nom de l'entreprise" /></div>
+        <div class="mt-4"><label class="text-sm text-white/70">Votre projet *</label><textarea required rows="4" class="mt-1.5 w-full bg-ink border border-white/10 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/40 outline-none" placeholder="Bonjour, j'aurais voulu un devis pour…"></textarea></div>
+        <button type="submit" class="mt-5 w-full inline-flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-6 py-3.5 rounded-full transition">Envoyer ma demande <i data-lucide="send" class="w-4 h-4"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-black text-white/70">
+    <div class="mx-auto max-w-7xl px-6 py-16 grid md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-1 mb-4">
+          <span class="font-display font-extrabold text-2xl text-white">EFFO</span>
+          <span class="font-display font-bold text-sm bg-white text-black px-1.5 py-0.5 rounded">TP</span>
+        </div>
+        <p class="text-sm">Génie civil &amp; réseaux télécom. Déployons &amp; construisons ensemble vos réseaux.</p>
+      </div>
+      <div>
+        <div class="text-white font-semibold mb-4">Navigation</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#top" class="hover:text-white">Accueil</a></li>
+          <li><a href="#services" class="hover:text-white">Services</a></li>
+          <li><a href="#realisations" class="hover:text-white">Réalisations</a></li>
+          <li><a href="#histoire" class="hover:text-white">Notre histoire</a></li>
+          <li><a href="#contact" class="hover:text-white">Demande de devis</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-white font-semibold mb-4">Réseaux</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white">Facebook</a></li>
+          <li><a href="#" class="hover:text-white">Instagram</a></li>
+          <li><a href="#" class="hover:text-white">YouTube</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-white font-semibold mb-4">Contact</div>
+        <ul class="space-y-2 text-sm">
+          <li>Quentin Bernard</li>
+          <li><a href="tel:0651397482" class="hover:text-white">06 51 39 74 82</a></li>
+          <li><a href="mailto:quentin.bernard@effo-tp.com" class="hover:text-white">quentin.bernard@effo-tp.com</a></li>
+          <li>39 Rte du Champ Blond,<br>44450 Divatte-sur-Loire</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="mx-auto max-w-7xl px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+        <span>© 2026 EFFO-TP. Tous droits réservés.</span>
+        <a href="#" class="hover:text-white">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    // mobile menu
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobileMenu');
+    burger.addEventListener('click', () => menu.classList.toggle('hidden'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+    // reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

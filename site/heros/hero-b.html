@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EFFO-TP — Hero B (Éditorial Split)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{blue:'#1C89F2',blue700:'#0E6FD6',green:'#30C293',green700:'#1FA87B'},ink:{DEFAULT:'#0B0F14',800:'#141A21'},slate2:'#5B6573',paper:'#F6F8FB'},fontFamily:{display:['Lexend','sans-serif'],sans:['"Source Sans 3"','sans-serif']}}}}</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>body{font-family:'Source Sans 3',sans-serif}h1,h2,h3,.fd{font-family:'Lexend',sans-serif}</style>
+</head><body class="bg-white">
+<div class="bg-brand-green text-ink text-center text-sm font-bold py-1.5">VARIANTE B — Éditorial split (clair, corporate premium)</div>
+<header class="border-b border-slate-200">
+  <div class="mx-auto max-w-7xl px-6 h-[72px] flex items-center justify-between">
+    <div class="flex items-center gap-1"><span class="fd font-extrabold text-2xl text-ink">EFFO</span><span class="fd font-bold text-sm bg-ink text-white px-1.5 py-0.5 rounded">TP</span></div>
+    <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-ink"><a href="#">Services</a><a href="#">Réalisations</a><a href="#">Notre histoire</a><a href="#">IRVE</a></nav>
+    <a href="#" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-5 py-2.5 rounded-full transition">Demander un devis <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+  </div>
+</header>
+<section class="relative overflow-hidden">
+  <!-- diagonal brand accent -->
+  <div class="absolute -top-20 -left-32 w-[420px] h-[420px] bg-brand-blue/5 rounded-full blur-2xl"></div>
+  <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 items-center py-16 lg:py-24">
+    <div class="relative">
+      <span class="inline-flex items-center gap-2 text-brand-blue text-sm font-semibold tracking-wide uppercase mb-5"><span class="w-8 h-[3px] bg-brand-green"></span> Génie civil &amp; réseaux télécom · Nantes</span>
+      <h1 class="fd font-extrabold text-ink text-[clamp(2.4rem,5vw,4rem)] leading-[1.05]">Bâtir des réseaux <span class="text-brand-blue">fiables</span>,<br>au service de votre <span class="text-brand-green">territoire</span>.</h1>
+      <p class="mt-6 text-lg text-slate2 max-w-xl leading-relaxed">Fibre optique, sites GSM, génie civil et bornes IRVE. EFFO-TP déploie et entretient vos infrastructures télécom avec une équipe qualifiée et des solutions clés en main.</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="#" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition">Nous solliciter <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+        <a href="#" class="inline-flex items-center gap-2 bg-paper hover:bg-slate-100 text-ink font-semibold px-7 py-3.5 rounded-full transition">Découvrir nos services</a>
+      </div>
+      <div class="mt-10 flex items-center gap-8">
+        <div><div class="fd font-extrabold text-3xl text-ink">30<span class="text-brand-blue">ans</span></div><div class="text-slate2 text-sm">d'expérience</div></div>
+        <div class="w-px h-10 bg-slate-200"></div>
+        <div><div class="fd font-extrabold text-3xl text-ink">5</div><div class="text-slate2 text-sm">départements</div></div>
+        <div class="w-px h-10 bg-slate-200"></div>
+        <div><div class="fd font-extrabold text-3xl text-ink">4</div><div class="text-slate2 text-sm">pôles métier</div></div>
+      </div>
+    </div>
+    <div class="relative">
+      <div class="relative rounded-[28px] overflow-hidden shadow-2xl aspect-[4/5]">
+        <img src="../assets/img/fibre.jpg" alt="" class="w-full h-full object-cover"/>
+      </div>
+      <!-- floating card -->
+      <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 border border-slate-100 max-w-[230px]">
+        <div class="flex items-center gap-2 text-brand-green font-semibold text-sm"><i data-lucide="badge-check" class="w-5 h-5"></i> Certifié &amp; assuré</div>
+        <p class="text-slate2 text-sm mt-2">Interventions conformes aux exigences du secteur télécom.</p>
+      </div>
+      <!-- accent square -->
+      <div class="absolute -top-5 -right-5 w-24 h-24 rounded-2xl bg-brand-blue/90 flex items-center justify-center text-white shadow-lg"><i data-lucide="cable" class="w-10 h-10"></i></div>
+    </div>
+  </div>
+</section>
+<script>lucide.createIcons()</script>
+</body></html>

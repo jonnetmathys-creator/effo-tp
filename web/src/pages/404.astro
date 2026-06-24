@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page introuvable (404) | EFFO-TP" description="La page que vous cherchez n'existe pas ou a été déplacée.">
+  <section class="relative overflow-hidden hero-dark text-white">
+    <div class="blob absolute -top-24 right-10 w-[420px] h-[420px] rounded-full bg-brand-blue/20 blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="blob absolute bottom-0 right-1/3 w-[360px] h-[360px] rounded-full bg-brand-green/15 blur-3xl pointer-events-none" style="animation-delay:-6s" aria-hidden="true"></div>
+    <div class="relative mx-auto max-w-3xl px-6 py-28 md:py-36 text-center">
+      <span class="font-display font-extrabold text-[clamp(4rem,16vw,9rem)] leading-none fibre-text">404</span>
+      <h1 class="font-display font-extrabold text-3xl md:text-4xl mt-4">Cette page a pris une mauvaise tranchée</h1>
+      <p class="mt-4 text-white/70 text-lg max-w-xl mx-auto">La page que vous cherchez n'existe pas ou a été déplacée. Revenons sur le bon chemin.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-4">
+        <a href="/" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition shadow-[0_0_34px_-4px_rgba(28,137,242,.65)]">
+          <i data-lucide="home" class="w-5 h-5"></i> Retour à l'accueil
+        </a>
+        <a href="/contact" class="glass inline-flex items-center gap-2 hover:bg-white/10 text-white font-semibold px-7 py-3.5 rounded-full transition">
+          Nous contacter <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+      <nav class="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/60">
+        <a href="/services" class="hover:text-white">Services</a>
+        <a href="/realisations" class="hover:text-white">Réalisations</a>
+        <a href="/notre-histoire" class="hover:text-white">Notre histoire</a>
+        <a href="/irve" class="hover:text-white">IRVE</a>
+      </nav>
+    </div>
+  </section>
+</Base>

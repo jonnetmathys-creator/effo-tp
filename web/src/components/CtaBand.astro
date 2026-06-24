@@ -1,0 +1,55 @@
+---
+// Bandeau CTA final partagé, cohérent sur toutes les pages
+const {
+  eyebrow = 'Parlons-en',
+  title = 'Un projet à nous confier ?',
+  subtitle = 'Décrivez-nous votre besoin, nous revenons vers vous rapidement.',
+  primaryHref = '/contact',
+  primaryLabel = 'Demander un devis',
+  accent = 'blue', // 'blue' | 'green'
+  phone = true,
+  note = '',
+} = Astro.props;
+const isGreen = accent === 'green';
+const primaryCls = isGreen
+  ? 'bg-brand-green text-ink hover:bg-brand-green700 shadow-[0_12px_34px_-12px_rgba(48,194,147,.65)]'
+  : 'bg-brand-blue text-white hover:bg-brand-blue700 shadow-[0_12px_34px_-12px_rgba(28,137,242,.75)]';
+---
+<section class="relative overflow-hidden bg-ink text-white">
+  <!-- glows ambiants -->
+  <div class="blob absolute -top-24 left-10 w-[360px] h-[360px] rounded-full bg-brand-blue/15 blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="blob absolute -bottom-24 right-10 w-[360px] h-[360px] rounded-full bg-brand-green/15 blur-3xl pointer-events-none" style="animation-delay:-6s" aria-hidden="true"></div>
+  <!-- lignes fibre en filigrane (identité de marque) -->
+  <svg class="absolute inset-0 w-full h-full opacity-40 pointer-events-none" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="ctaFibre" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#39C7FD"/><stop offset=".5" stop-color="#1C89F2"/><stop offset="1" stop-color="#30C293"/>
+      </linearGradient>
+    </defs>
+    <path class="flow" d="M-50,300 C300,300 350,120 720,120 C1090,120 1150,260 1500,260" stroke="url(#ctaFibre)" stroke-width="1.5"/>
+    <path class="flow" d="M-50,340 C320,340 420,90 760,90 C1120,90 1200,210 1500,210" stroke="url(#ctaFibre)" stroke-width="1.5" style="animation-duration:20s"/>
+    <circle class="node" cx="720" cy="120" r="3.5" fill="#39C7FD"/>
+    <circle class="node" cx="760" cy="90" r="3" fill="#30C293" style="animation-delay:1.2s"/>
+  </svg>
+
+  <div class="relative mx-auto max-w-4xl px-6 py-20 md:py-28 text-center">
+    {eyebrow && (
+      <span class="anim anim-up inline-flex items-center gap-2 text-white/90 text-sm font-semibold tracking-wide uppercase mb-5">
+        <span class="w-8 h-[3px] bg-brand-green"></span> {eyebrow}
+      </span>
+    )}
+    <h2 class="anim anim-up font-display font-bold text-[clamp(1.9rem,4.4vw,3rem)] leading-[1.08]" data-delay="60" set:html={title}></h2>
+    <p class="anim anim-up mt-4 text-white/70 text-lg max-w-2xl mx-auto" data-delay="120">{subtitle}</p>
+
+    <div class="anim anim-up mt-9 flex flex-wrap justify-center gap-4" data-delay="180">
+      <a href={primaryHref} class={`inline-flex items-center gap-2 font-semibold px-8 py-4 rounded-full transition hover:-translate-y-0.5 ${primaryCls}`}>{primaryLabel} <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+      {phone && (
+        <a href="tel:0651397482" class="inline-flex items-center gap-2 border border-white/25 hover:bg-white/10 hover:border-white/40 text-white font-semibold px-8 py-4 rounded-full transition"><i data-lucide="phone" class="w-5 h-5"></i> 06 51 39 74 82</a>
+      )}
+    </div>
+
+    {note && (
+      <p class="anim anim-up mt-7 text-white/55 text-sm" data-delay="240">{note}</p>
+    )}
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+<Base title="IRVE : Bornes de recharge pour véhicules électriques | EFFO-TP" description="EFFO-TP installe vos bornes de recharge pour véhicules électriques (IRVE), pour les particuliers comme pour les professionnels. Une nouvelle offre près de Nantes.">
+  <!-- Hero IRVE -->
+  <section class="relative overflow-hidden bg-ink text-white">
+    <img src="/assets/img/voiture-irve.jpg" alt="Véhicule électrique EFFO en recharge" fetchpriority="high" decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-40" />
+    <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/40"></div>
+    <div class="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <span class="inline-flex items-center gap-1.5 bg-brand-green text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Nouveauté EFFO-TP</span>
+      <h1 class="font-display font-extrabold text-[clamp(2.4rem,6vw,4.2rem)] leading-[1.05] mt-5 max-w-3xl">Installez votre <span class="text-brand-green">borne de recharge</span> en toute sérénité</h1>
+      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">EFFO-TP lance son offre d'installation de bornes IRVE (Infrastructure de Recharge pour Véhicules Électriques), pour les particuliers comme pour les professionnels.</p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-brand-green text-ink font-semibold px-7 py-3.5 rounded-full hover:bg-brand-green700 transition">Demander un devis IRVE <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+        <a href="tel:0651397482" class="inline-flex items-center gap-2 border border-white/25 hover:bg-white/10 text-white font-semibold px-7 py-3.5 rounded-full transition"><i data-lucide="phone" class="w-5 h-5"></i> 06 51 39 74 82</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cibles -->
+  <section class="py-20 md:py-24">
+    <div class="mx-auto max-w-7xl px-6 grid md:grid-cols-2 gap-6">
+      <div class="scard anim anim-up bg-paper rounded-2xl p-8 border border-slate-100">
+        <i data-lucide="home" class="w-10 h-10 text-brand-blue"></i>
+        <h2 class="font-display font-bold text-2xl mt-5">Particuliers</h2>
+        <p class="mt-3 text-slate2 leading-relaxed">Rechargez votre véhicule électrique à domicile, en toute sécurité. Nous étudions votre installation électrique et posons une borne adaptée à vos besoins.</p>
+        <ul class="mt-5 space-y-2.5 text-[15px]">
+          <li class="flex gap-2.5"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-0.5"></i> Étude personnalisée de votre installation</li>
+          <li class="flex gap-2.5"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-0.5"></i> Pose conforme aux normes en vigueur</li>
+          <li class="flex gap-2.5"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-0.5"></i> Conseils sur la puissance et l'usage</li>
+        </ul>
+      </div>
+      <div class="scard scard-dark anim anim-up bg-ink text-white rounded-2xl p-8" data-delay="80">
+        <i data-lucide="building-2" class="w-10 h-10 text-brand-green"></i>
+        <h2 class="font-display font-bold text-2xl mt-5">Professionnels</h2>
+        <p class="mt-3 text-white/70 leading-relaxed">Équipez vos parkings, flottes et sites d'exploitation de bornes de recharge. Une solution clé en main, du génie civil à la mise en service.</p>
+        <ul class="mt-5 space-y-2.5 text-[15px]">
+          <li class="flex gap-2.5"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-0.5"></i> Infrastructure pour flottes &amp; parkings</li>
+          <li class="flex gap-2.5"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-0.5"></i> Génie civil &amp; raccordement intégrés</li>
+          <li class="flex gap-2.5"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0 mt-0.5"></i> Solutions évolutives et dimensionnées</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-16 bg-paper">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="font-display font-bold text-3xl text-center">Notre approche, étape par étape</h2>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="scard anim anim-up bg-white rounded-2xl p-6 shadow-soft border border-slate-100"><div class="font-display font-extrabold text-3xl text-brand-blue">01</div><h3 class="font-display font-bold text-lg mt-3">Étude</h3><p class="mt-2 text-slate2 text-[15px]">Analyse de votre besoin et de votre installation existante.</p></div>
+        <div class="scard anim anim-up bg-white rounded-2xl p-6 shadow-soft border border-slate-100"><div class="font-display font-extrabold text-3xl text-brand-green">02</div><h3 class="font-display font-bold text-lg mt-3">Devis</h3><p class="mt-2 text-slate2 text-[15px]">Proposition claire, adaptée à votre usage et à votre budget.</p></div>
+        <div class="scard anim anim-up bg-white rounded-2xl p-6 shadow-soft border border-slate-100"><div class="font-display font-extrabold text-3xl text-brand-blue">03</div><h3 class="font-display font-bold text-lg mt-3">Installation</h3><p class="mt-2 text-slate2 text-[15px]">Pose conforme par nos équipes qualifiées.</p></div>
+        <div class="scard anim anim-up bg-white rounded-2xl p-6 shadow-soft border border-slate-100"><div class="font-display font-extrabold text-3xl text-brand-green">04</div><h3 class="font-display font-bold text-lg mt-3">Mise en service</h3><p class="mt-2 text-slate2 text-[15px]">Vérification, prise en main et suivi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={`Prêt à passer à <span class="fibre-text">l'électrique</span> ?`} subtitle="Demandez votre devis IRVE, nous vous accompagnons de A à Z." primaryLabel="Demander un devis IRVE" accent="green" />
+</Base>

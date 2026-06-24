@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg data-bbox="0 0 137.91 26.05" viewBox="0 0 137.91 26.04" xmlns="http://www.w3.org/2000/svg" data-type="color">
+    <g>
+        <path fill="#ffffff" fill-rule="evenodd" d="M0 25.78h18.49v-4.3H0z" data-color="1"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M0 18.62h18.49v-4.3H0z" data-color="1"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M0 11.46h18.49v-4.3H0z" data-color="1"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M25.6 19.05V0H6.68L2.42 4.3h18.91v19.04z" data-color="1"/>
+        <path d="M117.34 8.92c1.67 0 3.41.63 4.56 1.5l.59-2.23c-1.75-.86-3.42-1.28-5.42-1.28-7.58 0-11.45 5.42-11.45 11.03s3.31 8.11 8.76 8.11c2.39 0 4.37-.36 6.64-1.3l1.01-7.21h-4.82l-.87 6.2c-.48.14-.94.2-1.51.2-3.8 0-4.33-3.74-4.33-6.05 0-4.35 2.41-8.96 6.84-8.96" fill="#ffffff" fill-rule="evenodd" data-color="1"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M57.27 7.16h-4.82l-2.62 18.62h4.83z" data-color="1"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M46.65 15.22h-5.5L42 9.17h5.93l.28-2.01H37.45l-2.61 18.62H45.6l.28-2.01h-5.93l.95-6.76h5.5z" data-color="1"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M73.05 7.16H62.29l-2.61 18.62h4.82l1.23-8.77h5.51l.25-1.79h-5.51l.85-6.05h5.93z" data-color="1"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M80.43 17.01h5.5l.25-1.79h-5.5l.85-6.05h5.93l.28-2.01H76.99l-2.61 18.62h4.82z" data-color="1"/>
+        <path d="m92.45 18.04 3.27-5.8 1.22 5.8zm3.48-10.89L85.47 25.78h2.63l3.35-5.94h5.88l1.25 5.94h4.55L99.26 7.15z" fill="#ffffff" fill-rule="evenodd" data-color="1"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M124.54 25.78h10.76l.28-2.01h-5.93l.95-6.76h5.5l.25-1.79h-5.5l.85-6.05h5.93l.28-2.01h-10.76z" data-color="1"/>
+    </g>
+</svg>
