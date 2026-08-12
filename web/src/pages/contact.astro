@@ -3,19 +3,19 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 
 const faq = [
-  { q: "Dans quels départements intervenez-vous ?", a: "Nous intervenons dans tout le Grand Ouest : Loire-Atlantique, Vendée, Morbihan, Maine-et-Loire et Ille-et-Vilaine. Pour un projet au-delà de cette zone, n'hésitez pas à nous consulter." },
+  { q: "Dans quels départements intervenez-vous ?", a: "Notre zone habituelle couvre le Grand Ouest, de la Bretagne à la Gironde en passant par les Pays de la Loire et la Normandie. Pour un chantier d'ampleur en dehors de ce secteur, n'hésitez pas à nous consulter : nous étudions chaque demande." },
   { q: "Le devis est-il gratuit ?", a: "Oui. L'étude de votre besoin et le devis sont gratuits et sans engagement. Nous nous déplaçons pour évaluer le chantier lorsque c'est nécessaire." },
-  { q: "Travaillez-vous pour les particuliers et les professionnels ?", a: "Nos prestations de génie civil, fibre et GSM s'adressent aux professionnels. Pour l'installation de bornes de recharge IRVE, nous accompagnons aussi bien les particuliers que les professionnels." },
-  { q: "Réalisez-vous le génie civil ET le raccordement fibre ?", a: "Oui, nous proposons des solutions clés en main : de l'étude de faisabilité au génie civil, jusqu'à la pose, la soudure et le raccordement final de la fibre." },
+  { q: "Travaillez-vous pour les particuliers et les professionnels ?", a: "Nos prestations de génie civil s'adressent principalement aux professionnels (IRVE, RTE, SNCF, installateurs, opérateurs). Nous intervenons aussi pour les particuliers, notamment pour les adductions télécom, le terrassement et les aménagements extérieurs." },
+  { q: "Réalisez-vous des projets clés en main ?", a: "Oui. De l'étude de faisabilité au génie civil, jusqu'à la remise en état des ouvrages, nous proposons des solutions complètes et prêtes à être réceptionnées." },
   { q: "Quels sont vos délais d'intervention ?", a: "Ils dépendent de la nature et de l'ampleur du chantier. Notre structure à taille humaine nous permet d'être réactifs : un planning précis vous est communiqué dès le devis." },
-  { q: "Proposez-vous l'installation de bornes de recharge (IRVE) ?", a: "Oui. Nous installons des bornes de recharge pour véhicules électriques, de l'étude de votre installation jusqu'à la mise en service, pour les particuliers comme pour les professionnels." },
+  { q: "Proposez-vous l'installation de bornes de recharge (IRVE) ?", a: "Oui. Nous prenons en charge les travaux de génie civil nécessaires à l'installation de bornes de recharge, et selon les projets la pose des bornes et le tirage des câbles, pour les particuliers comme pour les professionnels." },
 ];
 ---
-<Base title="Contact & demande de devis | EFFO-TP" description="Contactez EFFO-TP pour vos projets de génie civil, fibre optique, GSM ou IRVE près de Nantes. Demande de devis rapide.">
+<Base title="Contact & demande de devis | EFFO-TP" description="Contactez EFFO-TP pour vos projets de génie civil, IRVE, terrassement, viabilisation ou aménagements près de Nantes. Devis gratuit, particuliers et professionnels.">
   <PageHeader
     eyebrow="Nous solliciter"
     title="Parlons de votre projet"
-    subtitle="Un projet de génie civil, de déploiement fibre, de site GSM ou d'installation IRVE ? Décrivez-nous votre besoin, nous revenons vers vous rapidement."
+    subtitle="Un projet de génie civil, d'IRVE, de terrassement, de viabilisation ou d'aménagement ? Particulier ou professionnel, décrivez-nous votre besoin, nous revenons vers vous rapidement."
     image="/assets/img/batiment-effo.jpg"
   />
 
@@ -29,18 +29,32 @@ const faq = [
             <span class="w-12 h-12 rounded-full bg-paper flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition"><i data-lucide="phone" class="w-5 h-5"></i></span>
             <span><span class="block text-slate2 text-sm">Téléphone</span><span class="font-semibold text-lg">06 51 39 74 82</span></span>
           </a>
-          <a href="mailto:quentin.bernard@effo-tp.com" class="flex items-center gap-4 group">
+          <a href="mailto:contact@effo-tp.com" class="flex items-center gap-4 group">
             <span class="w-12 h-12 rounded-full bg-paper flex items-center justify-center text-brand-green group-hover:bg-brand-green group-hover:text-white transition"><i data-lucide="mail" class="w-5 h-5"></i></span>
-            <span><span class="block text-slate2 text-sm">Email</span><span class="font-semibold text-lg">quentin.bernard@effo-tp.com</span></span>
+            <span><span class="block text-slate2 text-sm">Email</span><span class="font-semibold text-lg">contact@effo-tp.com</span></span>
           </a>
           <div class="flex items-center gap-4">
             <span class="w-12 h-12 rounded-full bg-paper flex items-center justify-center text-brand-blue"><i data-lucide="map-pin" class="w-5 h-5"></i></span>
-            <span><span class="block text-slate2 text-sm">Adresse</span><span class="font-semibold text-lg">39 Rte du Champ Blond, 44450 Divatte-sur-Loire</span></span>
+            <span><span class="block text-slate2 text-sm">Adresse</span><span class="font-semibold text-lg">11 Rue de l'Industrie, ZI Saint-Clément, 44450 Divatte-sur-Loire</span></span>
           </div>
         </div>
-        <div class="mt-8 rounded-2xl overflow-hidden border border-slate-200 h-64">
-          <iframe title="Carte EFFO-TP" class="w-full h-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=39+Rte+du+Champ+Blond,+44450+Divatte-sur-Loire&output=embed"></iframe>
+        <!-- Bloc localisation sans cookie (pas d'iframe Google Maps → conforme RGPD) -->
+        <div class="mt-8 rounded-2xl border border-slate-200 bg-paper p-6">
+          <div class="flex items-center gap-4">
+            <span class="w-14 h-14 shrink-0 rounded-2xl bg-white shadow-soft flex items-center justify-center"><i data-lucide="map-pinned" class="w-7 h-7 text-brand-blue"></i></span>
+            <div>
+              <div class="font-display font-bold text-ink">EFFO-TP · Divatte-sur-Loire</div>
+              <p class="text-slate2 text-sm mt-0.5">11 Rue de l'Industrie, ZI Saint-Clément, 44450 Divatte-sur-Loire</p>
+            </div>
+          </div>
+          <div class="mt-5">
+            <span class="text-xs font-semibold uppercase tracking-wide text-slate2">Itinéraire</span>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <a href="https://maps.app.goo.gl/PNjajjcvWq3w8v4M7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-white border border-slate-200 text-ink text-sm font-semibold px-4 py-2 rounded-full hover:border-brand-blue hover:text-brand-blue transition"><i data-lucide="map-pin" class="w-4 h-4 text-brand-blue"></i> Google Maps</a>
+              <a href="https://www.waze.com/ul?q=11%20Rue%20de%20l%27Industrie%2C%20ZI%20Saint-Cl%C3%A9ment%2C%2044450%20Divatte-sur-Loire&navigate=yes" target="_blank" rel="noopener noreferrer" class="sm:hidden inline-flex items-center gap-1.5 bg-white border border-slate-200 text-ink text-sm font-semibold px-4 py-2 rounded-full hover:border-brand-blue hover:text-brand-blue transition"><i data-lucide="navigation" class="w-4 h-4 text-brand-blue"></i> Waze</a>
+              <a href="https://maps.apple.com/?daddr=11%20Rue%20de%20l%27Industrie%2C%20ZI%20Saint-Cl%C3%A9ment%2C%2044450%20Divatte-sur-Loire" target="_blank" rel="noopener noreferrer" class="sm:hidden inline-flex items-center gap-1.5 bg-white border border-slate-200 text-ink text-sm font-semibold px-4 py-2 rounded-full hover:border-brand-blue hover:text-brand-blue transition"><i data-lucide="map" class="w-4 h-4 text-brand-blue"></i> Apple Plans</a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -54,17 +68,32 @@ const faq = [
           <div><label class="text-sm text-slate2" for="email">Email <span class="text-brand-blue">*</span></label><input id="email" name="email" required autocomplete="email" type="email" inputmode="email" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="damien.dubois@entreprise.fr" /></div>
           <div><label class="text-sm text-slate2" for="tel">Téléphone <span class="text-brand-blue">*</span></label><input id="tel" name="tel" required autocomplete="tel" type="tel" inputmode="tel" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="06 12 34 56 78" /></div>
         </div>
-        <div class="mt-4"><label class="text-sm text-slate2" for="entreprise">Entreprise</label><input id="entreprise" name="entreprise" type="text" autocomplete="organization" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Nom de l'entreprise" /></div>
+        <div class="mt-4">
+          <span class="text-sm text-slate2">Vous êtes</span>
+          <div class="mt-1.5 grid grid-cols-2 gap-3">
+            <label class="profil-opt relative flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-lg px-4 py-3 cursor-pointer font-medium text-ink has-[:checked]:border-brand-blue has-[:checked]:bg-brand-blue/5 has-[:checked]:text-brand-blue transition">
+              <input type="radio" name="profil" value="Professionnel" class="sr-only" checked />
+              <i data-lucide="briefcase" class="w-4 h-4"></i> Professionnel
+            </label>
+            <label class="profil-opt relative flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-lg px-4 py-3 cursor-pointer font-medium text-ink has-[:checked]:border-brand-blue has-[:checked]:bg-brand-blue/5 has-[:checked]:text-brand-blue transition">
+              <input type="radio" name="profil" value="Particulier" class="sr-only" />
+              <i data-lucide="user" class="w-4 h-4"></i> Particulier
+            </label>
+          </div>
+        </div>
+        <div class="mt-4"><label class="text-sm text-slate2" for="entreprise">Entreprise <span class="text-slate2/70">(si professionnel)</span></label><input id="entreprise" name="entreprise" type="text" autocomplete="organization" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Nom de l'entreprise" /></div>
         <div class="mt-4"><label class="text-sm text-slate2" for="sujet">Votre besoin</label>
           <select id="sujet" name="sujet" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none">
-            <option>Génie civil</option><option>Fibre optique</option><option>Site GSM</option><option>Borne IRVE</option><option>Autre</option>
+            <option>Génie civil</option><option>IRVE &amp; énergies</option><option>RTE &amp; réseaux électriques</option><option>SNCF &amp; ferroviaire</option><option>Terrassement</option><option>Viabilisation</option><option>Adduction télécom</option><option>Aménagements extérieurs</option><option>Autre</option>
           </select>
         </div>
         <div class="mt-4"><label class="text-sm text-slate2" for="message">Votre projet <span class="text-brand-blue">*</span></label><textarea id="message" name="message" required rows="5" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Bonjour, j'aurais voulu un devis pour…"></textarea></div>
         <label class="mt-4 flex items-start gap-3 text-[13px] text-slate2 cursor-pointer">
           <input id="rgpd" name="rgpd" required type="checkbox" class="mt-0.5 w-4 h-4 shrink-0 accent-brand-blue" />
-          <span>J'accepte que mes informations soient utilisées uniquement pour répondre à ma demande. <span class="text-brand-blue">*</span> <a href="/mentions-legales" class="underline hover:text-brand-blue">En savoir plus</a></span>
+          <span>J'accepte que mes informations soient utilisées uniquement pour répondre à ma demande. <span class="text-brand-blue">*</span> <a href="/politique-confidentialite" class="underline hover:text-brand-blue">En savoir plus</a></span>
         </label>
+        <!-- Anti-spam (honeypot) : masqué aux humains, piège les bots -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" style="display:none !important" />
         <button type="submit" class="mt-5 w-full inline-flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-6 py-3.5 rounded-full transition disabled:opacity-60 disabled:cursor-not-allowed">Envoyer ma demande <i data-lucide="send" class="w-4 h-4"></i></button>
         <p id="formStatus" role="status" aria-live="polite" class="mt-3 text-sm text-center"></p>
         <p class="mt-1 text-xs text-slate2 text-center">Champs marqués <span class="text-brand-blue">*</span> obligatoires. Réponse sous 24–48 h ouvrées.</p>
@@ -94,6 +123,17 @@ const faq = [
     </div>
   </section>
 
+  <!-- Toast de confirmation d'envoi -->
+  <div id="formToast" role="status" aria-live="polite" class="fixed z-[90] bottom-24 lg:bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:right-6 sm:translate-x-0 opacity-0 translate-y-3 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+    <div class="flex items-center gap-3 bg-ink text-white pl-4 pr-6 py-4 rounded-2xl shadow-2xl border border-white/10">
+      <span class="w-9 h-9 shrink-0 rounded-full bg-brand-green/20 flex items-center justify-center"><i data-lucide="check" class="w-5 h-5 text-brand-green"></i></span>
+      <div>
+        <div class="font-display font-semibold text-sm leading-tight">Demande envoyée</div>
+        <div class="text-white/70 text-xs mt-0.5">Nous vous répondons rapidement.</div>
+      </div>
+    </div>
+  </div>
+
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -106,6 +146,10 @@ const faq = [
 
   <script is:inline>
     (function () {
+      // ⚠️ REMPLACER par la clé d'accès obtenue sur https://web3forms.com (gratuite).
+      // La clé est PUBLIQUE : aucun risque à l'exposer ici.
+      var WEB3FORMS_ACCESS_KEY = '2e7dc4de-0172-48e5-abff-b8928a3eed91';
+
       var form = document.getElementById('contactForm');
       if (!form) return;
       var status = document.getElementById('formStatus');
@@ -133,18 +177,66 @@ const faq = [
           firstInvalid.focus();
           return;
         }
-        // Démo : à connecter à Formspree / Web3Forms (action + method POST)
+        // Envoi réel via Web3Forms (le message part par e-mail au propriétaire)
         var btn = form.querySelector('button[type="submit"]');
         btn.disabled = true;
         status.textContent = 'Envoi en cours…';
         status.className = 'mt-3 text-sm text-center text-slate2';
-        setTimeout(function () {
-          form.reset();
-          btn.disabled = false;
-          status.textContent = '✅ Merci ! Votre demande a bien été prise en compte. (Démo : à connecter à un service d’envoi pour la mise en ligne.)';
-          status.className = 'mt-3 text-sm text-center text-brand-green font-semibold';
-        }, 600);
+
+        var val = function (n) { var el = form.elements[n]; return el ? String(el.value).trim() : ''; };
+        var profil = (form.elements['profil'] && form.elements['profil'].value) || 'Non renseigné';
+        var entreprise = val('entreprise') || 'Non renseignée';
+
+        // Message unique, formaté proprement (e-mail clair, sans libellés parasites)
+        var corps =
+          'Nouvelle demande de devis via le site EFFO-TP.\n\n' +
+          'Profil : ' + profil + '\n' +
+          'Nom : ' + val('prenom') + ' ' + val('nom') + '\n' +
+          'E-mail : ' + val('email') + '\n' +
+          'Téléphone : ' + val('tel') + '\n' +
+          'Entreprise : ' + entreprise + '\n' +
+          'Type de besoin : ' + val('sujet') + '\n\n' +
+          'Message :\n' + val('message');
+
+        var data = new FormData();
+        data.append('access_key', WEB3FORMS_ACCESS_KEY);
+        data.append('subject', 'Demande de devis · ' + val('prenom') + ' ' + val('nom') + ' (' + val('sujet') + ')');
+        data.append('from_name', 'Site EFFO-TP');
+        data.append('email', val('email'));   // met le visiteur en « répondre à »
+        data.append('message', corps);
+        data.append('botcheck', form.elements['botcheck'] && form.elements['botcheck'].checked ? true : '');
+
+        fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+          .then(function (r) { return r.json(); })
+          .then(function (json) {
+            if (json && json.success) {
+              form.reset();
+              status.textContent = 'Votre demande a bien été envoyée. Nous vous répondons rapidement.';
+              status.className = 'mt-3 text-sm text-center text-brand-green font-semibold';
+              showToast();
+            } else {
+              status.textContent = 'Une erreur est survenue. Réessayez ou écrivez-nous à contact@effo-tp.com.';
+              status.className = 'mt-3 text-sm text-center text-red-600';
+            }
+          })
+          .catch(function () {
+            status.textContent = 'Problème de connexion. Réessayez ou écrivez-nous à contact@effo-tp.com.';
+            status.className = 'mt-3 text-sm text-center text-red-600';
+          })
+          .then(function () { btn.disabled = false; });
       });
+
+      // Toast de confirmation
+      var toastTimer = null;
+      function showToast() {
+        var t = document.getElementById('formToast');
+        if (!t) return;
+        t.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          t.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
+        }, 5000);
+      }
     })();
   </script>
 </Base>

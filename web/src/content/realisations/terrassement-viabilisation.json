@@ -1,0 +1,12 @@
+{
+  "title": "Viabilisation de terrain à bâtir",
+  "category": "terrassement",
+  "location": "Loire-Atlantique",
+  "description": "Création des tranchées et réseaux pour viabiliser un terrain avant construction.",
+  "details": "Viabilisation d'un terrain à bâtir : création de tranchées et pose de fourreaux pour les réseaux d'eau, d'électricité, de télécommunication et d'assainissement. Préparation de la plateforme et des accès de chantier.",
+  "tags": ["Viabilisation", "Réseaux", "Assainissement"],
+  "photos": [],
+  "icon": "route",
+  "order": 90,
+  "draft": false
+}

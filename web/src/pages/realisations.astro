@@ -3,26 +3,45 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+
+// Libellé + icône par défaut selon la catégorie (aligné sur les deux pôles du site)
+const CATS = {
+  'irve': { label: 'IRVE & énergies', icon: 'zap' },
+  'rte': { label: 'RTE & réseaux électriques', icon: 'plug-zap' },
+  'sncf': { label: 'SNCF & ferroviaire', icon: 'train-front' },
+  'genie-civil': { label: 'Génie civil spécifique', icon: 'hard-hat' },
+  'terrassement': { label: 'Terrassement & viabilisation', icon: 'shovel' },
+  'adduction': { label: 'Adduction télécom', icon: 'cable' },
+  'amenagements': { label: 'Aménagements extérieurs', icon: 'trees' },
+};
 
 const filters = [
   { key: 'all', label: 'Tous' },
+  { key: 'irve', label: 'IRVE & énergies' },
+  { key: 'rte', label: 'RTE & réseaux' },
+  { key: 'sncf', label: 'SNCF & ferroviaire' },
   { key: 'genie-civil', label: 'Génie civil' },
-  { key: 'fibre', label: 'Fibre optique' },
-  { key: 'gsm', label: 'Site GSM' },
-  { key: 'irve', label: 'IRVE' },
+  { key: 'terrassement', label: 'Terrassement & viabilisation' },
+  { key: 'adduction', label: 'Adduction télécom' },
+  { key: 'amenagements', label: 'Aménagements extérieurs' },
 ];
 
-const projects = [
-  { category: 'genie-civil', categoryLabel: 'Génie civil', icon: 'shovel', title: 'Ouverture de tranchées & pose de fourreaux', location: 'Loire-Atlantique', desc: "Terrassement, pose de fourreaux et remblaiement pour le passage des réseaux télécom.", details: "Réalisation de tranchées sur plusieurs centaines de mètres pour le passage de réseaux télécom : terrassement, pose des fourreaux et grillage avertisseur, remblaiement et réfection de surface. Chantier mené dans le respect des règles de sécurité et de la voirie.", tags: ['Terrassement', 'Fourreaux', 'Remblaiement', 'Réfection'] },
-  { category: 'genie-civil', categoryLabel: 'Génie civil', icon: 'drill', title: 'Forage dirigé sous chaussée', location: 'Vendée', desc: "Fonçage par forage dirigé pour traverser une voirie sans l'ouvrir.", details: "Traversée de chaussée par forage dirigé (méthode spécifique) afin de faire passer les réseaux sans ouvrir la route : zéro impact sur la circulation et sur les infrastructures existantes. Solution idéale en milieu contraint.", tags: ['Forage dirigé', 'Sans tranchée', 'Voirie'] },
-  { category: 'genie-civil', categoryLabel: 'Génie civil', icon: 'box', title: 'Chambres de tirage & armoires techniques', location: 'Maine-et-Loire', desc: "Implantation de chambres de tirage et d'armoires de rue conformes aux normes.", details: "Pose et raccordement de chambres de tirage et d'armoires techniques de rue, points clés de l'architecture des réseaux. Implantation, génie civil et finitions conformes aux exigences des opérateurs.", tags: ['Chambres', 'Armoires', 'Génie civil'] },
-  { category: 'fibre', categoryLabel: 'Fibre optique', icon: 'cable', title: 'Déploiement fibre FTTH', location: 'Morbihan', desc: "Tirage, soudure et mesure de la fibre jusqu'à l'abonné, avec contrôle qualité.", details: "Déploiement de la fibre jusqu'à l'abonné (FTTH) : tirage des câbles, soudure, mesures par réflectométrie et contrôle qualité complet. Une connectivité fiable et performante, livrée dans les délais.", tags: ['FTTH', 'Soudure', 'Mesure', 'Raccordement'] },
-  { category: 'fibre', categoryLabel: 'Fibre optique', icon: 'building-2', title: 'Raccordement FTTO entreprise', location: 'Nantes', desc: "Liaison fibre dédiée pour un site professionnel, de l'étude au raccordement.", details: "Mise en place d'une liaison fibre dédiée (FTTO) pour un site professionnel : étude de faisabilité, génie civil si nécessaire, pose et raccordement. Une connexion haut débit dédiée et sécurisée pour l'entreprise.", tags: ['FTTO', 'Entreprise', 'Haut débit'] },
-  { category: 'fibre', categoryLabel: 'Fibre optique', icon: 'wrench', title: 'Maintenance réseau (VDR)', location: 'Ille-et-Vilaine', desc: "Diagnostic et réparation rapides pour garantir la continuité du réseau.", details: "Interventions de maintenance préventive et corrective (Vie Du Réseau) : diagnostic, localisation de panne et réparation rapide. Objectif : garantir la continuité et la fiabilité du service.", tags: ['Maintenance', 'Diagnostic', 'Réparation'] },
-  { category: 'gsm', categoryLabel: 'Site GSM', icon: 'radio-tower', title: "Génie civil site GSM & pose d'antennes", location: 'Vendée', desc: "Préparation du site, supports, câblage et installation des équipements mobiles.", details: "Travaux de génie civil dédiés à un site GSM : préparation du terrain, massifs et supports, câblage, puis installation des antennes et équipements radio. Une infrastructure mobile fiable et conforme.", tags: ['GSM', 'Antennes', 'Supports', 'Câblage'] },
-  { category: 'gsm', categoryLabel: 'Site GSM', icon: 'layers', title: 'Terrassement & shelter télécom', location: 'Loire-Atlantique', desc: "Terrassement et mise en place du shelter technique d'un site mobile.", details: "Terrassement et mise en place d'un shelter technique abritant les équipements d'un site mobile : plateforme, raccordements et sécurisation. Un ouvrage durable au service de la couverture réseau.", tags: ['Terrassement', 'Shelter', 'Mobile'] },
-  { category: 'irve', categoryLabel: 'IRVE', icon: 'zap', title: 'Installation de bornes de recharge', location: 'Loire-Atlantique', desc: "Étude, génie civil et mise en service de bornes IRVE pour un parking pro.", details: "Installation de bornes de recharge pour véhicules électriques sur un parking professionnel : étude de l'installation électrique, génie civil, pose et mise en service. Une solution clé en main, évolutive et dimensionnée.", tags: ['IRVE', 'Recharge', 'Clé en main'] },
-];
+// Chantiers chargés depuis la collection de contenu (éditable via /admin)
+const entries = await getCollection('realisations', ({ data }) => !data.draft);
+const projects = entries
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
+  .map((e) => ({
+    category: e.data.category,
+    categoryLabel: CATS[e.data.category]?.label ?? e.data.category,
+    icon: e.data.icon || CATS[e.data.category]?.icon || 'hard-hat',
+    title: e.data.title,
+    location: e.data.location,
+    desc: e.data.description,
+    details: e.data.details || e.data.description,
+    tags: e.data.tags ?? [],
+    photos: e.data.photos ?? [],
+  }));
 
 const garanties = [
   { icon: 'shield-check', label: 'Conforme aux normes', desc: "Travaux réalisés dans le respect des normes télécom et des règles de voirie." },
@@ -31,7 +50,7 @@ const garanties = [
   { icon: 'search-check', label: 'Contrôle qualité', desc: "Vérifications et mesures à chaque étape, jusqu'à la réception du chantier." },
 ];
 ---
-<Base title="Réalisations : Chantiers de génie civil, fibre & GSM | EFFO-TP" description="Découvrez des exemples de chantiers réalisés par EFFO-TP : génie civil, déploiement fibre optique, sites GSM et bornes IRVE dans tout le Grand Ouest.">
+<Base title="Réalisations : génie civil, IRVE, terrassement & aménagements | EFFO-TP" description="Découvrez des exemples de chantiers réalisés par EFFO-TP : génie civil pour l'IRVE, les réseaux électriques et le ferroviaire, terrassement, viabilisation, adduction télécom et aménagements extérieurs, dans tout le Grand Ouest.">
   <PageHeader
     eyebrow="Réalisations"
     title={'Nos <span class="fibre-text">réalisations</span>'}
@@ -67,6 +86,8 @@ const garanties = [
             desc={p.desc}
             details={p.details}
             tags={p.tags}
+            photo={p.photos && p.photos.length ? p.photos[0] : undefined}
+            photos={p.photos}
             delay={(i % 3) * 80}
           />
         ))}
@@ -145,6 +166,12 @@ const garanties = [
       btns.forEach(function (b) {
         b.addEventListener('click', function () { applyFilter(b.getAttribute('data-filter')); });
       });
+
+      // Filtre pré-sélectionné via l'URL (ex : /realisations?filter=irve depuis les pages métier)
+      var params = new URLSearchParams(window.location.search);
+      var initial = params.get('filter');
+      var validKeys = btns.map(function (b) { return b.getAttribute('data-filter'); });
+      if (initial && validKeys.indexOf(initial) !== -1) applyFilter(initial);
 
       // --- Modale détail + galerie ---
       var modal = document.getElementById('projModal');

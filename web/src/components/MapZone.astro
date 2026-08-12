@@ -44,7 +44,9 @@
           try { map.fitBounds(layer.getBounds(), { padding: [24, 24] }); } catch (e) {}
 
           var hq = L.circleMarker([47.27, -1.3], { radius: 8, color: '#0B0F14', weight: 2, fillColor: '#30C293', fillOpacity: 1 }).addTo(map);
-          hq.bindPopup('<b>EFFO-TP</b><br>39 Rte du Champ Blond,<br>44450 Divatte-sur-Loire').openPopup();
+          hq.bindPopup('<b>EFFO-TP</b><br>11 Rue de l\'Industrie, ZI Saint-Clément,<br>44450 Divatte-sur-Loire');
+          // Sur mobile, on n'ouvre pas la bulle par défaut (elle masquerait la carte) : au tap sur le repère
+          if (window.innerWidth >= 640) hq.openPopup();
 
           // Survol de la liste à gauche → allume le département sur la carte
           document.querySelectorAll('[data-dep]').forEach(function (el) {

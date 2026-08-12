@@ -12,6 +12,14 @@ const materiel = [
   { name: 'Manitou', icon: 'forklift' },
 ];
 
+// Zone d'intervention élargie, groupée par région (data-dep synchronisé avec la carte)
+const zones = [
+  { region: 'Bretagne', deps: ['Ille-et-Vilaine', 'Morbihan', "Côtes-d'Armor", 'Finistère'] },
+  { region: 'Pays de la Loire', deps: ['Loire-Atlantique', 'Maine-et-Loire', 'Vendée', 'Mayenne', 'Sarthe'] },
+  { region: 'Normandie', deps: ['Manche', 'Calvados', 'Orne'] },
+  { region: 'Nouvelle-Aquitaine', deps: ['Deux-Sèvres', 'Vienne', 'Charente-Maritime', 'Charente', 'Gironde'] },
+];
+
 // Donneurs d'ordre / clients (grille statique)
 // url : laisser '' si pas de site (le logo ne sera alors pas cliquable)
 const clients = [
@@ -20,7 +28,6 @@ const clients = [
   { name: 'Axione', file: 'axione', ar: '138.21 / 27.89', url: 'https://www.axione.fr' },
   { name: 'Aximum', file: 'aximum', ar: '584.72 / 190.11', url: 'https://www.aximum.fr' },
   { name: 'Ensio', file: 'ensio', ar: '451.05 / 181.78', url: 'https://ensio.eu' },
-  { name: 'Be Green', file: 'be-green', ar: '374.26 / 133', url: 'https://www.begreen-group.com' },
   { name: 'Nantes Métropole', file: 'nantes-metropole', ar: '781.73 / 250.19', url: 'https://metropole.nantes.fr' },
 ];
 // Partenaires / sponsoring local (carrousel défilant)
@@ -47,18 +54,18 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
 
     <div class="relative mx-auto max-w-7xl px-6 py-20 sm:py-28 md:py-36 lg:py-44">
       <div class="max-w-2xl">
-        <span class="anim anim-up inline-flex items-center gap-2 text-white/80 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-5">
-          <span class="w-8 h-[3px] bg-brand-green"></span> Génie civil &amp; réseaux télécom · Nantes
+        <span class="anim anim-up inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-white/80 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-5">
+          <span class="w-8 h-[3px] bg-brand-green"></span> Génie civil · IRVE · Terrassement · Viabilisation · Grand Ouest
         </span>
-        <h1 class="anim anim-up font-display font-extrabold tracking-tight text-balance text-[clamp(2.05rem,7vw,4.15rem)] leading-[1.07]" data-delay="80">
-          Déployons &amp; construisons<br class="hidden sm:block" /> ensemble vos <span class="fibre-text sm:whitespace-nowrap">réseaux télécom</span>
+        <h1 class="anim anim-up font-display font-extrabold tracking-tight text-balance text-[clamp(2.05rem,6.4vw,3.9rem)] leading-[1.08]" data-delay="80">
+          Mettons notre expertise au service de vos projets de <span class="fibre-text">génie civil</span>
         </h1>
-        <p class="anim anim-up mt-6 text-lg text-white/65 max-w-lg leading-relaxed" data-delay="160">
-          Située près de Nantes, EFFO-TP conçoit, déploie et entretient vos infrastructures télécom : fibre optique, sites GSM, génie civil et bornes IRVE.
+        <p class="anim anim-up mt-6 text-lg text-white/65 max-w-xl leading-relaxed" data-delay="160">
+          Située près de Nantes, EFFO-TP accompagne les installateurs de bornes de recharge, de trackers solaires et du photovoltaïque, les opérateurs de mobilité et les gestionnaires de réseaux dans leurs travaux de génie civil, de VRD, de terrassement et d'aménagement. Nos équipes interviennent dans tout le Grand Ouest.
         </p>
         <div class="anim anim-up mt-9 flex flex-wrap gap-4" data-delay="240">
-          <a href="/notre-histoire" class="glass inline-flex items-center gap-2 hover:bg-white/10 text-white font-semibold px-7 py-3.5 rounded-full transition">
-            Notre histoire &amp; nos valeurs
+          <a href="/genie-civil" class="glass inline-flex items-center gap-2 hover:bg-white/10 text-white font-semibold px-7 py-3.5 rounded-full transition">
+            Découvrir nos activités
           </a>
           <a href="/contact" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition shadow-[0_0_34px_-4px_rgba(28,137,242,.65)]">
             Nous solliciter <i data-lucide="arrow-right" class="w-5 h-5"></i>
@@ -81,81 +88,64 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
           <dd class="mt-2 text-slate2 text-sm font-medium">entreprise familiale créée</dd>
         </div>
         <div class="anim anim-up bg-white px-6 py-8 text-center" data-delay="160">
-          <dt class="font-display font-extrabold text-[clamp(2rem,4vw,2.8rem)] leading-none fibre-text"><span data-count="5">0</span></dt>
-          <dd class="mt-2 text-slate2 text-sm font-medium">départements couverts</dd>
+          <dt class="font-display font-extrabold text-[clamp(1.5rem,3vw,2.4rem)] leading-none fibre-text">Grand Ouest</dt>
+          <dd class="mt-2 text-slate2 text-sm font-medium">zone d'intervention élargie</dd>
         </div>
         <div class="anim anim-up bg-white px-6 py-8 text-center" data-delay="240">
           <dt class="font-display font-extrabold text-[clamp(2rem,4vw,2.8rem)] leading-none fibre-text"><span data-count="4">0</span></dt>
-          <dd class="mt-2 text-slate2 text-sm font-medium">pôles métier complémentaires</dd>
+          <dd class="mt-2 text-slate2 text-sm font-medium">pôles de compétences complémentaires</dd>
         </div>
       </dl>
     </div>
   </section>
 
-  <!-- ============ SERVICES ============ -->
+  <!-- ============ NOS ACTIVITÉS ============ -->
   <section id="services" class="pb-24 pt-6 bg-paper">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="max-w-2xl anim anim-up">
+      <div class="max-w-3xl anim anim-up">
         <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Notre expertise</span>
-        <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Une expertise complète, du terrassement à la <span class="fibre-text">fibre</span></h2>
-        <p class="mt-4 text-slate2 text-lg">Trois pôles métier complémentaires pour accompagner vos projets d'infrastructures télécom, de l'étude de faisabilité à la maintenance.</p>
+        <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Une entreprise de <span class="fibre-text">génie civil</span> polyvalente</h2>
+        <p class="mt-4 text-slate2 text-lg">EFFO-TP prend en charge la préparation, le terrassement, les réseaux, les ouvrages de génie civil et les aménagements nécessaires à la mise à disposition des infrastructures énergétiques, télécom et de mobilité.</p>
       </div>
 
-      <div class="mt-14 grid md:grid-cols-3 gap-6">
-        <a href="/services#genie-civil" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="0">
-          <div class="relative h-52 overflow-hidden">
-            <img src="/assets/img/genie-civil.jpg" alt="Génie civil : pelle hydraulique sur chantier" width="1400" height="879" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/55 to-transparent"></div>
-            <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="hard-hat" class="w-3.5 h-3.5 text-brand-blue"></i> 01 · Génie civil</span>
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+        <!-- Génie civil -->
+        <a href="/genie-civil" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="0">
+          <div class="relative h-56 md:h-64 overflow-hidden">
+            <img src="/assets/img/genie-civil.jpg" alt="Chantier de génie civil EFFO-TP" width="1400" height="879" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
+            <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="hard-hat" class="w-3.5 h-3.5 text-brand-blue"></i> Génie civil</span>
           </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="font-display font-bold text-lg leading-snug">Génie civil traditionnel &amp; spécifique</h3>
-            <p class="mt-2.5 text-slate2 text-[15px] leading-relaxed flex-1">Tranchées, fourreaux, armoires, chambres de tirage. Méthodes traditionnelles et spécifiques : forage dirigé.</p>
-            <span class="mt-5 inline-flex items-center gap-2 text-brand-blue font-semibold text-[15px]">En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition"></i></span>
-          </div>
-        </a>
-
-        <a href="/services#fibre" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="120">
-          <div class="relative h-52 overflow-hidden">
-            <img src="/assets/img/fibre.jpg" alt="Déploiement fibre optique" width="1400" height="2096" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/55 to-transparent"></div>
-            <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="cable" class="w-3.5 h-3.5 text-brand-blue"></i> 02 · Fibre optique</span>
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="font-display font-bold text-lg leading-snug">Déploiement &amp; maintenance fibre optique</h3>
-            <p class="mt-2.5 text-slate2 text-[15px] leading-relaxed flex-1">Déploiement fibre FTTO / FTTX / FTTA / VDR : pose, soudure, mesure, puis maintenance préventive et corrective.</p>
-            <span class="mt-5 inline-flex items-center gap-2 text-brand-blue font-semibold text-[15px]">En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition"></i></span>
+          <div class="p-7 flex flex-col flex-1">
+            <h3 class="font-display font-bold text-xl leading-snug">Génie civil traditionnel &amp; spécifique</h3>
+            <p class="mt-3 text-slate2 leading-relaxed flex-1">Ouvrages de génie civil pour l'énergie, le télécom et la mobilité : IRVE &amp; infrastructures énergétiques, RTE &amp; réseaux électriques, SNCF &amp; ferroviaire, travaux spécifiques.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {['IRVE & énergies', 'RTE', 'SNCF & mobilité', 'Travaux spécifiques'].map((t) => (
+                <span class="text-xs font-medium bg-paper text-slate2 px-2.5 py-1 rounded-full border border-slate-100">{t}</span>
+              ))}
+            </div>
+            <span class="mt-5 inline-flex items-center gap-2 text-brand-blue font-semibold">Découvrir <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition"></i></span>
           </div>
         </a>
 
-        <a href="/services#gsm" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="240">
-          <div class="relative h-52 overflow-hidden">
-            <img src="/assets/img/gsm.jpg" alt="Pylône GSM au coucher du soleil" width="1400" height="1827" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/55 to-transparent"></div>
-            <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="radio-tower" class="w-3.5 h-3.5 text-brand-blue"></i> 03 · Site GSM</span>
+        <!-- Terrassement & aménagements -->
+        <a href="/terrassement" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="120">
+          <div class="relative h-56 md:h-64 overflow-hidden">
+            <img src="/assets/img/chargeuse.jpg" alt="Terrassement et aménagement extérieur EFFO-TP" width="1600" height="1066" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
+            <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="shovel" class="w-3.5 h-3.5 text-brand-green"></i> Terrassement &amp; aménagements</span>
           </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="font-display font-bold text-lg leading-snug">Sites GSM &amp; réseaux mobiles</h3>
-            <p class="mt-2.5 text-slate2 text-[15px] leading-relaxed flex-1">Génie civil dédié aux infrastructures GSM : préparation des sites, antennes, câbles, terrassement, supports et shelters.</p>
-            <span class="mt-5 inline-flex items-center gap-2 text-brand-blue font-semibold text-[15px]">En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition"></i></span>
+          <div class="p-7 flex flex-col flex-1">
+            <h3 class="font-display font-bold text-xl leading-snug">Terrassement &amp; aménagements extérieurs</h3>
+            <p class="mt-3 text-slate2 leading-relaxed flex-1">Pour les professionnels comme pour les particuliers : terrassement, viabilisation, adduction télécom, terrasses béton, mini-piscines, terrains de pétanque et aménagements extérieurs.</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {['Terrassement', 'Viabilisation', 'Terrasses béton', 'Mini-piscines', 'Pétanque'].map((t) => (
+                <span class="text-xs font-medium bg-paper text-slate2 px-2.5 py-1 rounded-full border border-slate-100">{t}</span>
+              ))}
+            </div>
+            <span class="mt-5 inline-flex items-center gap-2 text-brand-blue font-semibold">Découvrir <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition"></i></span>
           </div>
         </a>
-      </div>
-
-      <!-- IRVE bandeau solo -->
-      <div class="anim anim-up mt-6 scard scard-dark group relative overflow-hidden rounded-2xl bg-ink text-white" data-delay="120">
-        <div class="grid md:grid-cols-2 items-stretch">
-          <div class="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
-            <span class="inline-flex items-center gap-1.5 bg-brand-green text-ink text-xs font-bold px-3 py-1.5 rounded-full w-max"><i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Nouveauté</span>
-            <h3 class="font-display font-bold text-2xl md:text-3xl mt-4">IRVE : <span class="fibre-text">Bornes de recharge</span></h3>
-            <p class="mt-3 text-white/70 max-w-md leading-relaxed">EFFO-TP installe vos bornes de recharge pour véhicules électriques, pour les particuliers comme pour les professionnels. De l'étude à la mise en service.</p>
-            <a href="/irve" class="mt-7 inline-flex items-center gap-2 bg-brand-green text-ink font-semibold px-6 py-3.5 rounded-full hover:bg-brand-green700 transition w-max">Découvrir l'offre IRVE <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-          </div>
-          <div class="relative min-h-[240px] md:min-h-full order-1 md:order-2 overflow-hidden">
-            <img src="/assets/img/voiture-irve.jpg" alt="Borne de recharge IRVE, véhicule électrique EFFO" width="1600" height="1100" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-ink via-ink/40 to-transparent"></div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -207,21 +197,41 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
 
   <!-- ============ ZONE ============ -->
   <section id="zone" class="py-24 bg-paper">
-    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14 items-center">
-      <div class="anim anim-up">
-        <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Zone d'intervention</span>
-        <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Présents dans tout le <span class="fibre-text">Grand Ouest</span></h2>
-        <p class="mt-4 text-slate2 text-lg">Une équipe locale, réactive, au plus près de vos chantiers.</p>
-        <ul class="mt-8 grid sm:grid-cols-2 gap-3">
-          <li data-dep="Loire-Atlantique" class="zone-li flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100 transition cursor-default hover:border-brand-blue hover:shadow-card"><i data-lucide="map-pin" class="w-5 h-5 text-brand-blue"></i> Loire-Atlantique</li>
-          <li data-dep="Vendée" class="zone-li flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100 transition cursor-default hover:border-brand-blue hover:shadow-card"><i data-lucide="map-pin" class="w-5 h-5 text-brand-green"></i> Vendée</li>
-          <li data-dep="Morbihan" class="zone-li flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100 transition cursor-default hover:border-brand-blue hover:shadow-card"><i data-lucide="map-pin" class="w-5 h-5 text-brand-blue"></i> Morbihan</li>
-          <li data-dep="Maine-et-Loire" class="zone-li flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100 transition cursor-default hover:border-brand-blue hover:shadow-card"><i data-lucide="map-pin" class="w-5 h-5 text-brand-green"></i> Maine-et-Loire</li>
-          <li data-dep="Ille-et-Vilaine" class="zone-li flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-soft border border-slate-100 transition cursor-default hover:border-brand-blue hover:shadow-card sm:col-span-2"><i data-lucide="map-pin" class="w-5 h-5 text-brand-blue"></i> Ille-et-Vilaine</li>
-        </ul>
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+        <div class="anim anim-up">
+          <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Zone d'intervention</span>
+          <h2 class="font-display font-bold text-[clamp(2rem,4vw,3rem)] mt-3 leading-tight">Présents dans tout le <span class="fibre-text">Grand Ouest</span></h2>
+          <p class="mt-4 text-slate2 text-lg">Une équipe locale et réactive, au plus près de vos chantiers, de la Bretagne à la Gironde.</p>
+          <ul class="mt-8 space-y-0">
+            {zones.map((z) => (
+              <li class="flex flex-col sm:flex-row sm:gap-4 py-3.5 border-b border-slate-200/70">
+                <span class="w-full sm:w-44 shrink-0 flex items-center gap-2 font-semibold text-ink"><i data-lucide="map-pin" class="w-4 h-4 text-brand-blue"></i> {z.region}</span>
+                <span class="mt-1 sm:mt-0 text-slate2 text-[15px]">
+                  {z.deps.map((d, i) => (
+                    <span><span data-dep={d} class="zone-dep cursor-default transition hover:text-brand-blue">{d}</span>{i < z.deps.length - 1 ? ', ' : ''}</span>
+                  ))}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="anim anim-up" data-delay="120">
+          <MapZone />
+        </div>
       </div>
-      <div>
-        <MapZone />
+
+      <!-- Bande CTA hors secteur : pleine largeur sous la liste + la carte -->
+      <div class="anim anim-up mt-10 group relative overflow-hidden rounded-2xl bg-gradient-to-br from-ink to-[#12212e] text-white p-6 sm:p-8 shadow-card ring-1 ring-white/5">
+        <div class="blob absolute -top-16 -right-12 w-56 h-56 rounded-full bg-brand-blue/25 blur-3xl pointer-events-none" aria-hidden="true"></div>
+        <div class="blob absolute -bottom-16 left-1/4 w-56 h-56 rounded-full bg-brand-green/20 blur-3xl pointer-events-none" style="animation-delay:-6s" aria-hidden="true"></div>
+        <div class="relative flex flex-col sm:flex-row sm:items-center gap-5">
+          <div class="flex-1">
+            <div class="font-display font-bold text-xl leading-snug">Un chantier hors de cette zone ?</div>
+            <p class="text-white/70 mt-1.5">Pour les projets d'ampleur, nous intervenons aussi au-delà du Grand Ouest. Parlons de votre besoin.</p>
+          </div>
+          <a href="/contact" class="shrink-0 inline-flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition shadow-[0_10px_28px_-8px_rgba(28,137,242,.75)]">Nous consulter <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i></a>
+        </div>
       </div>
     </div>
   </section>
@@ -252,10 +262,10 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
             </div>
           );
         })}
-        <!-- cellule finale : invite -->
-        <div class="bg-white flex flex-col items-center justify-center text-center px-6 py-10 md:py-12">
+        <!-- cellule finale : invite (étendue sur 2 colonnes pour combler la grille) -->
+        <div class="col-span-2 bg-white flex flex-col sm:flex-row items-center justify-center gap-x-3 gap-y-1 text-center px-6 py-10 md:py-12">
           <span class="font-display font-bold text-ink leading-tight">Et&nbsp;vous&nbsp;?</span>
-          <a href="/contact" class="mt-1 inline-flex items-center gap-1 text-brand-blue font-semibold text-sm hover:gap-2 transition-all">Travaillons ensemble <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          <a href="/contact" class="inline-flex items-center gap-1 text-brand-blue font-semibold text-sm hover:gap-2 transition-all">Travaillons ensemble <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
         </div>
       </div>
 

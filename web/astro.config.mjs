@@ -6,4 +6,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.effo-tp.com',
   integrations: [tailwind(), sitemap()],
+  // Redirections des anciennes URLs (repositionnement V2)
+  redirects: {
+    '/services': '/genie-civil',
+    '/irve': '/genie-civil#irve',
+  },
 });

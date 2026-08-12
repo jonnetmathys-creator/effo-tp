@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const subnav = [
+  { href: '#terrassement', label: 'Terrassement', icon: 'shovel' },
+  { href: '#viabilisation', label: 'Viabilisation', icon: 'route' },
+  { href: '#adduction', label: 'Adduction télécom', icon: 'cable' },
+  { href: '#terrasses', label: 'Terrasses béton', icon: 'square' },
+  { href: '#piscines', label: 'Mini-piscines', icon: 'waves' },
+  { href: '#petanque', label: 'Pétanque', icon: 'circle-dot' },
+  { href: '#amenagements', label: 'Aménagements', icon: 'trees' },
+];
+
+const blocks = [
+  { id: 'terrassement', cat: 'terrassement', icon: 'shovel', title: 'Terrassement & préparation de terrain', text: "Terrassement de jardin, décaissement, nivellement, évacuation des terres, préparation de plateformes et accès de chantier." },
+  { id: 'viabilisation', cat: 'terrassement', icon: 'route', title: 'Viabilisation & réseaux', text: "Création de tranchées et pose de fourreaux pour les réseaux d'eau, d'électricité, de télécommunication, d'assainissement et autres réseaux enterrés." },
+  { id: 'adduction', cat: 'adduction', icon: 'cable', title: 'Adduction télécom & dépannage', text: "Création ou réparation d'adductions télécom, pose de fourreaux, création de regards et interventions ponctuelles en cas de réseau ou de fibre endommagée." },
+  { id: 'terrasses', cat: 'amenagements', icon: 'square', title: 'Terrasses & dalles béton', text: "Préparation du terrain, terrassement, coffrage et réalisation de dalles ou de terrasses en béton." },
+  { id: 'piscines', cat: 'amenagements', icon: 'waves', title: 'Mini-piscines', text: "Terrassement et préparation des ouvrages nécessaires à l'installation de mini-piscines de moins de 10 m²." },
+  { id: 'petanque', cat: 'amenagements', icon: 'circle-dot', title: 'Terrains de pétanque', text: "Création de terrains de pétanque avec terrassement, fondations, couche drainante, finition et pose de bordures." },
+  { id: 'amenagements', cat: 'amenagements', icon: 'trees', title: 'Aménagements divers', text: "Accès, cheminements, bordures, plateformes, stationnements, petits ouvrages maçonnés et remise en état des extérieurs." },
+];
+
+const publics = ['Particuliers', 'Architectes & maîtres d’œuvre', 'Promoteurs & paysagistes', 'Collectivités', 'Professionnels du tourisme', 'Entreprises & commerces'];
+---
+<Base title="Terrassement & aménagements extérieurs près de Nantes | EFFO-TP" description="EFFO-TP réalise vos travaux de terrassement, viabilisation, adduction télécom, terrasses béton, mini-piscines, terrains de pétanque et aménagements extérieurs. Pour les particuliers comme pour les professionnels, dans tout le Grand Ouest.">
+  <PageHeader
+    eyebrow="Terrassement & aménagements"
+    title={'Terrassement & <span class="fibre-text">aménagements extérieurs</span>'}
+    subtitle="Pour les professionnels comme pour les particuliers : terrassement, viabilisation, réseaux et aménagements, dans tout le Grand Ouest."
+    image="/assets/img/chargeuse.jpg"
+  />
+
+  <!-- Sous-nav d'ancrage sticky -->
+  <nav data-subnav class="sticky top-[72px] z-30 bg-white/90 backdrop-blur border-b border-slate-200" aria-label="Nos prestations de terrassement et d'aménagement">
+    <div class="mx-auto max-w-7xl px-6 flex gap-2 overflow-x-auto py-3 text-sm font-medium [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {subnav.map((s) => (
+        <a href={s.href} class="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-paper text-ink hover:bg-brand-green hover:text-ink transition">
+          <i data-lucide={s.icon} class="w-4 h-4"></i> {s.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="anim anim-up max-w-2xl">
+        <span class="text-brand-green font-semibold uppercase tracking-wide text-sm">Nos prestations</span>
+        <h2 class="font-display font-bold text-[clamp(1.9rem,4vw,2.8rem)] mt-3 leading-tight">Du terrassement à la <span class="fibre-text">finition</span></h2>
+        <p class="mt-4 text-slate2 text-lg">Une offre complète pour préparer, viabiliser et aménager vos extérieurs, avec un parc matériel adapté à chaque terrain.</p>
+      </div>
+
+      <!-- Publics -->
+      <div class="anim anim-up mt-6 flex flex-wrap gap-2" data-delay="60">
+        {publics.map((p) => (
+          <span class="inline-flex items-center gap-1.5 text-sm font-medium bg-paper text-slate2 px-3 py-1.5 rounded-full border border-slate-100"><i data-lucide="users" class="w-3.5 h-3.5 text-brand-green"></i> {p}</span>
+        ))}
+      </div>
+
+      <!-- Blocs prestations -->
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {blocks.map((b, i) => (
+          <article id={b.id} data-hl class="scroll-mt-[140px] scard anim anim-up group flex flex-col bg-white rounded-2xl p-7 shadow-soft border border-slate-100" data-delay={(i % 3) * 80}>
+            <span class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-blue/15 to-brand-green/15 flex items-center justify-center"><i data-lucide={b.icon} class="w-6 h-6 text-brand-blue"></i></span>
+            <h3 class="font-display font-bold text-lg mt-5 leading-snug">{b.title}</h3>
+            <p class="mt-2.5 text-slate2 text-[15px] leading-relaxed flex-1">{b.text}</p>
+            <a href={`/realisations?filter=${b.cat}`} class="mt-5 inline-flex items-center gap-1.5 text-brand-blue font-semibold text-sm">Voir les réalisations <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={`Un projet de <span class="fibre-text">terrassement</span> ou d'aménagement ?`} subtitle="Particulier ou professionnel, décrivez-nous votre besoin : nous vous répondons rapidement." eyebrow="Contact" accent="green" primaryLabel="Demander un devis" />
+</Base>

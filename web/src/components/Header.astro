@@ -1,17 +1,27 @@
 ---
 import Logo from './Logo.astro';
 
-const services = [
-  { href: '/services#genie-civil', label: 'Génie civil', icon: 'hard-hat' },
-  { href: '/services#fibre', label: 'Fibre optique', icon: 'cable' },
-  { href: '/services#gsm', label: 'Site GSM', icon: 'radio-tower' },
-  { href: '/irve', label: 'IRVE : Bornes de recharge', icon: 'zap' },
+const genieCivil = [
+  { href: '/genie-civil#irve', label: 'IRVE & infrastructures énergétiques', icon: 'zap' },
+  { href: '/genie-civil#rte', label: 'RTE & réseaux électriques', icon: 'plug-zap' },
+  { href: '/genie-civil#sncf', label: 'SNCF & mobilité', icon: 'train-front' },
+  { href: '/genie-civil#specifiques', label: 'Travaux spécifiques', icon: 'wrench' },
+];
+const terrassement = [
+  { href: '/terrassement#terrassement', label: 'Terrassement & préparation', icon: 'shovel' },
+  { href: '/terrassement#viabilisation', label: 'Viabilisation & réseaux', icon: 'route' },
+  { href: '/terrassement#adduction', label: 'Adduction télécom & dépannage', icon: 'cable' },
+  { href: '/terrassement#terrasses', label: 'Terrasses & dalles béton', icon: 'square' },
+  { href: '/terrassement#piscines', label: 'Mini-piscines', icon: 'waves' },
+  { href: '/terrassement#petanque', label: 'Terrains de pétanque', icon: 'circle-dot' },
+  { href: '/terrassement#amenagements', label: 'Aménagements divers', icon: 'trees' },
 ];
 const nav = [
   { href: '/', label: 'Accueil' },
-  { href: '/services', label: 'Services', children: services },
+  { href: '/genie-civil', label: 'Génie civil', children: genieCivil },
+  { href: '/terrassement', label: 'Terrassement & aménagements', children: terrassement },
   { href: '/realisations', label: 'Réalisations' },
-  { href: '/notre-histoire', label: 'Notre histoire' },
+  { href: '/notre-histoire', label: 'Notre entreprise' },
   { href: '/#zone', label: "Zone d'intervention" },
 ];
 const { transparent = false } = Astro.props;
@@ -27,7 +37,7 @@ const isActive = (href) => {
     <a href="/" class="flex items-center" aria-label="EFFO-TP accueil">
       <Logo class="h-8 text-ink" />
     </a>
-    <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-ink">
+    <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[15px] font-medium text-ink">
       {nav.map((n) => (
         n.children ? (
           <div class="relative group">
@@ -35,7 +45,7 @@ const isActive = (href) => {
               {n.label} <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"></i>
             </a>
             <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 invisible opacity-0 translate-y-1 transition duration-200 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0">
-              <div class="w-72 bg-white rounded-2xl shadow-card border border-slate-100 p-2">
+              <div class="w-80 bg-white rounded-2xl shadow-card border border-slate-100 p-2">
                 {n.children.map((c) => (
                   <a href={c.href} class="group/item flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-paper transition">
                     <span class="w-9 h-9 rounded-lg bg-brand-blue/10 flex items-center justify-center shrink-0"><i data-lucide={c.icon} class="w-4 h-4 text-brand-blue"></i></span>

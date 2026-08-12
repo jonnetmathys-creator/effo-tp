@@ -1,0 +1,55 @@
+backend:
+  name: github
+  repo: jonnetmathys-creator/effo-tp
+  branch: main
+
+# Où sont stockées les photos uploadées (chemin dans le dépôt) / URL publique
+media_folder: "web/public/assets/realisations"
+public_folder: "/assets/realisations"
+
+# Langue de l'interface
+locale: "fr"
+
+collections:
+  - name: "realisations"
+    label: "Réalisations (chantiers)"
+    label_singular: "Réalisation"
+    description: "Ajoutez, modifiez ou masquez les chantiers affichés sur la page Réalisations."
+    folder: "web/src/content/realisations"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    slug: "{{slug}}"
+    summary: "{{title}} · {{location}}"
+    sortable_fields: ["order", "title", "category"]
+    fields:
+      - { name: "title", label: "Titre du chantier", widget: "string" }
+      - name: "category"
+        label: "Catégorie"
+        widget: "select"
+        default: "genie-civil"
+        options:
+          - { label: "IRVE & énergies", value: "irve" }
+          - { label: "RTE & réseaux électriques", value: "rte" }
+          - { label: "SNCF & ferroviaire", value: "sncf" }
+          - { label: "Génie civil spécifique", value: "genie-civil" }
+          - { label: "Terrassement & viabilisation", value: "terrassement" }
+          - { label: "Adduction télécom", value: "adduction" }
+          - { label: "Aménagements extérieurs", value: "amenagements" }
+      - { name: "location", label: "Lieu (département ou ville)", widget: "string" }
+      - { name: "description", label: "Description courte (sur la carte)", widget: "text" }
+      - { name: "details", label: "Description détaillée (dans la fiche)", widget: "text", required: false }
+      - name: "tags"
+        label: "Tags"
+        widget: "list"
+        required: false
+        hint: "Ex. Terrassement, Fourreaux, Raccordement…"
+      - name: "photos"
+        label: "Photos du chantier"
+        widget: "list"
+        required: false
+        field: { name: "image", label: "Photo", widget: "image" }
+      - { name: "icon", label: "Icône (optionnel, avancé)", widget: "string", required: false, hint: "Laisser vide pour l'icône par défaut de la catégorie." }
+      - { name: "order", label: "Ordre d'affichage", widget: "number", value_type: "int", default: 100, required: false, hint: "Plus petit = affiché en premier." }
+      - { name: "draft", label: "Brouillon (non publié)", widget: "boolean", default: false, required: false }

@@ -19,3 +19,14 @@ Thumbs.db
 
 # Déploiement
 .vercel/
+
+# Documents internes / sensibles (ne jamais publier)
+*.pages
+*.docx
+Audio Transcription.pages
+Cahier_des_charges_refonte_site_EFFO-TP.docx
+EFFO-TP - Extrait d'immatriculation.pdf
+
+# Sauvegardes de développement
+web/backups/
+web/public/data/*.bak

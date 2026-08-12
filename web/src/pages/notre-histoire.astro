@@ -5,25 +5,44 @@ import CtaBand from '../components/CtaBand.astro';
 import TeamCard from '../components/TeamCard.astro';
 
 const team = [
-  { name: 'Quentin Bernard', role: 'Gérant · Directeur déploiement fibre' },
-  { name: 'Anthony Bernard', role: 'Directeur Génie civil' },
-  { name: 'Nicolas Bernard', role: 'Référent équipe lourde Génie civil' },
-  { name: 'Pierre Morel', role: 'Référent déploiement fibre' },
+  { name: 'Quentin B.', role: 'Gérant · Directeur déploiement fibre' },
+  { name: 'Anthony B.', role: 'Directeur Génie civil' },
+  { name: 'Nicolas B.', role: 'Référent équipe lourde Génie civil' },
   { name: 'Hermann P.', role: 'Conducteur poids lourd' },
   { name: 'Maxime L.', role: 'Chef de chantier Génie civil' },
   { name: 'Fabien L.', role: "Responsable d'équipe Génie civil" },
   { name: 'Jérôme M.', role: 'Ouvrier qualifié Génie civil' },
   { name: 'Thibault B.', role: 'Chef de chantier' },
   { name: 'Léo B.', role: 'Responsable équipe' },
-  { name: 'Louison J.', role: 'Technicien fibre optique' },
-  { name: 'Pierre J.', role: 'Technicien fibre optique' },
+  { name: 'Flavie', role: 'Assistante de direction' },
 ];
-const groupA = team.slice(0, 6);
-const groupB = team.slice(6);
+const half = Math.ceil(team.length / 2);
+const groupA = team.slice(0, half);
+const groupB = team.slice(half);
+
+const valeurs = [
+  { icon: 'handshake', title: 'Respect & confiance', text: "Des relations durables, fondées sur la parole tenue et le respect de chaque interlocuteur, en interne comme avec nos clients." },
+  { icon: 'messages-square', title: 'Écoute & transparence', text: "Un dialogue clair à chaque étape : nous écoutons vos attentes et communiquons sans détour, du devis à la réception." },
+  { icon: 'map-pin', title: 'Proximité & réactivité', text: "Une structure à taille humaine qui privilégie la proximité, un suivi personnalisé et des réponses rapides." },
+  { icon: 'trending-up', title: 'Grandir ensemble', text: "La culture du partenariat gagnant-gagnant, pour progresser aux côtés de nos équipes comme de nos clients." },
+  { icon: 'badge-check', title: 'Qualité & fiabilité', text: "Une exigence sur la méthode et le résultat, soutenue par le professionnalisme des équipes et des partenariats solides." },
+  { icon: 'heart-handshake', title: "L'humain au cœur", text: "Remettre la qualité du travail et la relation humaine au premier plan, au-delà de la seule compétitivité des marchés." },
+];
+
+const materiel = [
+  { name: 'Pelles hydrauliques', icon: 'construction' },
+  { name: 'Mini-pelles', icon: 'shovel' },
+  { name: 'Tractopelle', icon: 'truck' },
+  { name: 'Chargeuse', icon: 'tractor' },
+  { name: 'Manitou télescopique', icon: 'forklift' },
+  { name: 'Camions & bennes', icon: 'truck' },
+  { name: 'Matériel de compactage', icon: 'layers' },
+  { name: 'Niveleuse', icon: 'ruler' },
+];
 ---
-<Base title="Notre histoire & nos valeurs | EFFO-TP" description="EFFO-TP, entreprise familiale créée en 2021, née de 30 ans d'expériences partagées. Découvrez notre histoire, nos valeurs et notre équipe.">
+<Base title="Notre entreprise : histoire, équipe, matériel & valeurs | EFFO-TP" description="EFFO-TP, entreprise familiale créée en 2021, née de 30 ans d'expériences partagées. Découvrez notre histoire, notre équipe, nos valeurs et notre parc matériel.">
   <PageHeader
-    eyebrow="Notre histoire"
+    eyebrow="Notre entreprise"
     title="Grandir ensemble, remettre l'humain au cœur"
     subtitle="EFFO-TP est avant tout une entreprise et une histoire familiale, née de 30 ans d'expériences partagées."
     image="/assets/img/chargeuse.jpg"
@@ -87,6 +106,185 @@ const groupB = team.slice(6);
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ============ NOS VALEURS (défilement horizontal au scroll) ============ -->
+  <section data-hscroll class="relative bg-paper">
+    <div class="hscroll-pin lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden flex flex-col justify-center py-20 lg:py-0">
+      <!-- En-tête + barre de progression -->
+      <div class="mx-auto max-w-7xl px-6 w-full">
+        <div class="anim anim-up max-w-2xl">
+          <span class="text-brand-blue font-semibold uppercase tracking-wide text-sm">Nos valeurs</span>
+          <h2 class="font-display font-bold text-[clamp(1.9rem,4vw,2.8rem)] mt-3 leading-tight">Ce qui nous <span class="fibre-text">anime</span> au quotidien</h2>
+          <p class="mt-4 text-slate2 text-lg">Des valeurs héritées de notre histoire familiale, qui guident chacune de nos interventions.</p>
+        </div>
+        <div class="mt-8 hidden lg:flex items-center gap-3 text-slate2 text-sm">
+          <div class="h-1 w-40 rounded-full bg-slate-200 overflow-hidden"><span data-hbar class="block h-full w-0 rounded-full bg-gradient-to-r from-brand-blue to-brand-green transition-[width] duration-150"></span></div>
+          <span class="inline-flex items-center gap-1.5"><i data-lucide="mouse-pointer-2" class="w-4 h-4"></i> Continuez à défiler</span>
+        </div>
+        <p class="mt-4 lg:hidden text-slate2 text-sm inline-flex items-center gap-1.5"><i data-lucide="arrow-right" class="w-4 h-4"></i> Faites glisser pour parcourir</p>
+      </div>
+
+      <!-- Piste horizontale -->
+      <ol data-htrack class="mt-8 lg:mt-12 flex gap-5 sm:gap-6 pl-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] pr-[15vw] lg:pr-[20vw] overflow-x-auto lg:overflow-x-visible lg:motion-reduce:overflow-x-auto snap-x snap-mandatory lg:snap-none lg:will-change-transform [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {valeurs.map((v, i) => (
+          <li class="hvalue group snap-start shrink-0 w-[78vw] sm:w-[360px] flex flex-col rounded-3xl border border-slate-100 bg-white shadow-soft hover:shadow-card transition-shadow duration-300 p-8">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-blue/15 to-brand-green/15 flex items-center justify-center transition-colors duration-300 group-hover:from-brand-blue group-hover:to-brand-green"><i data-lucide={v.icon} class="w-6 h-6 text-brand-blue transition-colors duration-300 group-hover:text-white"></i></span>
+              <span class="font-display font-extrabold text-5xl leading-none text-slate-100 tabular-nums select-none" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <h3 class="font-display font-bold text-xl mt-6 leading-snug">{v.title}</h3>
+            <p class="mt-3 text-slate2 leading-relaxed flex-1">{v.text}</p>
+            <span class="mt-6 h-1 w-12 rounded-full bg-gradient-to-r from-brand-blue to-brand-green group-hover:w-20 transition-[width] duration-300" aria-hidden="true"></span>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <style is:global>
+      .hvalue { transition: transform .45s cubic-bezier(.16,1,.3,1), opacity .45s ease; }
+      .hscroll-ready .hvalue:not(.is-active) { opacity: .5; }
+      .hscroll-ready .hvalue.is-active { transform: scale(1.045); }
+      @media (prefers-reduced-motion: reduce) {
+        .hvalue { transition: none; }
+        .hscroll-ready .hvalue:not(.is-active) { opacity: 1; }
+        .hscroll-ready .hvalue.is-active { transform: none; }
+      }
+    </style>
+    <script is:inline>
+      (function () {
+        var section = document.querySelector('[data-hscroll]');
+        if (!section) return;
+        var track = section.querySelector('[data-htrack]');
+        var bar = section.querySelector('[data-hbar]');
+        var cards = Array.prototype.slice.call(track.querySelectorAll('.hvalue'));
+        var mqDesktop = window.matchMedia('(min-width: 1024px)');
+        var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var distance = 0;
+        function active() { return mqDesktop.matches && !mqReduce.matches; }
+
+        // Carte la plus proche du centre de l'écran => .is-active
+        function updateActive() {
+          var vpCenter = window.innerWidth / 2;
+          var best = null, bestDist = Infinity;
+          cards.forEach(function (c) {
+            var r = c.getBoundingClientRect();
+            var d = Math.abs((r.left + r.right) / 2 - vpCenter);
+            if (d < bestDist) { bestDist = d; best = c; }
+          });
+          cards.forEach(function (c) { c.classList.toggle('is-active', c === best); });
+        }
+        function update() {
+          if (active()) {
+            var rect = section.getBoundingClientRect();
+            var scrolled = Math.min(Math.max(-rect.top, 0), distance);
+            track.style.transform = 'translate3d(' + (-scrolled) + 'px,0,0)';
+            if (bar) bar.style.width = (distance ? (scrolled / distance * 100) : 0) + '%';
+          }
+          updateActive();
+        }
+        function measure() {
+          track.classList.add('hscroll-ready');
+          if (!active()) {
+            section.style.height = '';
+            track.style.transform = '';
+            track.style.paddingLeft = '';
+            track.style.paddingRight = '';
+            if (bar) bar.style.width = '';
+            updateActive();
+            return;
+          }
+          // Marges latérales = demi-écran moins demi-carte, pour que la 1re carte
+          // démarre pile au centre et que la dernière puisse s'y centrer aussi.
+          track.style.transform = 'none';
+          var cardW = cards[0].getBoundingClientRect().width;
+          var sidePad = Math.max(0, window.innerWidth / 2 - cardW / 2);
+          track.style.paddingLeft = sidePad + 'px';
+          track.style.paddingRight = sidePad + 'px';
+          // Distance = de quoi amener la DERNIÈRE carte pile au centre de l'écran
+          var trackLeft = track.getBoundingClientRect().left;
+          var lastRect = cards[cards.length - 1].getBoundingClientRect();
+          var lastCenter = (lastRect.left - trackLeft) + lastRect.width / 2;
+          distance = Math.max(0, lastCenter - window.innerWidth / 2);
+          section.style.height = (window.innerHeight + distance) + 'px';
+          update();
+        }
+
+        // Navigation clavier (flèches gauche/droite) quand la section est visible
+        function cardStep() {
+          var first = cards[0];
+          return first ? first.getBoundingClientRect().width + 24 : 360;
+        }
+        function inView() {
+          var rect = section.getBoundingClientRect();
+          if (active()) return rect.top <= 1 && rect.bottom > window.innerHeight;
+          return rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
+        }
+        function step(dir) {
+          var d = dir * cardStep();
+          if (!active()) { track.scrollBy({ left: d, behavior: 'smooth' }); return; }
+          var y = (window.__lenis && typeof window.__lenis.scroll === 'number') ? window.__lenis.scroll : (window.scrollY || window.pageYOffset);
+          if (window.__lenis && window.__lenis.scrollTo) window.__lenis.scrollTo(y + d);
+          else window.scrollTo({ top: y + d, behavior: 'smooth' });
+        }
+        document.addEventListener('keydown', function (e) {
+          if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+          if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '')) return;
+          if (!inView()) return;
+          e.preventDefault();
+          step(e.key === 'ArrowRight' ? 1 : -1);
+        });
+
+        window.addEventListener('scroll', update, { passive: true });
+        track.addEventListener('scroll', updateActive, { passive: true });
+        window.addEventListener('resize', measure);
+        mqDesktop.addEventListener('change', measure);
+        mqReduce.addEventListener('change', measure);
+        if (window.__lenis && window.__lenis.on) window.__lenis.on('scroll', update);
+        window.addEventListener('load', measure);
+        measure();
+        setTimeout(measure, 400);
+      })();
+    </script>
+  </section>
+
+  <!-- ============ NOTRE MATERIEL ============ -->
+  <section class="py-20 md:py-24 overflow-hidden">
+    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <!-- Visuel (gauche) -->
+      <div class="anim anim-up relative">
+        <div class="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-card">
+          <img src="/assets/img/chargeuse.jpg" alt="Engin de terrassement EFFO-TP sur un chantier" width="1600" height="1066" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" aria-hidden="true"></div>
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
+            <div class="glass rounded-2xl px-4 py-3 text-white">
+              <div class="font-display font-extrabold text-2xl leading-none">30 ans</div>
+              <div class="text-white/75 text-xs mt-1">d'expérience de terrain</div>
+            </div>
+            <span class="glass inline-flex items-center gap-1.5 text-white text-xs font-medium px-3 py-2 rounded-full"><i data-lucide="wrench" class="w-3.5 h-3.5"></i> Parc entretenu</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texte + équipements (droite) -->
+      <div class="anim anim-up" data-delay="120">
+        <span class="text-brand-green font-semibold uppercase tracking-wide text-sm">Notre matériel</span>
+        <h2 class="font-display font-bold text-[clamp(1.9rem,4vw,2.8rem)] mt-3 leading-tight">Un parc <span class="fibre-text">adapté</span> à chaque chantier</h2>
+        <div class="mt-6 space-y-4 text-slate2 text-lg leading-relaxed">
+          <p>Pour maîtriser nos délais et la qualité d'exécution, nous nous appuyons sur un parc matériel entretenu et dimensionné à nos interventions, du terrassement au génie civil.</p>
+          <p>Engins de terrassement, matériel de compactage, transport et manutention : nous mobilisons les moyens adaptés à chaque terrain et à chaque contrainte de chantier.</p>
+        </div>
+        <ul class="mt-7 flex flex-wrap gap-2.5">
+          {materiel.map((m) => (
+            <li class="group inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white pl-2 pr-4 py-2 shadow-soft transition duration-300 hover:border-brand-blue/40 hover:shadow-card hover:-translate-y-0.5">
+              <span class="w-8 h-8 shrink-0 rounded-full bg-gradient-to-br from-brand-blue/15 to-brand-green/15 flex items-center justify-center transition-colors duration-300 group-hover:from-brand-blue group-hover:to-brand-green"><i data-lucide={m.icon} class="w-4 h-4 text-brand-blue transition-colors duration-300 group-hover:text-white"></i></span>
+              <span class="font-semibold text-sm text-ink whitespace-nowrap">{m.name}</span>
+            </li>
+          ))}
+        </ul>
+        <a href="/realisations" class="mt-8 inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition">Voir nos réalisations <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+      </div>
     </div>
   </section>
 
