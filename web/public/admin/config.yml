@@ -37,6 +37,7 @@ collections:
           - { label: "Terrassement & viabilisation", value: "terrassement" }
           - { label: "Adduction télécom", value: "adduction" }
           - { label: "Aménagements extérieurs", value: "amenagements" }
+          - { label: "Particuliers", value: "particuliers" }
       - { name: "location", label: "Lieu (département ou ville)", widget: "string" }
       - { name: "description", label: "Description courte (sur la carte)", widget: "text" }
       - { name: "details", label: "Description détaillée (dans la fiche)", widget: "text", required: false }

@@ -1,0 +1,12 @@
+{
+  "title": "Aménagement extérieur d'une propriété",
+  "category": "particuliers",
+  "location": "Vendée",
+  "description": "Terrassement, accès et abords aménagés pour la propriété d'un particulier.",
+  "details": "Pour un particulier : terrassement du terrain, création des accès, plateforme, bordures et remise en état des abords. Un aménagement extérieur complet, préparé pour accueillir terrasse, stationnement ou plantations.",
+  "tags": ["Particulier", "Terrassement", "Accès", "Abords"],
+  "photos": [],
+  "icon": "house",
+  "order": 160,
+  "draft": false
+}

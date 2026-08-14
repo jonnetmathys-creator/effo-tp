@@ -34,8 +34,9 @@ const isActive = (href) => {
 ---
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
   <div class="mx-auto max-w-7xl px-6 h-[72px] flex items-center justify-between">
-    <a href="/" class="flex items-center" aria-label="EFFO-TP accueil">
-      <Logo class="h-8 text-ink" />
+    <a href="/" class="logo-link flex items-center" aria-label="EFFO-TP accueil">
+      <Logo class="h-8 text-ink header-logo" />
+      <span class="logo-sheen" aria-hidden="true"></span>
     </a>
     <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[15px] font-medium text-ink">
       {nav.map((n) => (

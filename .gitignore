@@ -30,3 +30,8 @@ EFFO-TP - Extrait d'immatriculation.pdf
 # Sauvegardes de développement
 web/backups/
 web/public/data/*.bak
+
+# Dossiers de sources de logos / assets bruts (à la racine)
+/Logo/
+/SVG/
+/4x/

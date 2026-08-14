@@ -58,9 +58,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     @keyframes hlCard { 0%, 100% { box-shadow: 0 0 0 0 rgba(28,137,242,0); } 14% { box-shadow: 0 0 0 4px rgba(28,137,242,.35), 0 18px 44px -12px rgba(28,137,242,.4); } 60% { box-shadow: 0 0 0 3px rgba(48,194,147,.3), 0 18px 44px -14px rgba(28,137,242,.22); } }
     section[data-hl].hl-on { animation: hlBand 2.6s ease-out both; }
     article[data-hl].hl-on { animation: hlCard 2.6s ease-out both; position: relative; z-index: 1; }
+    /* Logo du header : dégradé de marque qui suit le curseur (effet projecteur) */
+    .logo-link { position: relative; }
+    .logo-sheen {
+      position: absolute; inset: 0; pointer-events: none;
+      -webkit-mask: url(/assets/logo-effo.svg) center / contain no-repeat;
+      mask: url(/assets/logo-effo.svg) center / contain no-repeat;
+      background: radial-gradient(circle 60px at var(--mx, 50%) var(--my, 50%), #39C7FD 0%, #1C89F2 26%, #30C293 50%, transparent 88%);
+      filter: blur(3px);
+      opacity: 0; transition: opacity .4s ease;
+    }
+    .logo-link:hover .logo-sheen,
+    .logo-link:focus-visible .logo-sheen { opacity: 1; }
     @media (prefers-reduced-motion: reduce) {
       #page-splash { display: none !important; }
       section[data-hl].hl-on, article[data-hl].hl-on { animation: none; }
+      .logo-sheen { transition: none; }
     }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -336,6 +349,34 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           card.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
           card.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
         });
+      });
+
+      // Logo header : le dégradé « projecteur » suit le curseur avec un léger lissage
+      const reduceLogo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('.logo-link').forEach((link) => {
+        let tx = 0, ty = 0, cx = 0, cy = 0, raf = null, over = false;
+        const setVars = (x, y) => { link.style.setProperty('--mx', x + 'px'); link.style.setProperty('--my', y + 'px'); };
+        const loop = () => {
+          cx += (tx - cx) * 0.16;
+          cy += (ty - cy) * 0.16;
+          setVars(cx, cy);
+          if (over || Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4) raf = requestAnimationFrame(loop);
+          else raf = null;
+        };
+        link.addEventListener('pointerenter', (e) => {
+          const r = link.getBoundingClientRect();
+          tx = cx = e.clientX - r.left; ty = cy = e.clientY - r.top; // démarre sous le curseur (pas de saut)
+          over = true;
+          if (reduceLogo) { setVars(cx, cy); return; }
+          if (!raf) loop();
+        });
+        link.addEventListener('pointermove', (e) => {
+          const r = link.getBoundingClientRect();
+          tx = e.clientX - r.left; ty = e.clientY - r.top;
+          if (reduceLogo) { setVars(tx, ty); return; }
+          if (!raf) loop();
+        });
+        link.addEventListener('pointerleave', () => { over = false; });
       });
 
       // Barre de progression scroll + élévation header + bouton retour en haut
