@@ -4,8 +4,14 @@
   "location": "Maine-et-Loire",
   "description": "Implantation de chambres de tirage et d'armoires de rue conformes aux normes.",
   "details": "Pose et raccordement de chambres de tirage et d'armoires techniques de rue, points clés de l'architecture des réseaux. Implantation, génie civil et finitions conformes aux exigences des donneurs d'ordre.",
-  "tags": ["Chambres", "Armoires", "Génie civil"],
-  "photos": [],
+  "tags": [
+    "Chambres",
+    "Armoires",
+    "Génie civil"
+  ],
+  "photos": [
+    "/assets/chantiers/1-14.jpg"
+  ],
   "icon": "box",
   "order": 70,
   "draft": false

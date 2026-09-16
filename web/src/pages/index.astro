@@ -5,11 +5,13 @@ import MapZone from '../components/MapZone.astro';
 import CtaBand from '../components/CtaBand.astro';
 
 const materiel = [
-  { name: 'Pelle hydraulique', icon: 'construction' },
-  { name: 'Tractopelle', icon: 'truck' },
-  { name: 'Niveleuse', icon: 'ruler' },
-  { name: 'Décapeuse', icon: 'layers' },
-  { name: 'Manitou', icon: 'forklift' },
+  { name: 'Fourgons', icon: 'truck' },
+  { name: 'Camions-bennes', icon: 'container' },
+  { name: 'Mini-pelles', icon: 'construction' },
+  { name: 'Remorques', icon: 'caravan' },
+  { name: 'Camion 19 T avec grue', icon: 'truck' },
+  { name: 'Chargeuse', icon: 'forklift' },
+  { name: 'Matériel de compactage', icon: 'layers' },
 ];
 
 // Zone d'intervention élargie, groupée par région (data-dep synchronisé avec la carte)
@@ -22,24 +24,23 @@ const zones = [
 
 // Donneurs d'ordre / clients (grille statique)
 // url : laisser '' si pas de site (le logo ne sera alors pas cliquable)
+// file : '' tant que le logo SVG n'est pas fourni → affichage en texte
+// h : hauteur du logo en px (desktop), calibrée pour une surface visuelle homogène
+// (les logos larges sont moins hauts, les logos compacts ou aux traits fins plus hauts)
 const clients = [
-  { name: 'SPIE', file: 'spie', ar: '147.21 / 63.56', url: 'https://www.spie.com' },
-  { name: 'Eiffage', file: 'eiffage', ar: '137.91 / 26.04', url: 'https://www.eiffage.com' },
-  { name: 'Axione', file: 'axione', ar: '138.21 / 27.89', url: 'https://www.axione.fr' },
-  { name: 'Aximum', file: 'aximum', ar: '584.72 / 190.11', url: 'https://www.aximum.fr' },
-  { name: 'Ensio', file: 'ensio', ar: '451.05 / 181.78', url: 'https://ensio.eu' },
-  { name: 'Nantes Métropole', file: 'nantes-metropole', ar: '781.73 / 250.19', url: 'https://metropole.nantes.fr' },
+  { name: 'ENSIO', file: 'ensio', ar: '451.05 / 181.78', url: 'https://ensio.eu', h: 52 },
+  { name: 'SOLUTEL', file: 'solutel', ar: '537.76 / 200.309', url: '', h: 80 },
+  { name: 'GREEN TEAM ÉNERGIE', file: 'green-team-energie', ar: '398.58 / 736.66', url: '', h: 108 },
+  { name: 'Naovolt', file: 'naovolt', ar: '443.09 / 233.82', url: '', h: 50 },
+  { name: 'CIRCET', file: 'circet', ar: '429 / 148', url: '', h: 42 },
+  { name: 'Altitude Infrastructure', file: 'altitude-infrastructure', ar: '500.54 / 98.74', url: '', h: 34 },
+  { name: 'IZIVIA by EDF', file: 'izivia', ar: '295.73 / 128.2', url: '', h: 54 },
 ];
 // Partenaires / sponsoring local (carrousel défilant)
 const partenaires = [
-  { name: 'FC Nantes', file: 'fc-nantes', ar: '63.842 / 81.375', url: 'https://www.fcnantes.com' },
-  { name: 'LOSC', file: 'losc', ar: '697.41 / 663.69', url: 'https://www.losc.fr' },
-  { name: "La Nuit de l'Erdre", file: 'la-nuit-de-lerdre', ar: '241.98 / 74.15', url: 'https://www.lanuitdelerdre.fr' },
-  { name: 'CCFC', file: 'ccfc', ar: '500.28 / 499.94', url: 'https://www.fcchabossiere.fr' },
-  { name: 'Corsaires de Nantes', file: 'corsaires-nantes', ar: '424.43 / 354.51', url: '' },
+  { name: "La Nuit de l'Erdre", file: 'la-nuit-de-lerdre', ar: '241.98 / 74.15', url: 'https://www.lanuitdelerdre.fr', tag: 'Festival de musique', desc: "Partenaire d'un des grands rendez-vous musicaux du territoire." },
+  { name: 'Les Corsaires', file: 'corsaires-nantes', ar: '424.43 / 354.51', url: 'https://www.corsairesdenantes.fr', tag: 'Club de hockey', desc: "Aux côtés des Corsaires de Nantes pour soutenir le sport local." },
 ];
-// Répété pour une boucle fluide (le track translate de -50%)
-const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partenaires, ...partenaires, ...partenaires];
 ---
 <Base transparent={false}>
   <!-- ============ HERO (Fibre / Dark premium) ============ -->
@@ -49,7 +50,7 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
     <div class="blob absolute bottom-0 right-1/3 w-[360px] h-[360px] rounded-full bg-brand-green/15 blur-3xl pointer-events-none" style="animation-delay:-6s" aria-hidden="true"></div>
     <!-- fibre graphic : extrémités horizontales à droite du H1, plongée vers le coin bas-droite -->
     <div class="fibre-wrap hidden sm:block absolute top-1/2 -translate-y-1/2 left-[47%] right-[-14%] -scale-x-100 pointer-events-none opacity-95"
-         style="-webkit-mask-image:linear-gradient(270deg,transparent 0,#000 14%);mask-image:linear-gradient(270deg,transparent 0,#000 14%);" data-parallax="0.05" aria-hidden="true">
+         style="-webkit-mask-image:linear-gradient(270deg,transparent 0,rgba(0,0,0,.35) 18%,#000 42%);mask-image:linear-gradient(270deg,transparent 0,rgba(0,0,0,.35) 18%,#000 42%);" data-parallax="0.05" aria-hidden="true">
       <FibreGraphic />
     </div>
 
@@ -113,7 +114,7 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
         <!-- Génie civil -->
         <a href="/genie-civil" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="0">
           <div class="relative h-56 md:h-64 overflow-hidden">
-            <img src="/assets/img/genie-civil.jpg" alt="Chantier de génie civil EFFO-TP" width="1400" height="879" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+            <img src="/assets/chantiers/1-1.jpg" alt="Chantier de génie civil EFFO-TP" width="1600" height="1200" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
             <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="hard-hat" class="w-3.5 h-3.5 text-brand-blue"></i> Génie civil</span>
           </div>
@@ -132,7 +133,7 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
         <!-- Terrassement & aménagements -->
         <a href="/terrassement" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="120">
           <div class="relative h-56 md:h-64 overflow-hidden">
-            <img src="/assets/img/chargeuse.jpg" alt="Terrassement et aménagement extérieur EFFO-TP" width="1600" height="1066" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+            <img src="/assets/chantiers/1-2.jpg" alt="Terrassement et aménagement extérieur EFFO-TP" width="1600" height="1200" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
             <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="shovel" class="w-3.5 h-3.5 text-brand-green"></i> Terrassement &amp; aménagements</span>
           </div>
@@ -166,7 +167,7 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
       <div class="mt-12 grid lg:grid-cols-12 gap-6 items-stretch">
         <!-- Visuel réalisation (dominant, cliquable) -->
         <a href="/realisations" class="scard group anim anim-up lg:col-span-7 relative rounded-2xl overflow-hidden min-h-[340px] md:min-h-[420px] flex" data-delay="0">
-          <img src="/assets/img/chargeuse.jpg" alt="Chargeuse EFFO-TP sur un chantier de génie civil" width="1600" height="1066" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+          <img src="/assets/chantiers/1-3.jpg" alt="Du terrassement au raccordement final, chantier EFFO-TP" width="1200" height="1600" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-transparent"></div>
           <div class="relative mt-auto p-7 md:p-9 max-w-xl">
             <span class="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/15"><i data-lucide="hard-hat" class="w-3.5 h-3.5 text-brand-green"></i> Chantiers menés de A à Z</span>
@@ -180,7 +181,7 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
         <div class="anim anim-up lg:col-span-5 rounded-2xl border border-white/10 bg-ink-800/60 p-7 md:p-8 flex flex-col" data-delay="120">
           <div class="flex items-center gap-2.5 text-brand-green">
             <i data-lucide="wrench" class="w-5 h-5"></i>
-            <span class="font-semibold uppercase tracking-wide text-sm">Notre parc matériel</span>
+            <span class="font-semibold uppercase tracking-wide text-sm">Nos moyens techniques</span>
           </div>
           <ul class="mt-5 flex-1">
             {materiel.map((m) => (
@@ -251,55 +252,80 @@ const marqueeLogos = [...partenaires, ...partenaires, ...partenaires, ...partena
           const Tag = c.url ? 'a' : 'span';
           return (
             <div class="group bg-white flex items-center justify-center px-6 py-10 md:py-12 transition-colors duration-300 hover:bg-paper">
-              <Tag
-                class:list={["logo-mono h-9 md:h-10 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110", c.url && "cursor-pointer"]}
-                href={c.url || undefined}
-                target={c.url ? '_blank' : undefined}
-                rel={c.url ? 'noopener noreferrer' : undefined}
-                style={`aspect-ratio:${c.ar};-webkit-mask-image:url('/assets/logos/${c.file}.svg');mask-image:url('/assets/logos/${c.file}.svg')`}
-                role="img"
-                aria-label={c.url ? `${c.name} (site externe)` : c.name}
-              ></Tag>
+              {c.file ? (
+                <Tag
+                  class:list={["logo-mono max-w-full h-[var(--lh-sm)] md:h-[var(--lh)] grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110", c.url && "cursor-pointer"]}
+                  href={c.url || undefined}
+                  target={c.url ? '_blank' : undefined}
+                  rel={c.url ? 'noopener noreferrer' : undefined}
+                  style={`--lh:${c.h}px;--lh-sm:${Math.round(c.h * 0.8)}px;aspect-ratio:${c.ar};-webkit-mask-image:url('/assets/logos/${c.file}.svg');mask-image:url('/assets/logos/${c.file}.svg')`}
+                  role="img"
+                  aria-label={c.url ? `${c.name} (site externe)` : c.name}
+                ></Tag>
+              ) : (
+                <Tag
+                  class:list={["font-display font-bold text-slate2/70 text-base md:text-lg text-center leading-tight transition group-hover:text-ink", c.url && "cursor-pointer"]}
+                  href={c.url || undefined}
+                  target={c.url ? '_blank' : undefined}
+                  rel={c.url ? 'noopener noreferrer' : undefined}
+                  aria-label={c.url ? `${c.name} (site externe)` : undefined}
+                >{c.name}</Tag>
+              )}
             </div>
           );
         })}
         <!-- cellule finale : invite (étendue sur 2 colonnes pour combler la grille) -->
-        <div class="col-span-2 bg-white flex flex-col sm:flex-row items-center justify-center gap-x-3 gap-y-1 text-center px-6 py-10 md:py-12">
+        <div class="col-span-2 md:col-span-1 bg-white flex flex-col sm:flex-row md:flex-col items-center justify-center gap-x-3 gap-y-1 text-center px-6 py-10 md:py-12">
           <span class="font-display font-bold text-ink leading-tight">Et&nbsp;vous&nbsp;?</span>
           <a href="/contact" class="inline-flex items-center gap-1 text-brand-blue font-semibold text-sm hover:gap-2 transition-all">Travaillons ensemble <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
         </div>
       </div>
 
-      <!-- Partenaires : carrousel défilant -->
+      <!-- Partenaires -->
       <div class="mt-20 text-center max-w-2xl mx-auto">
         <span class="anim anim-up text-brand-green font-semibold uppercase tracking-wide text-sm">Engagement local</span>
         <h2 class="anim anim-up font-display font-bold text-2xl md:text-3xl mt-3" data-delay="60">Nos <span class="fibre-text">partenaires</span></h2>
         <p class="anim anim-up mt-4 text-slate2" data-delay="100">Fiers de soutenir le sport et les évènements de notre territoire.</p>
       </div>
-    </div>
-    <div class="marquee marquee-mask mt-10 py-6 overflow-hidden">
-      <div class="marquee-track items-center gap-16 md:gap-20" data-marquee>
-        {marqueeLogos.map((p, i) => {
-          const Tag = p.url ? 'a' : 'span';
-          const dup = i >= partenaires.length;
-          return (
-            <Tag
-              class:list={["logo-mono shrink-0 h-12 md:h-14 grayscale opacity-70", p.url && "cursor-pointer"]}
-              href={p.url || undefined}
-              target={p.url ? '_blank' : undefined}
-              rel={p.url ? 'noopener noreferrer' : undefined}
-              style={`aspect-ratio:${p.ar};-webkit-mask-image:url('/assets/logos/${p.file}.svg');mask-image:url('/assets/logos/${p.file}.svg')`}
-              role="img"
-              aria-label={dup ? undefined : (p.url ? `${p.name} (site externe)` : p.name)}
-              aria-hidden={dup ? 'true' : undefined}
-              tabindex={dup ? '-1' : undefined}
-            ></Tag>
-          );
-        })}
+
+      <div class="mt-12 grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {partenaires.map((p, i) => (
+          <div class="scard anim anim-up group bg-white rounded-2xl border border-slate-100 shadow-card overflow-hidden flex flex-col" data-delay={i * 100}>
+            <div class="h-1.5 bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-green"></div>
+            <div class="p-8 flex flex-col items-center text-center flex-1">
+              <div class="h-16 flex items-center justify-center">
+                <span
+                  class="logo-mono h-11 md:h-12 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
+                  style={`aspect-ratio:${p.ar};-webkit-mask-image:url('/assets/logos/${p.file}.svg');mask-image:url('/assets/logos/${p.file}.svg')`}
+                  role="img"
+                  aria-label={p.name}
+                ></span>
+              </div>
+              <span class="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-green bg-brand-green/10 px-3 py-1 rounded-full">{p.tag}</span>
+              <h3 class="mt-3 font-display font-bold text-lg text-ink">{p.name}</h3>
+              <p class="mt-2 text-slate2 text-sm leading-relaxed">{p.desc}</p>
+              {p.url && (
+                <a href={p.url} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1.5 text-brand-blue font-semibold text-sm hover:gap-2.5 transition-all">Voir le site <i data-lucide="external-link" class="w-4 h-4"></i></a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Invite partenariat -->
+      <div class="anim anim-up mt-8 max-w-3xl mx-auto relative overflow-hidden rounded-2xl bg-gradient-to-br from-ink to-[#12212e] text-white p-6 sm:p-8 shadow-card ring-1 ring-white/5" data-delay="200">
+        <div class="blob absolute -top-16 -right-12 w-56 h-56 rounded-full bg-brand-green/25 blur-3xl pointer-events-none" aria-hidden="true"></div>
+        <div class="relative flex flex-col sm:flex-row sm:items-center gap-5">
+          <div class="flex-1">
+            <div class="font-display font-bold text-xl leading-snug">Envie de devenir partenaire&nbsp;?</div>
+            <p class="text-white/70 mt-1.5">Évènement, club, sponsoring local : parlons de la manière dont EFFO-TP peut vous accompagner.</p>
+          </div>
+          <a href="/contact?sujet=partenariat" class="shrink-0 inline-flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-green/90 text-white font-semibold px-7 py-3.5 rounded-full transition shadow-[0_10px_28px_-8px_rgba(48,194,147,.7)]">Parlons-en <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ CTA BAND ============ -->
-  <CtaBand title={`Un projet de génie civil, <span class="fibre-text">fibre</span>, GSM ou IRVE ?`} subtitle="Décrivez-nous votre besoin, nous revenons vers vous rapidement." />
+  <CtaBand title={`Un projet de génie civil, d'<span class="fibre-text">aménagements</span> ou d'IRVE ?`} subtitle="Décrivez-nous votre besoin, nous revenons vers vous rapidement." />
 </Base>

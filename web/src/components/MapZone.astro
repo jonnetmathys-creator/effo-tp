@@ -17,9 +17,10 @@
       el._init = true;
 
       var map = L.map(el, { scrollWheelZoom: false, attributionControl: true, zoomControl: true });
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      // Tuiles OpenStreetMap (sans clé). CARTO exige désormais une clé API.
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
       }).addTo(map);
       map.setView([47.4, -1.6], 7);
 
@@ -69,4 +70,6 @@
   .effo-tip { background: #0B0F14; color: #fff; border: none; font-weight: 600; padding: 4px 10px; border-radius: 8px; }
   .effo-tip::before { border-top-color: #0B0F14; }
   .leaflet-container { font-family: 'Source Sans 3', sans-serif; }
+  /* Fond de carte adouci (OSM est très coloré) pour laisser ressortir les départements */
+  #zone-map .leaflet-tile-pane { filter: grayscale(.9) brightness(1.06) contrast(.88); }
 </style>

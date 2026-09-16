@@ -4,8 +4,14 @@
   "location": "Vendée",
   "description": "Fonçage par forage dirigé pour traverser une voirie sans l'ouvrir.",
   "details": "Traversée de chaussée par forage dirigé afin de faire passer les réseaux sans ouvrir la route : zéro impact sur la circulation et sur les infrastructures existantes. Solution idéale en milieu contraint ou en site occupé.",
-  "tags": ["Forage dirigé", "Sans tranchée", "Voirie"],
-  "photos": [],
+  "tags": [
+    "Forage dirigé",
+    "Sans tranchée",
+    "Voirie"
+  ],
+  "photos": [
+    "/assets/chantiers/1-13.jpg"
+  ],
   "icon": "drill",
   "order": 60,
   "draft": false

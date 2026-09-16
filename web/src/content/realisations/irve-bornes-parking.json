@@ -4,8 +4,18 @@
   "location": "Loire-Atlantique",
   "description": "Terrassement, massifs et fourreaux pour l'installation de bornes sur un parking professionnel.",
   "details": "Préparation complète d'un parking pour l'accueil de bornes de recharge : terrassement, création de tranchées, pose de fourreaux, réalisation des massifs et chambres, réseaux, bordures et remise en état des revêtements. Chantier mené en coordination avec l'installateur électrique pour un site prêt à être réceptionné.",
-  "tags": ["IRVE", "Massifs", "Fourreaux", "Bornes"],
-  "photos": [],
+  "tags": [
+    "IRVE",
+    "Massifs",
+    "Fourreaux",
+    "Bornes"
+  ],
+  "photos": [
+    "/assets/chantiers/1-8.jpg",
+    "/assets/chantiers/1-8-1.jpg",
+    "/assets/chantiers/1-8-2.jpg",
+    "/assets/chantiers/1-8-3.jpg"
+  ],
   "order": 10,
   "draft": false
 }

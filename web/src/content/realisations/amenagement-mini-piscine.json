@@ -4,8 +4,14 @@
   "location": "Vendée",
   "description": "Terrassement et préparation des ouvrages pour une mini-piscine de moins de 10 m².",
   "details": "Terrassement et préparation des ouvrages nécessaires à l'installation d'une mini-piscine de moins de 10 m² : décaissement, évacuation des terres, mise à niveau et préparation des abords.",
-  "tags": ["Mini-piscine", "Terrassement", "Particulier"],
-  "photos": [],
+  "tags": [
+    "Mini-piscine",
+    "Terrassement",
+    "Particulier"
+  ],
+  "photos": [
+    "/assets/chantiers/1-20.jpg"
+  ],
   "icon": "waves",
   "order": 130,
   "draft": false

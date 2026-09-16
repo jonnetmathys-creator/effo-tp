@@ -5,16 +5,16 @@ import CtaBand from '../components/CtaBand.astro';
 import TeamCard from '../components/TeamCard.astro';
 
 const team = [
-  { name: 'Quentin B.', role: 'Gérant · Directeur déploiement fibre' },
-  { name: 'Anthony B.', role: 'Directeur Génie civil' },
-  { name: 'Nicolas B.', role: 'Référent équipe lourde Génie civil' },
-  { name: 'Hermann P.', role: 'Conducteur poids lourd' },
-  { name: 'Maxime L.', role: 'Chef de chantier Génie civil' },
-  { name: 'Fabien L.', role: "Responsable d'équipe Génie civil" },
-  { name: 'Jérôme M.', role: 'Ouvrier qualifié Génie civil' },
-  { name: 'Thibault B.', role: 'Chef de chantier' },
-  { name: 'Léo B.', role: 'Responsable équipe' },
-  { name: 'Flavie', role: 'Assistante de direction' },
+  { name: 'Anthony B.', role: 'Gérant Exploitation', photo: '/assets/team/anthony.png' },
+  { name: 'Nicolas B.', role: 'Gérant Terrain', photo: '/assets/team/nicolas.png' },
+  { name: 'Quentin B.', role: 'Gérant Administratif', photo: '/assets/team/quentin.png' },
+  { name: 'Flavie B.', role: 'Assistante de direction', photo: '/assets/team/flavie.png' },
+  { name: 'Hermann P.', role: 'Conducteur poids lourd', photo: '/assets/team/hermann.png' },
+  { name: 'Maxime L.', role: 'Chef de chantier Génie civil', photo: '/assets/team/maxime.png' },
+  { name: 'Fabien L.', role: "Responsable d'équipe Génie civil", photo: '/assets/team/fabien.png' },
+  { name: 'Jérôme M.', role: 'Ouvrier qualifié Génie civil', photo: '/assets/team/jerome.png' },
+  { name: 'Thibault B.', role: 'Chef de chantier', photo: '/assets/team/thibault.png' },
+  { name: 'Léo B.', role: 'Responsable équipe', photo: '/assets/team/leo.png' },
 ];
 const half = Math.ceil(team.length / 2);
 const groupA = team.slice(0, half);
@@ -30,14 +30,13 @@ const valeurs = [
 ];
 
 const materiel = [
-  { name: 'Pelles hydrauliques', icon: 'construction' },
-  { name: 'Mini-pelles', icon: 'shovel' },
-  { name: 'Tractopelle', icon: 'truck' },
-  { name: 'Chargeuse', icon: 'tractor' },
-  { name: 'Manitou télescopique', icon: 'forklift' },
-  { name: 'Camions & bennes', icon: 'truck' },
+  { name: 'Fourgons', icon: 'truck' },
+  { name: 'Camions-bennes', icon: 'container' },
+  { name: 'Mini-pelles', icon: 'construction' },
+  { name: 'Remorques', icon: 'caravan' },
+  { name: 'Camion 19 T avec grue', icon: 'truck' },
+  { name: 'Chargeuse', icon: 'forklift' },
   { name: 'Matériel de compactage', icon: 'layers' },
-  { name: 'Niveleuse', icon: 'ruler' },
 ];
 ---
 <Base title="Notre entreprise : histoire, équipe, matériel & valeurs | EFFO-TP" description="EFFO-TP, entreprise familiale créée en 2021, née de 30 ans d'expériences partagées. Découvrez notre histoire, notre équipe, nos valeurs et notre parc matériel.">
@@ -57,10 +56,10 @@ const materiel = [
         <!-- Cards (gauche) -->
         <div class="order-2 lg:order-1 grid grid-cols-2 gap-4 sm:gap-5">
           <div class="space-y-4 sm:space-y-5">
-            {groupA.filter((_, i) => i % 2 === 0).map((m, i) => <TeamCard name={m.name} role={m.role} delay={i * 80} />)}
+            {groupA.filter((_, i) => i % 2 === 0).map((m, i) => <TeamCard name={m.name} role={m.role} photo={m.photo} delay={i * 80} />)}
           </div>
           <div class="space-y-4 sm:space-y-5 mt-8 sm:mt-14">
-            {groupA.filter((_, i) => i % 2 === 1).map((m, i) => <TeamCard name={m.name} role={m.role} delay={i * 80 + 40} />)}
+            {groupA.filter((_, i) => i % 2 === 1).map((m, i) => <TeamCard name={m.name} role={m.role} photo={m.photo} delay={i * 80 + 40} />)}
           </div>
         </div>
         <!-- Texte sticky (droite) -->
@@ -82,10 +81,10 @@ const materiel = [
         <!-- Cards (gauche) -->
         <div class="order-2 lg:order-1 grid grid-cols-2 gap-4 sm:gap-5">
           <div class="space-y-4 sm:space-y-5">
-            {groupB.filter((_, i) => i % 2 === 0).map((m, i) => <TeamCard name={m.name} role={m.role} delay={i * 80} />)}
+            {groupB.filter((_, i) => i % 2 === 0).map((m, i) => <TeamCard name={m.name} role={m.role} photo={m.photo} delay={i * 80} />)}
           </div>
           <div class="space-y-4 sm:space-y-5 mt-8 sm:mt-14">
-            {groupB.filter((_, i) => i % 2 === 1).map((m, i) => <TeamCard name={m.name} role={m.role} delay={i * 80 + 40} />)}
+            {groupB.filter((_, i) => i % 2 === 1).map((m, i) => <TeamCard name={m.name} role={m.role} photo={m.photo} delay={i * 80 + 40} />)}
           </div>
         </div>
         <!-- Texte sticky (droite) -->
@@ -100,9 +99,7 @@ const materiel = [
             </div>
             <div class="mt-7 flex flex-wrap gap-4">
               <a href="/contact" class="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold px-7 py-3.5 rounded-full transition">Nous contacter <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            </div>
-            <p class="mt-6 text-slate2 text-sm flex items-center gap-2"><i data-lucide="camera" class="w-4 h-4"></i> Les photos de l'équipe seront intégrées prochainement.</p>
-          </div>
+            </div>          </div>
         </div>
       </div>
 
@@ -269,7 +266,7 @@ const materiel = [
 
       <!-- Texte + équipements (droite) -->
       <div class="anim anim-up" data-delay="120">
-        <span class="text-brand-green font-semibold uppercase tracking-wide text-sm">Notre matériel</span>
+        <span class="text-brand-green font-semibold uppercase tracking-wide text-sm">Nos moyens techniques</span>
         <h2 class="font-display font-bold text-[clamp(1.9rem,4vw,2.8rem)] mt-3 leading-tight">Un parc <span class="fibre-text">adapté</span> à chaque chantier</h2>
         <div class="mt-6 space-y-4 text-slate2 text-lg leading-relaxed">
           <p>Pour maîtriser nos délais et la qualité d'exécution, nous nous appuyons sur un parc matériel entretenu et dimensionné à nos interventions, du terrassement au génie civil.</p>

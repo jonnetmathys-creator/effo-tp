@@ -28,7 +28,8 @@ const { transparent = false } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href) => {
   const base = href.split('#')[0].replace(/\/$/, '') || '/';
-  if (base === '/') return path === '/';
+  // Les ancres de l'accueil (ex : /#zone) ne doivent pas s'allumer en même temps qu'« Accueil »
+  if (base === '/') return path === '/' && !href.includes('#');
   return path.startsWith(base);
 };
 ---
@@ -38,7 +39,7 @@ const isActive = (href) => {
       <Logo class="h-8 text-ink header-logo" />
       <span class="logo-sheen" aria-hidden="true"></span>
     </a>
-    <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[15px] font-medium text-ink">
+    <nav class="hidden xl:flex items-center gap-7 whitespace-nowrap text-[15px] font-medium text-ink">
       {nav.map((n) => (
         n.children ? (
           <div class="relative group">
@@ -63,14 +64,14 @@ const isActive = (href) => {
       ))}
     </nav>
     <div class="flex items-center gap-3">
-      <a href="tel:0651397482" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-paper text-brand-blue" aria-label="Appeler"><i data-lucide="phone" class="w-5 h-5"></i></a>
-      <a href="/contact" class="hidden sm:inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold text-[15px] px-5 py-2.5 rounded-full transition shadow-soft">
+      <a href="tel:0240736792" class="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-paper text-brand-blue" aria-label="Appeler"><i data-lucide="phone" class="w-5 h-5"></i></a>
+      <a href="/contact" class="hidden sm:inline-flex whitespace-nowrap items-center gap-2 bg-brand-blue hover:bg-brand-blue700 text-white font-semibold text-[15px] px-5 py-2.5 rounded-full transition shadow-soft">
         Demander un devis <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
-      <button id="burger" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-white" aria-label="Menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
+      <button id="burger" class="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-white" aria-label="Menu"><i data-lucide="menu" class="w-5 h-5"></i></button>
     </div>
   </div>
-  <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white">
+  <div id="mobileMenu" class="hidden xl:hidden border-t border-slate-200 bg-white">
     <nav class="px-6 py-4 flex flex-col gap-1 text-ink font-medium">
       {nav.map((n) => (
         <Fragment>

@@ -25,9 +25,9 @@ const faq = [
       <div>
         <h2 class="font-display font-bold text-2xl">Coordonnées</h2>
         <div class="mt-8 space-y-5">
-          <a href="tel:0651397482" class="flex items-center gap-4 group">
+          <a href="tel:0240736792" class="flex items-center gap-4 group">
             <span class="w-12 h-12 rounded-full bg-paper flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition"><i data-lucide="phone" class="w-5 h-5"></i></span>
-            <span><span class="block text-slate2 text-sm">Téléphone</span><span class="font-semibold text-lg">06 51 39 74 82</span></span>
+            <span><span class="block text-slate2 text-sm">Téléphone</span><span class="font-semibold text-lg">02 40 73 67 92</span></span>
           </a>
           <a href="mailto:contact@effo-tp.com" class="flex items-center gap-4 group">
             <span class="w-12 h-12 rounded-full bg-paper flex items-center justify-center text-brand-green group-hover:bg-brand-green group-hover:text-white transition"><i data-lucide="mail" class="w-5 h-5"></i></span>
@@ -60,6 +60,10 @@ const faq = [
 
       <!-- Formulaire -->
       <form class="bg-paper rounded-2xl p-7 border border-slate-100" id="contactForm" novalidate>
+        <div id="partenariatNote" style="display:none" class="mb-5 items-start gap-3 rounded-xl bg-brand-green/10 border border-brand-green/25 px-4 py-3 text-sm text-ink">
+          <i data-lucide="handshake" class="w-5 h-5 text-brand-green shrink-0 mt-0.5"></i>
+          <span>Vous nous écrivez au sujet d'un <strong>partenariat ou d'un sponsoring</strong>. Présentez votre projet ci-dessous, on revient vers vous rapidement.</span>
+        </div>
         <div class="grid sm:grid-cols-2 gap-4">
           <div><label class="text-sm text-slate2" for="prenom">Prénom <span class="text-brand-blue">*</span></label><input id="prenom" name="prenom" required autocomplete="given-name" type="text" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Damien" /></div>
           <div><label class="text-sm text-slate2" for="nom">Nom <span class="text-brand-blue">*</span></label><input id="nom" name="nom" required autocomplete="family-name" type="text" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Dubois" /></div>
@@ -84,7 +88,7 @@ const faq = [
         <div class="mt-4"><label class="text-sm text-slate2" for="entreprise">Entreprise <span class="text-slate2/70">(si professionnel)</span></label><input id="entreprise" name="entreprise" type="text" autocomplete="organization" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Nom de l'entreprise" /></div>
         <div class="mt-4"><label class="text-sm text-slate2" for="sujet">Votre besoin</label>
           <select id="sujet" name="sujet" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none">
-            <option>Génie civil</option><option>IRVE &amp; énergies</option><option>RTE &amp; réseaux électriques</option><option>SNCF &amp; ferroviaire</option><option>Terrassement</option><option>Viabilisation</option><option>Adduction télécom</option><option>Aménagements extérieurs</option><option>Autre</option>
+            <option>Génie civil</option><option>IRVE &amp; énergies</option><option>RTE &amp; réseaux électriques</option><option>SNCF &amp; ferroviaire</option><option>Terrassement</option><option>Viabilisation</option><option>Adduction télécom</option><option>Aménagements extérieurs</option><option value="Partenariat &amp; sponsoring">Partenariat &amp; sponsoring</option><option>Autre</option>
           </select>
         </div>
         <div class="mt-4"><label class="text-sm text-slate2" for="message">Votre projet <span class="text-brand-blue">*</span></label><textarea id="message" name="message" required rows="5" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Bonjour, j'aurais voulu un devis pour…"></textarea></div>
@@ -153,6 +157,25 @@ const faq = [
       var form = document.getElementById('contactForm');
       if (!form) return;
       var status = document.getElementById('formStatus');
+
+      // Canal dédié : arrivée via /contact?sujet=partenariat → pré-sélectionne le motif
+      try {
+        var sujetParam = (new URLSearchParams(window.location.search).get('sujet') || '').toLowerCase();
+        if (sujetParam === 'partenariat') {
+          var sel = form.elements['sujet'];
+          if (sel) {
+            for (var oi = 0; oi < sel.options.length; oi++) {
+              if (/partenariat/i.test(sel.options[oi].value)) { sel.selectedIndex = oi; break; }
+            }
+          }
+          var msgEl = form.elements['message'];
+          if (msgEl) msgEl.setAttribute('placeholder', "Bonjour, nous organisons un évènement / notre club souhaiterait échanger avec EFFO-TP au sujet d'un partenariat…");
+          var note = document.getElementById('partenariatNote');
+          if (note) note.style.display = 'flex';
+          form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } catch (e) {}
+
       function setError(el, msg) {
         el.classList.add('border-red-400', 'ring-2', 'ring-red-200');
         el.setAttribute('aria-invalid', 'true');
@@ -187,9 +210,12 @@ const faq = [
         var profil = (form.elements['profil'] && form.elements['profil'].value) || 'Non renseigné';
         var entreprise = val('entreprise') || 'Non renseignée';
 
+        var estPartenariat = /partenariat/i.test(val('sujet'));
+        var libelle = estPartenariat ? 'demande de partenariat' : 'demande de devis';
+
         // Message unique, formaté proprement (e-mail clair, sans libellés parasites)
         var corps =
-          'Nouvelle demande de devis via le site EFFO-TP.\n\n' +
+          'Nouvelle ' + libelle + ' via le site EFFO-TP.\n\n' +
           'Profil : ' + profil + '\n' +
           'Nom : ' + val('prenom') + ' ' + val('nom') + '\n' +
           'E-mail : ' + val('email') + '\n' +
@@ -200,7 +226,7 @@ const faq = [
 
         var data = new FormData();
         data.append('access_key', WEB3FORMS_ACCESS_KEY);
-        data.append('subject', 'Demande de devis · ' + val('prenom') + ' ' + val('nom') + ' (' + val('sujet') + ')');
+        data.append('subject', (estPartenariat ? 'Demande de partenariat · ' : 'Demande de devis · ') + val('prenom') + ' ' + val('nom') + ' (' + val('sujet') + ')');
         data.append('from_name', 'Site EFFO-TP');
         data.append('email', val('email'));   // met le visiteur en « répondre à »
         data.append('message', corps);
