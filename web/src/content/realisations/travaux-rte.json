@@ -1,0 +1,19 @@
+{
+  "title": "Travaux pour RTE",
+  "category": "rte",
+  "location": "",
+  "description": "Création des accès de chantier et travaux de réseaux sous lignes haute tension.",
+  "details": "Interventions sur les sites du gestionnaire du réseau de transport d'électricité : création et entretien des accès de chantier, balisage et signalisation, travaux de réseaux et déroulage de câbles sous lignes haute tension, puis remise en état des terrains. Ces chantiers imposent des règles de sécurité et des autorisations spécifiques.",
+  "tags": [
+    "RTE",
+    "Réseaux électriques",
+    "Accès de chantier",
+    "Haute tension"
+  ],
+  "photos": [
+    "/assets/realisations/rte-01.webp",
+    "/assets/realisations/rte-02.webp"
+  ],
+  "order": 70,
+  "draft": false
+}

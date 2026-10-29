@@ -1,0 +1,23 @@
+{
+  "title": "Massifs, socles et dalles techniques",
+  "category": "genie-civil",
+  "location": "",
+  "description": "Dalles de shelter, socles béton en bord de voie et plateformes recevant chambres et armoires.",
+  "details": "Réalisation des ouvrages béton qui reçoivent les équipements techniques : dalles de shelter, socles et massifs en bord de voie, plateformes avec chambres et regards intégrés. Chaque ouvrage demande un terrassement calibré, un coffrage et un ferraillage adaptés à la charge, puis une finition soignée et la remise en état des abords. Une partie de ces chantiers est réalisée en emprise ferroviaire.",
+  "tags": [
+    "Dalles de shelter",
+    "Socles béton",
+    "Chambres",
+    "Plateformes"
+  ],
+  "photos": [
+    "/assets/realisations/socles-01.webp",
+    "/assets/realisations/socles-02.webp",
+    "/assets/realisations/socles-03.webp",
+    "/assets/realisations/socles-04.webp",
+    "/assets/realisations/socles-05.webp",
+    "/assets/realisations/socles-06.webp"
+  ],
+  "order": 40,
+  "draft": false
+}

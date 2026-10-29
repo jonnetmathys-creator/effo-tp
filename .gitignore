@@ -35,3 +35,10 @@ web/public/data/*.bak
 /Logo/
 /SVG/
 /4x/
+
+# Photos brutes du client (472 Mo) : la source, jamais le dépôt.
+# Seules les versions optimisées de web/public/assets/ sont publiées.
+/Photos/
+
+# Échanges privés avec le client (tarifs, coordonnées) : le dépôt est PUBLIC.
+contexte_quentin_echanges_complets.txt

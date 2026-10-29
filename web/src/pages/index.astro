@@ -1,8 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
-import FibreGraphic from '../components/FibreGraphic.astro';
 import MapZone from '../components/MapZone.astro';
 import CtaBand from '../components/CtaBand.astro';
+
+// Chantiers phares du hero. `name` s'affiche en bas à droite pendant l'affichage de la photo.
+const heroPhotos = [
+  { src: '/assets/hero/hero-1.webp', name: 'Station de recharge', alt: "Station de recharge pour véhicules électriques sous ombrières photovoltaïques, réalisée par EFFO-TP" },
+  { src: '/assets/hero/hero-2.webp', name: 'Cheminement et regard', alt: "Cheminement réalisé par EFFO-TP avec regard technique intégré" },
+  { src: '/assets/hero/hero-3.webp', name: 'Cour en enrobé', alt: "Cour en enrobé réalisée par EFFO-TP chez un particulier" },
+  { src: '/assets/hero/hero-4.webp', name: 'Accès en enrobé', alt: "Accès et abords en enrobé réalisés par EFFO-TP" },
+];
 
 const materiel = [
   { name: 'Fourgons', icon: 'truck' },
@@ -28,7 +35,7 @@ const zones = [
 // h : hauteur du logo en px (desktop), calibrée pour une surface visuelle homogène
 // (les logos larges sont moins hauts, les logos compacts ou aux traits fins plus hauts)
 const clients = [
-  { name: 'ENSIO', file: 'ensio', ar: '451.05 / 181.78', url: 'https://ensio.eu', h: 52 },
+  { name: 'ENSIO', file: 'ensio', ar: '451.05 / 181.78', url: '', h: 52 },
   { name: 'SOLUTEL', file: 'solutel', ar: '537.76 / 200.309', url: '', h: 80 },
   { name: 'GREEN TEAM ÉNERGIE', file: 'green-team-energie', ar: '398.58 / 736.66', url: '', h: 108 },
   { name: 'Naovolt', file: 'naovolt', ar: '443.09 / 233.82', url: '', h: 50 },
@@ -43,26 +50,35 @@ const partenaires = [
 ];
 ---
 <Base transparent={false}>
-  <!-- ============ HERO (Fibre / Dark premium) ============ -->
-  <section class="relative overflow-hidden hero-dark text-white">
-    <!-- ambient blobs -->
-    <div class="blob absolute -top-24 right-10 w-[420px] h-[420px] rounded-full bg-brand-blue/20 blur-3xl pointer-events-none" aria-hidden="true"></div>
-    <div class="blob absolute bottom-0 right-1/3 w-[360px] h-[360px] rounded-full bg-brand-green/15 blur-3xl pointer-events-none" style="animation-delay:-6s" aria-hidden="true"></div>
-    <!-- fibre graphic : extrémités horizontales à droite du H1, plongée vers le coin bas-droite -->
-    <div class="fibre-wrap hidden sm:block absolute top-1/2 -translate-y-1/2 left-[47%] right-[-14%] -scale-x-100 pointer-events-none opacity-95"
-         style="-webkit-mask-image:linear-gradient(270deg,transparent 0,rgba(0,0,0,.35) 18%,#000 42%);mask-image:linear-gradient(270deg,transparent 0,rgba(0,0,0,.35) 18%,#000 42%);" data-parallax="0.05" aria-hidden="true">
-      <FibreGraphic />
+  <!-- ============ HERO (chantiers phares, fondu doux) ============ -->
+  <section class="hero-shot relative isolate overflow-hidden hero-dark text-white flex items-center min-h-[600px] lg:min-h-[660px]">
+    <!-- photos : traversent tout le hero et s'effacent sous le texte -->
+    <div class="hero-stage absolute inset-0 z-[1]" aria-hidden="true">
+      {heroPhotos.map((p, i) => (
+        <img
+          src={i === 0 ? p.src : undefined}
+          data-src={i === 0 ? undefined : p.src}
+          alt={p.alt}
+          width="1600"
+          height="800"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : undefined}
+          decoding="async"
+          class:list={['hero-img', i === 0 && 'is-on']}
+        />
+      ))}
     </div>
+    <div class="hero-veil absolute inset-0 z-[2] pointer-events-none"></div>
 
-    <div class="relative mx-auto max-w-7xl px-6 py-20 sm:py-28 md:py-36 lg:py-44">
-      <div class="max-w-2xl">
+    <div class="relative z-[3] mx-auto max-w-7xl px-6 py-20 sm:py-24 w-full">
+      <div class="max-w-xl lg:max-w-[34rem]">
         <span class="anim anim-up inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-white/80 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-5">
           <span class="w-8 h-[3px] bg-brand-green"></span> Génie civil · IRVE · Terrassement · Viabilisation · Grand Ouest
         </span>
-        <h1 class="anim anim-up font-display font-extrabold tracking-tight text-balance text-[clamp(2.05rem,6.4vw,3.9rem)] leading-[1.08]" data-delay="80">
-          Mettons notre expertise au service de vos projets de <span class="fibre-text">génie civil</span>
+        <h1 class="anim anim-up font-display font-extrabold tracking-tight text-balance text-[clamp(2.05rem,5.2vw,3.5rem)] leading-[1.08]" data-delay="80">
+          Mettons notre expertise au service de vos <span class="fibre-text">projets</span>
         </h1>
-        <p class="anim anim-up mt-6 text-lg text-white/65 max-w-xl leading-relaxed" data-delay="160">
+        <p class="anim anim-up mt-6 text-lg text-white/70 leading-relaxed" data-delay="160">
           Située près de Nantes, EFFO-TP accompagne les installateurs de bornes de recharge, de trackers solaires et du photovoltaïque, les opérateurs de mobilité et les gestionnaires de réseaux dans leurs travaux de génie civil, de VRD, de terrassement et d'aménagement. Nos équipes interviennent dans tout le Grand Ouest.
         </p>
         <div class="anim anim-up mt-9 flex flex-wrap gap-4" data-delay="240">
@@ -73,6 +89,14 @@ const partenaires = [
             Nous solliciter <i data-lucide="arrow-right" class="w-5 h-5"></i>
           </a>
         </div>
+      </div>
+    </div>
+
+    <!-- nom du chantier + progression -->
+    <div class="hero-meta absolute right-6 sm:right-10 top-7 sm:top-8 z-[4] text-right">
+      <div id="heroCaption" class="font-display font-semibold text-sm text-white">{heroPhotos[0].name}</div>
+      <div class="bar mt-2 ml-auto h-[3px] w-32 sm:w-40 rounded-full bg-black/30 overflow-hidden">
+        <span id="heroProgress" class="block h-full w-0 bg-gradient-to-r from-brand-blue to-brand-green"></span>
       </div>
     </div>
   </section>
@@ -114,15 +138,15 @@ const partenaires = [
         <!-- Génie civil -->
         <a href="/genie-civil" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="0">
           <div class="relative h-56 md:h-64 overflow-hidden">
-            <img src="/assets/chantiers/1-1.jpg" alt="Chantier de génie civil EFFO-TP" width="1600" height="1200" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+            <img src="/assets/chantiers/1-1.webp" alt="Chantier de génie civil EFFO-TP" width="1600" height="1200" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
             <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="hard-hat" class="w-3.5 h-3.5 text-brand-blue"></i> Génie civil</span>
           </div>
           <div class="p-7 flex flex-col flex-1">
             <h3 class="font-display font-bold text-xl leading-snug">Génie civil traditionnel &amp; spécifique</h3>
-            <p class="mt-3 text-slate2 leading-relaxed flex-1">Ouvrages de génie civil pour l'énergie, le télécom et la mobilité : IRVE &amp; infrastructures énergétiques, RTE &amp; réseaux électriques, SNCF &amp; ferroviaire, travaux spécifiques.</p>
+            <p class="mt-3 text-slate2 leading-relaxed flex-1">Ouvrages de génie civil pour l'énergie, le télécom et la mobilité : IRVE &amp; photovoltaïque, RTE &amp; réseaux électriques, SNCF &amp; ferroviaire, travaux spécifiques.</p>
             <div class="mt-4 flex flex-wrap gap-2">
-              {['IRVE & énergies', 'RTE', 'SNCF & mobilité', 'Travaux spécifiques'].map((t) => (
+              {['IRVE & photovoltaïque', 'RTE', 'SNCF & mobilité', 'Travaux spécifiques'].map((t) => (
                 <span class="text-xs font-medium bg-paper text-slate2 px-2.5 py-1 rounded-full border border-slate-100">{t}</span>
               ))}
             </div>
@@ -133,7 +157,7 @@ const partenaires = [
         <!-- Terrassement & aménagements -->
         <a href="/terrassement" class="anim anim-up scard group flex flex-col bg-white rounded-2xl shadow-card hover:shadow-2xl overflow-hidden border border-slate-100" data-delay="120">
           <div class="relative h-56 md:h-64 overflow-hidden">
-            <img src="/assets/chantiers/1-2.jpg" alt="Terrassement et aménagement extérieur EFFO-TP" width="1600" height="1200" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+            <img src="/assets/chantiers/1-2.webp" alt="Terrassement et aménagement extérieur EFFO-TP" width="1600" height="1200" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent"></div>
             <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-white/95 text-ink text-xs font-bold px-3 py-1.5 rounded-full"><i data-lucide="shovel" class="w-3.5 h-3.5 text-brand-green"></i> Terrassement &amp; aménagements</span>
           </div>
@@ -167,7 +191,7 @@ const partenaires = [
       <div class="mt-12 grid lg:grid-cols-12 gap-6 items-stretch">
         <!-- Visuel réalisation (dominant, cliquable) -->
         <a href="/realisations" class="scard group anim anim-up lg:col-span-7 relative rounded-2xl overflow-hidden min-h-[340px] md:min-h-[420px] flex" data-delay="0">
-          <img src="/assets/chantiers/1-3.jpg" alt="Du terrassement au raccordement final, chantier EFFO-TP" width="1200" height="1600" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+          <img src="/assets/chantiers/1-3.webp" alt="Du terrassement au raccordement final, chantier EFFO-TP" width="1200" height="1600" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-transparent"></div>
           <div class="relative mt-auto p-7 md:p-9 max-w-xl">
             <span class="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full border border-white/15"><i data-lucide="hard-hat" class="w-3.5 h-3.5 text-brand-green"></i> Chantiers menés de A à Z</span>
@@ -328,4 +352,128 @@ const partenaires = [
 
   <!-- ============ CTA BAND ============ -->
   <CtaBand title={`Un projet de génie civil, d'<span class="fibre-text">aménagements</span> ou d'IRVE ?`} subtitle="Décrivez-nous votre besoin, nous revenons vers vous rapidement." />
+
+  <style>
+    /* Le fondu. La photo n'est jamais effacée : elle couvre tout le hero et
+       c'est un voile sombre qui s'éclaircit vers la droite. Effacer la photo
+       à gauche créait une frontière visible entre l'aplat uni et le grain de
+       la photo, même avec un dégradé parfaitement lisse. Ici le grain est
+       continu d'un bord à l'autre, il n'y a donc plus rien à couper.
+       Le voile suit une courbe en S (pente nulle aux deux bouts). */
+    .hero-shot{ --hero-delay:6s; }
+    /* Fond opaque sous les photos : pendant un fondu, rien de ce qui se trouve
+       derrière le hero (le bandeau de chiffres remonte sous lui) ne peut
+       transparaître et dessiner une ligne. */
+    .hero-stage{ background:#0B0F14; }
+    .hero-img{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+      opacity:0; transition:opacity 1.2s ease-in-out;
+      /* le zoom tourne sur la photo affichée et se fige (au lieu de revenir
+         brutalement à son point de départ) quand elle laisse la place */
+      animation:heroZoom calc(var(--hero-delay) + 1.4s) ease-out forwards;
+      animation-play-state:paused;
+    }
+    .hero-img.is-on{ opacity:1; animation-play-state:running; }
+    @keyframes heroZoom{ from{ transform:scale(1.03) } to{ transform:scale(1.10) } }
+    .hero-veil{
+      background:
+        linear-gradient(90deg,
+          rgba(11,15,20,.950) 0%,   rgba(11,15,20,.950) 30%, rgba(11,15,20,.931) 34%,
+          rgba(11,15,20,.880) 38%,  rgba(11,15,20,.802) 42%, rgba(11,15,20,.704) 46%,
+          rgba(11,15,20,.593) 50%,  rgba(11,15,20,.475) 54%, rgba(11,15,20,.357) 58%,
+          rgba(11,15,20,.246) 62%,  rgba(11,15,20,.148) 66%, rgba(11,15,20,.070) 70%,
+          rgba(11,15,20,.019) 74%,  rgba(11,15,20,0) 78%),
+        linear-gradient(0deg,
+          rgba(11,15,20,.46) 0%, rgba(11,15,20,.30) 10%, rgba(11,15,20,.16) 22%,
+          rgba(11,15,20,.07) 36%, rgba(11,15,20,.02) 52%, rgba(11,15,20,0) 70%);
+    }
+    #heroProgress{ animation:heroBar var(--hero-delay) linear infinite; }
+    @keyframes heroBar{ from{ width:0 } to{ width:100% } }
+
+    /* Sur mobile et tablette : le voile s'inverse, il s'éclaircit vers le bas */
+    @media (max-width:1023px){
+      .hero-veil{
+        background:linear-gradient(0deg,
+          rgba(11,15,20,.58) 0%,  rgba(11,15,20,.52) 8%,  rgba(11,15,20,.52) 16%,
+          rgba(11,15,20,.58) 24%, rgba(11,15,20,.66) 32%, rgba(11,15,20,.74) 40%,
+          rgba(11,15,20,.82) 50%, rgba(11,15,20,.87) 60%, rgba(11,15,20,.90) 70%,
+          rgba(11,15,20,.93) 85%, rgba(11,15,20,.94) 100%);
+      }
+      .hero-shot{ min-height:560px; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .hero-img{ transition:none; animation:none }
+      #heroProgress{ animation:none; width:100% }
+    }
+  </style>
+
+  <!-- Carrousel du hero : défilement automatique, barre calée sur la durée réelle,
+       pause quand l'onglet passe en arrière-plan, respecte « animations réduites » -->
+  <script is:inline define:vars={{ names: heroPhotos.map((p) => p.name) }}>
+    (function () {
+      var stage = document.querySelector('.hero-stage');
+      if (!stage) return;
+      var imgs = Array.prototype.slice.call(stage.querySelectorAll('.hero-img'));
+      var cap = document.getElementById('heroCaption');
+      var bar = document.getElementById('heroProgress');
+      if (imgs.length < 2) return;
+
+      var i = 0, timer = null;
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // La durée vient de --hero-delay, lue sur la barre : une seule valeur à régler,
+      // la barre et le défilement ne peuvent donc pas se désynchroniser.
+      var DELAY = 5000;
+      if (bar) {
+        var d = window.getComputedStyle(bar).animationDuration || '';
+        var ms = parseFloat(d) * (d.indexOf('ms') > -1 ? 1 : 1000);
+        if (ms > 500) DELAY = ms;
+      }
+
+      // Seule la 1re photo part avec la page ; les suivantes arrivent une fois
+      // la page affichée, pour ne pas alourdir le premier chargement.
+      function load(el) { if (el && el.dataset.src) { el.src = el.dataset.src; delete el.dataset.src; } }
+      function preload() { imgs.forEach(load); }
+      if (document.readyState === 'complete') preload();
+      else window.addEventListener('load', preload);
+
+      function restart(el) {
+        if (!el || reduced) return;
+        el.style.animation = 'none';
+        void el.offsetWidth;
+        el.style.animation = '';
+      }
+      var zc = 1, clean = null;
+      function show(n) {
+        i = (n + imgs.length) % imgs.length;
+        var cur = imgs[i];
+        load(cur);
+        cur.style.zIndex = ++zc;
+        restart(cur);
+        cur.classList.add('is-on');
+        // L'ancienne photo reste opaque sous la nouvelle pendant tout le fondu.
+        // Le hero n'est donc jamais semi-transparent : pas de fuite de ce qu'il y a
+        // derrière, et pas de baisse de luminosité au milieu du fondu.
+        if (clean) window.clearTimeout(clean);
+        clean = window.setTimeout(function () {
+          for (var k = 0; k < imgs.length; k++) if (imgs[k] !== cur) imgs[k].classList.remove('is-on');
+        }, 1250);
+        if (cap && names[i]) cap.textContent = names[i];
+        restart(bar);
+      }
+      function start() { if (!reduced && !timer) timer = setInterval(function () { show(i + 1); }, DELAY); }
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+        if (bar && !reduced) bar.style.animationPlayState = 'paused';
+      }
+
+      // Onglet masqué : tout se met en pause, et tout repart ensemble au retour.
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { stop(); return; }
+        restart(bar);
+        start();
+      });
+      start();
+    })();
+  </script>
 </Base>

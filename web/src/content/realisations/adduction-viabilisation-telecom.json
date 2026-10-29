@@ -1,0 +1,25 @@
+{
+  "title": "Adduction et viabilisation télécom",
+  "category": "adduction",
+  "location": "",
+  "description": "Faisceaux de fourreaux, chambres, socles de baie et réfection de voirie pour les réseaux télécom.",
+  "details": "Création et viabilisation des infrastructures d'accueil des réseaux télécom : ouverture de tranchées, pose de faisceaux de fourreaux, mise en place des chambres et des regards, masques de viabilisation, réalisation des socles béton recevant les baies et les armoires de rue, puis réfection complète des revêtements. Les chantiers se déroulent aussi bien en voirie qu'en domaine privé.",
+  "tags": [
+    "Adduction",
+    "Fourreaux",
+    "Chambres",
+    "Socles de baie",
+    "Réfection"
+  ],
+  "photos": [
+    "/assets/realisations/adduction-01.webp",
+    "/assets/realisations/adduction-02.webp",
+    "/assets/realisations/adduction-03.webp",
+    "/assets/realisations/adduction-04.webp",
+    "/assets/realisations/adduction-05.webp",
+    "/assets/realisations/adduction-06.webp",
+    "/assets/realisations/adduction-07.webp"
+  ],
+  "order": 30,
+  "draft": false
+}

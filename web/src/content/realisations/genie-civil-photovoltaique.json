@@ -1,0 +1,22 @@
+{
+  "title": "Génie civil pour installations photovoltaïques",
+  "category": "irve",
+  "location": "",
+  "description": "Tranchées, traversées de chaussée et massifs béton pour le raccordement d'installations photovoltaïques.",
+  "details": "Travaux de génie civil liés au raccordement d'installations photovoltaïques en site occupé : ouverture et remblaiement des tranchées, traversées de chaussée sous balisage, pose des fourreaux et des regards, réalisation des massifs béton, puis réfection des enrobés et des bordures. Les interventions sont menées en maintenant la circulation et l'accès des usagers.",
+  "tags": [
+    "Photovoltaïque",
+    "Tranchées",
+    "Traversée de chaussée",
+    "Massifs",
+    "Réfection"
+  ],
+  "photos": [
+    "/assets/realisations/photovoltaique-01.webp",
+    "/assets/realisations/photovoltaique-02.webp",
+    "/assets/realisations/photovoltaique-03.webp",
+    "/assets/realisations/photovoltaique-04.webp"
+  ],
+  "order": 20,
+  "draft": false
+}

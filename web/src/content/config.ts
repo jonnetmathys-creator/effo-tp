@@ -6,7 +6,7 @@ const realisations = defineCollection({
   schema: z.object({
     title: z.string(),
     category: z.enum(['irve', 'rte', 'sncf', 'genie-civil', 'terrassement', 'adduction', 'amenagements', 'particuliers']),
-    location: z.string(),
+    location: z.string().optional().default(''),
     description: z.string(),
     details: z.string().optional().default(''),
     tags: z.array(z.string()).optional().default([]),

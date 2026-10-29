@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 
 // Libellé + icône par défaut selon la catégorie (aligné sur les deux pôles du site)
 const CATS = {
-  'irve': { label: 'IRVE & énergies', icon: 'zap' },
+  'irve': { label: 'IRVE & photovoltaïque', icon: 'zap' },
   'rte': { label: 'RTE & réseaux électriques', icon: 'plug-zap' },
   'sncf': { label: 'SNCF & ferroviaire', icon: 'train-front' },
   'genie-civil': { label: 'Génie civil spécifique', icon: 'hard-hat' },
@@ -17,20 +17,13 @@ const CATS = {
   'particuliers': { label: 'Particuliers', icon: 'house' },
 };
 
-const filters = [
-  { key: 'all', label: 'Tous' },
-  { key: 'irve', label: 'IRVE & énergies' },
-  { key: 'rte', label: 'RTE & réseaux' },
-  { key: 'sncf', label: 'SNCF & ferroviaire' },
-  { key: 'genie-civil', label: 'Génie civil' },
-  { key: 'terrassement', label: 'Terrassement & viabilisation' },
-  { key: 'adduction', label: 'Adduction télécom' },
-  { key: 'amenagements', label: 'Aménagements extérieurs' },
-  { key: 'particuliers', label: 'Particuliers' },
-];
 
 // Chantiers chargés depuis la collection de contenu (éditable via /admin)
 const entries = await getCollection('realisations', ({ data }) => !data.draft);
+// La vignette « -sm » (environ 50 Ko) alimente la grille et la bande de miniatures ;
+// la pleine définition n'est chargée qu'à l'ouverture d'une photo dans la modale.
+const small = (src) => src.replace(/\.webp$/, '-sm.webp');
+
 const projects = entries
   .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))
   .map((e) => ({
@@ -38,12 +31,22 @@ const projects = entries
     categoryLabel: CATS[e.data.category]?.label ?? e.data.category,
     icon: e.data.icon || CATS[e.data.category]?.icon || 'hard-hat',
     title: e.data.title,
-    location: e.data.location,
+    location: e.data.location ?? '',
     desc: e.data.description,
     details: e.data.details || e.data.description,
     tags: e.data.tags ?? [],
     photos: e.data.photos ?? [],
+    thumbs: (e.data.photos ?? []).map(small),
   }));
+
+// Un filtre n'apparaît que si au moins un bloc le remplit : pas d'onglet qui ouvre le vide.
+const used = [...new Set(projects.map((p) => p.category))];
+const filters = [
+  { key: 'all', label: 'Tous' },
+  ...Object.keys(CATS)
+    .filter((k) => used.includes(k))
+    .map((k) => ({ key: k, label: CATS[k].label })),
+];
 
 const garanties = [
   { icon: 'shield-check', label: 'Conforme aux normes', desc: "Travaux réalisés dans le respect des normes télécom et des règles de voirie." },
@@ -57,7 +60,7 @@ const garanties = [
     eyebrow="Réalisations"
     title={'Nos <span class="fibre-text">réalisations</span>'}
     subtitle="Des exemples concrets de travaux menés dans le Grand Ouest, du génie civil au raccordement final."
-    image="/assets/img/chargeuse.jpg"
+    image="/assets/img/chargeuse.webp"
   />
 
   <!-- Galerie de réalisations -->
@@ -88,8 +91,9 @@ const garanties = [
             desc={p.desc}
             details={p.details}
             tags={p.tags}
-            photo={p.photos && p.photos.length ? p.photos[0] : undefined}
+            photo={p.thumbs.length ? p.thumbs[0] : undefined}
             photos={p.photos}
+            thumbs={p.thumbs}
             delay={(i % 3) * 80}
           />
         ))}
@@ -209,7 +213,7 @@ const garanties = [
       function buildThumbs() {
         thumbsEl.innerHTML = slides.map(function (s, i) {
           var inner = s.photo
-            ? '<img src="' + s.photo + '" alt="" class="w-full h-full object-cover">'
+            ? '<img src="' + (s.thumb || s.photo) + '" alt="" loading="lazy" class="w-full h-full object-cover">'
             : '<i data-lucide="' + curIcon + '" class="w-5 h-5 text-brand-blue/30"></i>';
           return '<button type="button" data-thumb="' + i + '" class="relative shrink-0 w-20 h-14 rounded-lg overflow-hidden bg-gradient-to-br from-paper to-slate-200/70 flex items-center justify-center transition" aria-current="false">' + inner + '</button>';
         }).join('');
@@ -225,14 +229,20 @@ const garanties = [
         document.getElementById('pmTitle').textContent = card.getAttribute('data-title') || '';
         document.getElementById('pmDesc').textContent = card.getAttribute('data-desc') || '';
         document.getElementById('pmCat').innerHTML = '<i data-lucide="' + curIcon + '" class="w-3.5 h-3.5 text-brand-blue"></i> ' + (card.getAttribute('data-catlabel') || '');
-        document.getElementById('pmLoc').innerHTML = '<i data-lucide="map-pin" class="w-4 h-4 text-brand-green shrink-0"></i> ' + (card.getAttribute('data-location') || '');
+        var loc = card.getAttribute('data-location') || '';
+        var locEl = document.getElementById('pmLoc');
+        locEl.innerHTML = loc ? '<i data-lucide="map-pin" class="w-4 h-4 text-brand-green shrink-0"></i> ' + loc : '';
+        locEl.classList.toggle('hidden', !loc);
         var tags = (card.getAttribute('data-tags') || '').split('|').filter(Boolean);
         document.getElementById('pmTags').innerHTML = tags.map(function (t) {
           return '<span class="inline-flex items-center gap-1.5 bg-paper text-ink text-sm font-medium px-3 py-1.5 rounded-full border border-slate-100">' + t + '</span>';
         }).join('');
         // Galerie : vraies photos via data-photos="url1|url2", sinon 3 placeholders
         var photos = (card.getAttribute('data-photos') || '').split('|').filter(Boolean);
-        slides = photos.length ? photos.map(function (p) { return { photo: p, alt: card.getAttribute('data-title') }; }) : [{}, {}, {}];
+        var thumbs = (card.getAttribute('data-thumbs') || '').split('|').filter(Boolean);
+        slides = photos.length
+          ? photos.map(function (p, i) { return { photo: p, thumb: thumbs[i] || p, alt: card.getAttribute('data-title') }; })
+          : [{}, {}, {}];
         gi = 0;
         buildThumbs();
         renderMain();

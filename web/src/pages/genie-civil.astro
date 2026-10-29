@@ -4,7 +4,7 @@ import PageHeader from '../components/PageHeader.astro';
 import CtaBand from '../components/CtaBand.astro';
 
 const subnav = [
-  { href: '#irve', label: 'IRVE & énergies', icon: 'zap' },
+  { href: '#irve', label: 'IRVE & photovoltaïque', icon: 'zap' },
   { href: '#rte', label: 'RTE & réseaux', icon: 'plug-zap' },
   { href: '#sncf', label: 'SNCF & mobilité', icon: 'train-front' },
   { href: '#specifiques', label: 'Travaux spécifiques', icon: 'wrench' },
@@ -12,28 +12,28 @@ const subnav = [
 
 const blocks = [
   {
-    id: 'irve', num: '01', icon: 'zap', cat: 'irve', photo: '/assets/chantiers/1-4.jpg',
-    eyebrow: 'IRVE & infrastructures énergétiques',
-    title: 'Génie civil pour bornes de recharge & énergies',
+    id: 'irve', num: '01', icon: 'zap', cat: 'irve', photo: '/assets/chantiers/1-4.webp',
+    eyebrow: 'IRVE & photovoltaïque',
+    title: 'Génie civil pour bornes de recharge & photovoltaïque',
     text: "EFFO-TP prend en charge l'ensemble des travaux préparatoires et de génie civil nécessaires à l'installation de bornes de recharge : terrassement, création de tranchées, pose de fourreaux, réalisation de massifs et de chambres, réseaux, bordures, revêtements et remise en état des ouvrages. Selon les projets, nos équipes peuvent également intervenir pour la pose des bornes et le tirage des câbles, afin de proposer une réalisation complète et prête à être réceptionnée. Nous travaillons en coordination avec les installateurs et les équipes électriques afin de sécuriser les délais, la qualité d'exécution et la bonne préparation du site.",
     points: ['Terrassement, tranchées et pose de fourreaux', 'Massifs, chambres, réseaux et bordures', 'Revêtements et remise en état des ouvrages', 'Pose des bornes & tirage des câbles selon les projets'],
   },
   {
-    id: 'rte', num: '02', icon: 'plug-zap', cat: 'rte', photo: '/assets/chantiers/1-5.jpg',
+    id: 'rte', num: '02', icon: 'plug-zap', cat: 'rte', photo: '/assets/chantiers/1-5.webp',
     eyebrow: 'RTE & réseaux électriques',
     title: 'Ouvrages de génie civil pour les réseaux électriques',
     text: "EFFO-TP intervient sur les ouvrages de génie civil associés aux infrastructures et réseaux électriques : terrassement, création de plateformes, réseaux enterrés, massifs, fourreaux, chambres, bordures, voiries et remise en état des sites.",
     points: ['Terrassement et création de plateformes', 'Réseaux enterrés, massifs et fourreaux', 'Chambres, bordures et voiries', 'Remise en état des sites'],
   },
   {
-    id: 'sncf', num: '03', icon: 'train-front', cat: 'sncf', photo: '/assets/chantiers/1-6.jpg',
+    id: 'sncf', num: '03', icon: 'train-front', cat: 'sncf', photo: '/assets/chantiers/1-6.webp',
     eyebrow: 'SNCF & infrastructures ferroviaires',
     title: 'Travaux à proximité des infrastructures ferroviaires',
     text: "EFFO-TP réalise des travaux de génie civil et d'aménagement à proximité des infrastructures ferroviaires : terrassement, réseaux, massifs, plateformes techniques, cheminements, clôtures et remise en état des emprises.",
     points: ['Terrassement et réseaux', 'Massifs et plateformes techniques', 'Cheminements et clôtures', 'Remise en état des emprises'],
   },
   {
-    id: 'specifiques', num: '04', icon: 'wrench', cat: 'genie-civil', photo: '/assets/chantiers/1-7.jpg',
+    id: 'specifiques', num: '04', icon: 'wrench', cat: 'genie-civil', photo: '/assets/chantiers/1-7.webp',
     eyebrow: 'Travaux spécifiques',
     title: 'Projets particuliers & interventions en site occupé',
     text: "Grâce à ses compétences techniques et à son parc matériel, EFFO-TP intervient également sur des projets spécifiques nécessitant une organisation adaptée, des travaux en site occupé ou des ouvrages particuliers.",
@@ -41,12 +41,12 @@ const blocks = [
   },
 ];
 ---
-<Base title="Génie civil : IRVE, RTE, SNCF & travaux spécifiques | EFFO-TP" description="EFFO-TP réalise vos ouvrages de génie civil pour l'énergie, le télécom et la mobilité : IRVE et infrastructures énergétiques, RTE et réseaux électriques, SNCF et ferroviaire, travaux spécifiques. Près de Nantes, dans tout le Grand Ouest.">
+<Base title="Génie civil : IRVE, RTE, SNCF & travaux spécifiques | EFFO-TP" description="EFFO-TP réalise vos ouvrages de génie civil pour l'énergie, le télécom et la mobilité : IRVE et photovoltaïque, RTE et réseaux électriques, SNCF et ferroviaire, travaux spécifiques. Près de Nantes, dans tout le Grand Ouest.">
   <PageHeader
     eyebrow="Génie civil"
     title={'Génie civil traditionnel & <span class="fibre-text">spécifique</span>'}
     subtitle="Ouvrages de génie civil au service des infrastructures énergétiques, télécom et de mobilité, dans tout le Grand Ouest."
-    image="/assets/img/genie-civil.jpg"
+    image="/assets/img/genie-civil.webp"
   />
 
   <!-- Sous-nav d'ancrage sticky -->

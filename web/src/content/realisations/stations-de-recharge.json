@@ -1,0 +1,27 @@
+{
+  "title": "Stations de recharge pour véhicules électriques",
+  "category": "irve",
+  "location": "",
+  "description": "Le génie civil complet d'une station de recharge : massifs de bornes, fourreaux, dalles d'armoires et reprise des revêtements.",
+  "details": "EFFO-TP réalise la partie génie civil des stations de recharge, en amont et en coordination avec l'installateur électrique. Les travaux comprennent le terrassement, les tranchées et la pose des fourreaux, la réalisation des massifs qui reçoivent les bornes, les dalles béton des armoires et des postes de transformation, puis la reprise des enrobés, des bordures et du marquage au sol. Les photos montrent des stations en voirie, sur parking d'entreprise, sous ombrière photovoltaïque, ainsi que la pose d'une borne à la grue.",
+  "tags": [
+    "IRVE",
+    "Massifs de bornes",
+    "Fourreaux",
+    "Dalles d'armoires",
+    "Enrobé"
+  ],
+  "photos": [
+    "/assets/realisations/irve-01.webp",
+    "/assets/realisations/irve-02.webp",
+    "/assets/realisations/irve-03.webp",
+    "/assets/realisations/irve-04.webp",
+    "/assets/realisations/irve-05.webp",
+    "/assets/realisations/irve-06.webp",
+    "/assets/realisations/irve-07.webp",
+    "/assets/realisations/irve-08.webp",
+    "/assets/realisations/irve-09.webp"
+  ],
+  "order": 10,
+  "draft": false
+}

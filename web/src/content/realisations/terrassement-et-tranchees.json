@@ -1,0 +1,20 @@
+{
+  "title": "Terrassement et tranchées",
+  "category": "terrassement",
+  "location": "",
+  "description": "Ouverture et réfection de tranchées, terrassement par aspiratrice, viabilisation de sites d'antennes.",
+  "details": "Travaux de terrassement et de tranchées pour l'ensemble des réseaux : ouverture mécanique ou par aspiratrice lorsque la présence de réseaux existants l'impose, pose des fourreaux, remblaiement, compactage et réfection des revêtements. Ces interventions couvrent aussi la viabilisation de sites d'antennes et de points hauts.",
+  "tags": [
+    "Terrassement",
+    "Tranchées",
+    "Aspiratrice",
+    "Viabilisation"
+  ],
+  "photos": [
+    "/assets/realisations/terrassement-01.webp",
+    "/assets/realisations/terrassement-02.webp",
+    "/assets/realisations/terrassement-03.webp"
+  ],
+  "order": 60,
+  "draft": false
+}

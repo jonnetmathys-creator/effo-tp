@@ -1,0 +1,21 @@
+{
+  "title": "Aménagements extérieurs",
+  "category": "amenagements",
+  "location": "",
+  "description": "Accès et cours en enrobé, clôtures et habillages, abords de piscine et plantations.",
+  "details": "Aménagement des abords, chez les particuliers comme sur les sites professionnels : terrassement et mise à niveau, accès et cours en enrobé, bordures, pose de clôtures et d'habillages bois autour des équipements techniques, finitions paysagères et abords de piscine. Un même chantier peut enchaîner terrassement, revêtement et finition.",
+  "tags": [
+    "Enrobé",
+    "Clôtures",
+    "Abords",
+    "Piscine"
+  ],
+  "photos": [
+    "/assets/realisations/amenagements-01.webp",
+    "/assets/realisations/amenagements-02.webp",
+    "/assets/realisations/amenagements-03.webp",
+    "/assets/realisations/amenagements-04.webp"
+  ],
+  "order": 50,
+  "draft": false
+}

@@ -16,7 +16,7 @@ const faq = [
     eyebrow="Nous solliciter"
     title="Parlons de votre projet"
     subtitle="Un projet de génie civil, d'IRVE, de terrassement, de viabilisation ou d'aménagement ? Particulier ou professionnel, décrivez-nous votre besoin, nous revenons vers vous rapidement."
-    image="/assets/img/batiment-effo.jpg"
+    image="/assets/img/batiment-effo.webp"
   />
 
   <section class="py-16 md:py-20">
@@ -88,10 +88,22 @@ const faq = [
         <div class="mt-4"><label class="text-sm text-slate2" for="entreprise">Entreprise <span class="text-slate2/70">(si professionnel)</span></label><input id="entreprise" name="entreprise" type="text" autocomplete="organization" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Nom de l'entreprise" /></div>
         <div class="mt-4"><label class="text-sm text-slate2" for="sujet">Votre besoin</label>
           <select id="sujet" name="sujet" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none">
-            <option>Génie civil</option><option>IRVE &amp; énergies</option><option>RTE &amp; réseaux électriques</option><option>SNCF &amp; ferroviaire</option><option>Terrassement</option><option>Viabilisation</option><option>Adduction télécom</option><option>Aménagements extérieurs</option><option value="Partenariat &amp; sponsoring">Partenariat &amp; sponsoring</option><option>Autre</option>
+            <option>Génie civil</option><option>IRVE &amp; photovoltaïque</option><option>RTE &amp; réseaux électriques</option><option>SNCF &amp; ferroviaire</option><option>Terrassement</option><option>Viabilisation</option><option>Adduction télécom</option><option>Aménagements extérieurs</option><option value="Partenariat &amp; sponsoring">Partenariat &amp; sponsoring</option><option>Autre</option>
           </select>
         </div>
         <div class="mt-4"><label class="text-sm text-slate2" for="message">Votre projet <span class="text-brand-blue">*</span></label><textarea id="message" name="message" required rows="5" class="mt-1.5 w-full bg-white border border-slate-200 rounded-lg px-4 py-3 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 outline-none" placeholder="Bonjour, j'aurais voulu un devis pour…"></textarea></div>
+        <!-- Photos du projet. Le bloc reste masqué tant que le stockage n'est pas
+             configuré (constantes CLOUDINARY_* dans le script en bas de page). -->
+        <div id="photosBlock" class="mt-4 hidden">
+          <span class="text-sm text-slate2">Photos du projet <span class="text-slate2/70">(facultatif)</span></span>
+          <label for="photos" class="mt-1.5 flex flex-col items-center justify-center gap-1 w-full bg-white border border-dashed border-slate-300 rounded-lg px-4 py-6 text-center cursor-pointer transition hover:border-brand-blue hover:bg-brand-blue/5 has-[:focus-visible]:border-brand-blue has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-blue/30">
+            <i data-lucide="image-plus" class="w-6 h-6 text-brand-blue"></i>
+            <span class="text-sm font-medium text-ink">Ajouter des photos</span>
+            <span class="text-[13px] text-slate2">JPEG, PNG ou HEIC · 5 photos maximum · 10 Mo par photo</span>
+            <input id="photos" name="photos" type="file" accept="image/*,.heic,.heif" multiple class="sr-only" />
+          </label>
+          <ul id="photosList" class="mt-2 space-y-1.5"></ul>
+        </div>
         <label class="mt-4 flex items-start gap-3 text-[13px] text-slate2 cursor-pointer">
           <input id="rgpd" name="rgpd" required type="checkbox" class="mt-0.5 w-4 h-4 shrink-0 accent-brand-blue" />
           <span>J'accepte que mes informations soient utilisées uniquement pour répondre à ma demande. <span class="text-brand-blue">*</span> <a href="/politique-confidentialite" class="underline hover:text-brand-blue">En savoir plus</a></span>
@@ -154,6 +166,16 @@ const faq = [
       // La clé est PUBLIQUE : aucun risque à l'exposer ici.
       var WEB3FORMS_ACCESS_KEY = '2e7dc4de-0172-48e5-abff-b8928a3eed91';
 
+      // Stockage des photos envoyées avec la demande (Cloudinary, offre gratuite).
+      // Les deux valeurs sont PUBLIQUES, elles n'ouvrent qu'au dépôt, jamais à la lecture
+      // du compte. Tant qu'elles sont vides, le champ « Photos du projet » reste masqué
+      // et le formulaire fonctionne normalement.
+      // Pour les obtenir : créer un compte sur cloudinary.com, puis dans
+      // Settings > Upload > Upload presets, ajouter un preset en mode « Unsigned »
+      // et lui fixer un dossier de destination.
+      var CLOUDINARY_CLOUD_NAME = 'lfi6drpf';
+      var CLOUDINARY_UPLOAD_PRESET = 'Effo-Tp';
+
       var form = document.getElementById('contactForm');
       if (!form) return;
       var status = document.getElementById('formStatus');
@@ -175,6 +197,81 @@ const faq = [
           form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       } catch (e) {}
+
+      // --- Photos du projet : sélection, limites, liste modifiable ---
+      var MAX_PHOTOS = 5, MAX_OCTETS = 10 * 1024 * 1024;
+      var photosBlock = document.getElementById('photosBlock');
+      var photosInput = document.getElementById('photos');
+      var photosList = document.getElementById('photosList');
+      var choisies = [];
+      var stockagePret = !!(CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET);
+      if (stockagePret && photosBlock) photosBlock.classList.remove('hidden');
+
+      function poids(o) { return (o / 1048576).toFixed(1).replace('.', ',') + ' Mo'; }
+
+      function majListe() {
+        if (!photosList) return;
+        photosList.innerHTML = choisies.map(function (f, i) {
+          return '<li class="flex items-center gap-2 bg-white border border-slate-200 rounded-lg px-3 py-2 text-[13px]">' +
+            '<i data-lucide="image" class="w-4 h-4 text-brand-blue shrink-0"></i>' +
+            '<span class="flex-1 truncate text-ink">' + f.name.replace(/[<>&]/g, '') + '</span>' +
+            '<span class="text-slate2 shrink-0">' + poids(f.size) + '</span>' +
+            '<button type="button" data-retirer="' + i + '" aria-label="Retirer ' + f.name.replace(/["<>&]/g, '') + '" class="shrink-0 text-slate2 hover:text-red-600 transition"><i data-lucide="x" class="w-4 h-4"></i></button>' +
+          '</li>';
+        }).join('');
+        if (window.lucide) window.lucide.createIcons();
+      }
+
+      if (photosList) {
+        photosList.addEventListener('click', function (e) {
+          var b = e.target.closest('[data-retirer]');
+          if (!b) return;
+          choisies.splice(parseInt(b.getAttribute('data-retirer'), 10), 1);
+          majListe();
+        });
+      }
+
+      if (photosInput) {
+        photosInput.addEventListener('change', function () {
+          var refus = [];
+          Array.prototype.forEach.call(photosInput.files, function (f) {
+            if (choisies.length >= MAX_PHOTOS) { refus.push(f.name + ' (maximum ' + MAX_PHOTOS + ' photos)'); return; }
+            if (f.size > MAX_OCTETS) { refus.push(f.name + ' (' + poids(f.size) + ', maximum 10 Mo)'); return; }
+            if (choisies.some(function (c) { return c.name === f.name && c.size === f.size; })) return;
+            choisies.push(f);
+          });
+          photosInput.value = '';
+          majListe();
+          if (refus.length) {
+            status.textContent = 'Photo non ajoutée : ' + refus.join(', ');
+            status.className = 'mt-3 text-sm text-center text-red-600';
+          }
+        });
+      }
+
+      // Dépose les photos une à une et renvoie les liens. Une photo qui échoue
+      // ne bloque jamais l'envoi de la demande : elle est signalée dans l'e-mail.
+      function televerserPhotos() {
+        if (!stockagePret || !choisies.length) return Promise.resolve({ liens: [], echecs: 0 });
+        var url = 'https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD_NAME + '/image/upload';
+        var liens = [], echecs = 0, faits = 0;
+        status.textContent = 'Envoi des photos… 0/' + choisies.length;
+        return choisies.reduce(function (chaine, f) {
+          return chaine.then(function () {
+            var fd = new FormData();
+            fd.append('file', f);
+            fd.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+            return fetch(url, { method: 'POST', body: fd })
+              .then(function (r) { return r.json(); })
+              .then(function (j) { if (j && j.secure_url) liens.push(j.secure_url); else echecs++; })
+              .catch(function () { echecs++; })
+              .then(function () {
+                faits++;
+                status.textContent = 'Envoi des photos… ' + faits + '/' + choisies.length;
+              });
+          });
+        }, Promise.resolve()).then(function () { return { liens: liens, echecs: echecs }; });
+      }
 
       function setError(el, msg) {
         el.classList.add('border-red-400', 'ring-2', 'ring-red-200');
@@ -224,6 +321,17 @@ const faq = [
           'Type de besoin : ' + val('sujet') + '\n\n' +
           'Message :\n' + val('message');
 
+        // Les photos partent d'abord vers le stockage, puis leurs liens rejoignent
+        // le corps du message : Flavie reçoit la demande et les photos dans un seul e-mail.
+        televerserPhotos().then(function (photos) {
+          if (photos.liens.length) {
+            corps += '\n\nPhotos jointes (' + photos.liens.length + ') :\n' + photos.liens.join('\n');
+          }
+          if (photos.echecs) {
+            corps += '\n\n' + photos.echecs + ' photo(s) n\'ont pas pu être transmises.';
+          }
+          status.textContent = 'Envoi en cours…';
+
         var data = new FormData();
         data.append('access_key', WEB3FORMS_ACCESS_KEY);
         data.append('subject', (estPartenariat ? 'Demande de partenariat · ' : 'Demande de devis · ') + val('prenom') + ' ' + val('nom') + ' (' + val('sujet') + ')');
@@ -237,6 +345,8 @@ const faq = [
           .then(function (json) {
             if (json && json.success) {
               form.reset();
+              choisies = [];
+              majListe();
               status.textContent = 'Votre demande a bien été envoyée. Nous vous répondons rapidement.';
               status.className = 'mt-3 text-sm text-center text-brand-green font-semibold';
               showToast();
@@ -250,6 +360,7 @@ const faq = [
             status.className = 'mt-3 text-sm text-center text-red-600';
           })
           .then(function () { btn.disabled = false; });
+        });
       });
 
       // Toast de confirmation

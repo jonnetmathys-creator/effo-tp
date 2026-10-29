@@ -5,18 +5,18 @@ import CtaBand from '../components/CtaBand.astro';
 import TeamCard from '../components/TeamCard.astro';
 
 const team = [
-  { name: 'Anthony B.', role: 'Gérant Exploitation', photo: '/assets/team/anthony.png' },
-  { name: 'Nicolas B.', role: 'Gérant Terrain', photo: '/assets/team/nicolas.png' },
-  { name: 'Quentin B.', role: 'Gérant Administratif', photo: '/assets/team/quentin.png' },
-  { name: 'Flavie B.', role: 'Assistante de direction', photo: '/assets/team/flavie.png' },
-  { name: 'Hermann P.', role: 'Conducteur poids lourd', photo: '/assets/team/hermann.png' },
-  { name: 'Maxime L.', role: 'Chef de chantier Génie civil', photo: '/assets/team/maxime.png' },
-  { name: 'Fabien L.', role: "Responsable d'équipe Génie civil", photo: '/assets/team/fabien.png' },
-  { name: 'Jérôme M.', role: 'Ouvrier qualifié Génie civil', photo: '/assets/team/jerome.png' },
-  { name: 'Thibault B.', role: 'Chef de chantier', photo: '/assets/team/thibault.png' },
-  { name: 'Léo B.', role: 'Responsable équipe', photo: '/assets/team/leo.png' },
+  { name: 'Anthony B.', role: 'Gérant Exploitation', photo: '/assets/team/anthony.webp' },
+  { name: 'Nicolas B.', role: 'Gérant opérationnel', photo: '/assets/team/nicolas.webp' },
+  { name: 'Quentin B.', role: 'Gérant Administratif', photo: '/assets/team/quentin.webp' },
+  { name: 'Flavie B.', role: 'Assistante de direction', photo: '/assets/team/flavie.webp' },
+  { name: 'Hermann P.', role: 'Conducteur poids lourd', photo: '/assets/team/hermann.webp' },
+  { name: 'Maxime L.', role: 'Chef de chantier Génie civil', photo: '/assets/team/maxime.webp' },
+  { name: 'Fabien L.', role: "Responsable d'équipe Génie civil", photo: '/assets/team/fabien.webp' },
+  { name: 'Jérôme M.', role: 'Ouvrier qualifié Génie civil', photo: '/assets/team/jerome.webp' },
+  { name: 'Thibault B.', role: 'Chef de chantier', photo: '/assets/team/thibault.webp' },
+  { name: 'Léo B.', role: 'Responsable équipe', photo: '/assets/team/leo.webp' },
 ];
-const half = Math.ceil(team.length / 2);
+const half = 4; // bloc 1 : les gérants · bloc 2 : les salariés
 const groupA = team.slice(0, half);
 const groupB = team.slice(half);
 
@@ -44,7 +44,7 @@ const materiel = [
     eyebrow="Notre entreprise"
     title="Grandir ensemble, remettre l'humain au cœur"
     subtitle="EFFO-TP est avant tout une entreprise et une histoire familiale, née de 30 ans d'expériences partagées."
-    image="/assets/img/chargeuse.jpg"
+    image="/assets/img/chargeuse.webp"
   />
 
   <!-- Histoire + équipe (texte sticky à droite, cards qui montent à gauche) -->
@@ -252,7 +252,7 @@ const materiel = [
       <!-- Visuel (gauche) -->
       <div class="anim anim-up relative">
         <div class="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-card">
-          <img src="/assets/img/chargeuse.jpg" alt="Engin de terrassement EFFO-TP sur un chantier" width="1600" height="1066" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
+          <img src="/assets/img/chargeuse.webp" alt="Engin de terrassement EFFO-TP sur un chantier" width="1600" height="1066" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" aria-hidden="true"></div>
           <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
             <div class="glass rounded-2xl px-4 py-3 text-white">

@@ -21,7 +21,7 @@ collections:
     extension: "json"
     format: "json"
     slug: "{{slug}}"
-    summary: "{{title}} · {{location}}"
+    summary: "{{title}}"
     sortable_fields: ["order", "title", "category"]
     fields:
       - { name: "title", label: "Titre du chantier", widget: "string" }
@@ -30,7 +30,7 @@ collections:
         widget: "select"
         default: "genie-civil"
         options:
-          - { label: "IRVE & énergies", value: "irve" }
+          - { label: "IRVE & photovoltaïque", value: "irve" }
           - { label: "RTE & réseaux électriques", value: "rte" }
           - { label: "SNCF & ferroviaire", value: "sncf" }
           - { label: "Génie civil spécifique", value: "genie-civil" }
@@ -38,7 +38,7 @@ collections:
           - { label: "Adduction télécom", value: "adduction" }
           - { label: "Aménagements extérieurs", value: "amenagements" }
           - { label: "Particuliers", value: "particuliers" }
-      - { name: "location", label: "Lieu (département ou ville)", widget: "string" }
+      - { name: "location", label: "Lieu (département ou ville)", widget: "string", required: false }
       - { name: "description", label: "Description courte (sur la carte)", widget: "text" }
       - { name: "details", label: "Description détaillée (dans la fiche)", widget: "text", required: false }
       - name: "tags"
